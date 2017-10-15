@@ -101,7 +101,8 @@ FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face, i
 }
 
 void
-FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face, int32_t metric, std::string macAddress)
+FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face, int32_t metric, std::string macAddress,
+		double position, double baseTime, double deltaTime)
 {
   NS_LOG_LOGIC("[" << node->GetId() << "]$ route add " << prefix << " via " << face->getLocalUri()
                    << " metric " << metric);
@@ -116,6 +117,9 @@ FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face, i
   parameters.setFaceId(face->getId());
   parameters.setCost(metric);
   parameters.setMac(macAddress);
+  parameters.setPosition(position);
+  parameters.setBaseTime(baseTime);
+  parameters.setDeltaTime(deltaTime);
 
   AddNextHop(parameters, node);
 }
