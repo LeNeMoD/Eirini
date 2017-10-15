@@ -267,7 +267,17 @@ FibAddNextHopCommand::applyDefaultsToRequest(ControlParameters& parameters) cons
     parameters.setCost(0);
   }
   if (!parameters.hasMac()) {
-      parameters.setMac("eirini");    }
+      parameters.setMac("eirini");
+  }
+  if (!parameters.hasPosition()) {
+        parameters.setPosition(0);
+  }
+  if (!parameters.hasBaseTime()) {
+        parameters.setBaseTime(0);
+  }
+  if (!parameters.hasDeltaTime()) {
+        parameters.setDeltaTime(0);
+  }
 }
 
 void
@@ -354,6 +364,9 @@ RibRegisterCommand::RibRegisterCommand()
     .optional(CONTROL_PARAMETER_ORIGIN)
     .optional(CONTROL_PARAMETER_COST)
     .optional(CONTROL_PARAMETER_MAC)
+	.optional(CONTROL_PARAMETER_POSITION)
+	.optional(CONTROL_PARAMETER_BASETIME)
+	.optional(CONTROL_PARAMETER_DELTATIME)
     .optional(CONTROL_PARAMETER_FLAGS)
     .optional(CONTROL_PARAMETER_EXPIRATION_PERIOD);
   m_responseValidator
@@ -381,6 +394,15 @@ RibRegisterCommand::applyDefaultsToRequest(ControlParameters& parameters) const
   if (!parameters.hasMac()) {
      parameters.setMac("eirini2");
    }
+  if(!parameters.hasPosition()){
+	  parameters.setPosition(0);
+  }
+  if (!parameters.hasDeltaTime()) {
+        parameters.setDeltaTime(0);
+  }
+  if (!parameters.hasBaseTime()) {
+        parameters.setBaseTime(0);
+  }
   if (!parameters.hasFlags()) {
     parameters.setFlags(ROUTE_FLAG_CHILD_INHERIT);
   }
