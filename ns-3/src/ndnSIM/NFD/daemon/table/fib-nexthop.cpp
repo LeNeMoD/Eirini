@@ -31,10 +31,10 @@ namespace fib {
 NextHop::NextHop(Face& face) :
 		m_face(&face),
 		m_cost(0),
-		m_mac("not set yet")
-//		m_position((0, 0, 0)),
-//		m_baseTime(0),
-//		m_deltaTime(0)
+		m_mac("not set yet"),
+		m_position((0, 0, 0)),
+		m_baseTime(0),
+		m_deltaTime(0)
 {
 }
 
