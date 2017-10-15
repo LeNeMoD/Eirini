@@ -59,6 +59,9 @@ FibManager::addNextHop(const Name& topPrefix, const Interest& interest,
   FaceId faceId = parameters.getFaceId();
   uint64_t cost = parameters.getCost();
   std::string mac = parameters.getMac();
+  double position = parameters.getPosition();
+  double baseTime = parameters.getBaseTime();
+  double deltaTime = parameters.getDeltaTime();
   NFD_LOG_TRACE("add-nexthop prefix: " << prefix
                 << " faceid: " << faceId
                 << " cost: " << cost);
@@ -66,12 +69,15 @@ FibManager::addNextHop(const Name& topPrefix, const Interest& interest,
   Face* face = m_faceTable.get(faceId);
   if (face != nullptr) {
     fib::Entry* entry = m_fib.insert(prefix).first;
-    entry->addNextHop(*face, cost, mac);
+    entry->addNextHop(*face, cost, mac, position, baseTime, deltaTime);
 
     NFD_LOG_DEBUG("add-nexthop result: OK"
                   << " prefix:" << prefix
                   << " faceid: " << faceId
-                  << " cost: " << cost);
+                  << " cost: " << cost
+				  << " positino: "<< position
+				  << " baseTime: "<< baseTime
+				  << " deltaTime: " << deltaTime);
 
     return done(ControlResponse(200, "Success").setBody(parameters.wireEncode()));
   }
