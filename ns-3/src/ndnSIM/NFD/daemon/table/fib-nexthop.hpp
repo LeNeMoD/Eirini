@@ -61,37 +61,37 @@ public:
 		return m_mac;
 	}
 
-	double getPosition() {
-		return m_position;
-	}
-	void setPosition(double pos) {
-		m_position(0) = pos(0);
-		m_position(1) = pos(1);
-		m_position(2) = pos(2);
-	}
-
-	void setBaseTime(double baseTime) {
-		m_baseTime = baseTime;
-	}
-
-	double Mac() const {
-		return m_baseTime;
-	}
-
-	void setDeltaTime(double deltaTime) {
-		m_deltaTime = deltaTime;
-	}
-
-	double getDeltaTime() const {
-		return m_deltaTime;
-	}
+//	double getPosition() {
+//		return m_position;
+//	}
+//	void setPosition(double pos) {
+//		m_position(0) = pos(0);
+//		m_position(1) = pos(1);
+//		m_position(2) = pos(2);
+//	}
+//
+//	void setBaseTime(double baseTime) {
+//		m_baseTime = baseTime;
+//	}
+//
+//	double Mac() const {
+//		return m_baseTime;
+//	}
+//
+//	void setDeltaTime(double deltaTime) {
+//		m_deltaTime = deltaTime;
+//	}
+//
+//	double getDeltaTime() const {
+//		return m_deltaTime;
+//	}
 private:
 	Face* m_face;
 	uint64_t m_cost;
 	std::string m_mac;
-	double m_position;
-	double m_baseTime;
-	double m_deltaTime;
+//	double m_position;
+//	double m_baseTime;
+//	double m_deltaTime;
 };
 
 } // namespace fib
