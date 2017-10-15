@@ -43,143 +43,200 @@ using ::ndn::nfd::ControlParameters;
  */
 class FibHelper {
 public:
-  /**
-   * \brief Add forwarding entry to FIB
-   *
-   * \param node   Node
-   * \param prefix Routing prefix
-   * \param face   Face
-   * \param metric Routing metric
-   */
-  static void
-  AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face, int32_t metric);
-  static void
-    AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face, int32_t metric,std::string macAddress);
+	/**
+	 * \brief Add forwarding entry to FIB
+	 *
+	 * \param node   Node
+	 * \param prefix Routing prefix
+	 * \param face   Face
+	 * \param metric Routing metric
+	 */
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face,
+			int32_t metric);
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face,
+			int32_t metric, std::string macAddress);
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face,
+			int32_t metric, std::string macAddress, double position,
+			double baseTime, double deltaTime);
 
-  /**
-   * \brief Add forwarding entry to FIB
-   *
-   * \param nodeName Node name
-   * \param prefix Routing prefix
-   * \param faceId Face index
-   * \param metric Routing metric
-   */
-  static void
-  AddRoute(const std::string& nodeName, const Name& prefix, uint32_t faceId, int32_t metric);
-  static void
-    AddRoute(const std::string& nodeName, const Name& prefix, uint32_t faceId, int32_t metric,std::string macAddress);
+	/**
+	 * \brief Add forwarding entry to FIB
+	 *
+	 * \param nodeName Node name
+	 * \param prefix Routing prefix
+	 * \param faceId Face index
+	 * \param metric Routing metric
+	 */
+	static void
+	AddRoute(const std::string& nodeName, const Name& prefix, uint32_t faceId,
+			int32_t metric);
+	static void
+	AddRoute(const std::string& nodeName, const Name& prefix, uint32_t faceId,
+			int32_t metric, std::string macAddress);
+	static void
+	AddRoute(const std::string& nodeName, const Name& prefix, uint32_t faceId,
+			int32_t metric, std::string macAddress, double position,
+			double baseTime, double deltaTime);
 
-  /**
-   * \brief Add forwarding entry to FIB
-   *
-   * \param nodeName Node
-   * \param prefix Routing prefix
-   * \param faceId Face index
-   * \param metric Routing metric
-   */
-  static void
-  AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId, int32_t metric);
-  static void
-    AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId, int32_t metric,std::string macAddress);
+	/**
+	 * \brief Add forwarding entry to FIB
+	 *
+	 * \param nodeName Node
+	 * \param prefix Routing prefix
+	 * \param faceId Face index
+	 * \param metric Routing metric
+	 */
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
+			int32_t metric);
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
+			int32_t metric, std::string macAddress);
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
+			int32_t metric, std::string macAddress, double position,
+			double baseTime, double deltaTime);
 
-  /**
-   * @brief Add forwarding entry to FIB (work only with point-to-point links)
-   *
-   * \param node Node
-   * \param prefix Routing prefix
-   * \param otherNode The other node, to which interests (will be used to infer face id
-   * \param metric Routing metric
-   */
-  static void
-  AddRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode, int32_t metric);
-  static void
-    AddRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode, int32_t metric,std::string macAddress);
+	/**
+	 * @brief Add forwarding entry to FIB (work only with point-to-point links)
+	 *
+	 * \param node Node
+	 * \param prefix Routing prefix
+	 * \param otherNode The other node, to which interests (will be used to infer face id
+	 * \param metric Routing metric
+	 */
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode,
+			int32_t metric);
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode,
+			int32_t metric, std::string macAddress);
+	static void
+	AddRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode,
+			int32_t metric, std::string macAddress, double position,
+			double baseTime, double deltaTime);
 
-  /**
-   * @brief Add forwarding entry to FIB (work only with point-to-point links)
-   *
-   * \param nodeName Node name (refer to ns3::Names)
-   * \param prefix Routing prefix
-   * \param otherNode The other node name, to which interests (will be
-   *                  used to infer face id (refer to ns3::Names)
-   * \param metric Routing metric
-   */
-  static void
-  AddRoute(const std::string& nodeName, const Name& prefix, const std::string& otherNodeName,
-           int32_t metric);
-  static void
-    AddRoute(const std::string& nodeName, const Name& prefix, const std::string& otherNodeName,
-             int32_t metric,std::string macAddress);
+	/**
+	 * @brief Add forwarding entry to FIB (work only with point-to-point links)
+	 *
+	 * \param nodeName Node name (refer to ns3::Names)
+	 * \param prefix Routing prefix
+	 * \param otherNode The other node name, to which interests (will be
+	 *                  used to infer face id (refer to ns3::Names)
+	 * \param metric Routing metric
+	 */
+	static void
+	AddRoute(const std::string& nodeName, const Name& prefix,
+			const std::string& otherNodeName, int32_t metric);
+	static void
+	AddRoute(const std::string& nodeName, const Name& prefix,
+			const std::string& otherNodeName, int32_t metric,
+			std::string macAddress);
+	static void
+	AddRoute(const std::string& nodeName, const Name& prefix,
+			const std::string& otherNodeName, int32_t metric,
+			std::string macAddress, double position, double baseTime,
+			double deltaTime);
 
-  /**
-   * \brief remove forwarding entry in FIB
-   *
-   * \param node Node
-   * \param prefix Routing prefix
-   * \param face Face
-   */
-  static void
-  RemoveRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face);
-  static void
-  RemoveRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face, std::string macAddress);
+	/**
+	 * \brief remove forwarding entry in FIB
+	 *
+	 * \param node Node
+	 * \param prefix Routing prefix
+	 * \param face Face
+	 */
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face);
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face,
+			std::string macAddress);
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face,
+			std::string macAddress, double position, double baseTime,
+			double deltaTime);
 
-  /**
-   * \brief remove forwarding entry in FIB
-   *
-   * \param node Node
-   * \param prefix Routing prefix
-   * \param faceId Face index
-   */
-  static void
-  RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId);
-  static void
-    RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,std::string macAddress);
+	/**
+	 * \brief remove forwarding entry in FIB
+	 *
+	 * \param node Node
+	 * \param prefix Routing prefix
+	 * \param faceId Face index
+	 */
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId);
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
+			std::string macAddress);
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
+			std::string macAddress, double position, double baseTime,
+			double deltaTime);
 
-  /**
-   * \brief remove forwarding entry in FIB
-   *
-   * \param nodeName Node name
-   * \param prefix Routing prefix
-   * \param faceId Face index
-   */
-  static void
-  RemoveRoute(const std::string& nodeName, const Name& prefix, uint32_t faceId);
-  static void
-    RemoveRoute(const std::string& nodeName, const Name& prefix, uint32_t faceId,std::string macAddress);
+	/**
+	 * \brief remove forwarding entry in FIB
+	 *
+	 * \param nodeName Node name
+	 * \param prefix Routing prefix
+	 * \param faceId Face index
+	 */
+	static void
+	RemoveRoute(const std::string& nodeName, const Name& prefix,
+			uint32_t faceId);
+	static void
+	RemoveRoute(const std::string& nodeName, const Name& prefix,
+			uint32_t faceId, std::string macAddress);
+	static void
+	RemoveRoute(const std::string& nodeName, const Name& prefix,
+			uint32_t faceId, std::string macAddress, double position,
+			double baseTime, double deltaTime);
 
-  /**
-   * @brief remove forwarding entry in FIB (work only with point-to-point links)
-   *
-   * \param node Node
-   * \param prefix Routing prefix
-   * \param otherNode The other node, to which interests (will be used to infer face id
-   */
-  static void
-  RemoveRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode);
-  static void
-    RemoveRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode,std::string macAddress);
+	/**
+	 * @brief remove forwarding entry in FIB (work only with point-to-point links)
+	 *
+	 * \param node Node
+	 * \param prefix Routing prefix
+	 * \param otherNode The other node, to which interests (will be used to infer face id
+	 */
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode);
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode,
+			std::string macAddress);
+	static void
+	RemoveRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode,
+			std::string macAddress, double position, double baseTime,
+			double deltaTime);
 
-  /**
-   * @brief remove forwarding entry in FIB (work only with point-to-point links)
-   *
-   * \param nodeName Node name
-   * \param prefix Routing prefix
-   * \param otherNode The other node name, to which interests (will be used to infer face id
-   */
-  static void
-  RemoveRoute(const std::string& nodeName, const Name& prefix, const std::string& otherNodeName);
-static void
-RemoveRoute(const std::string& nodeName, const Name& prefix, const std::string& otherNodeName,std::string macAddress);
+	/**
+	 * @brief remove forwarding entry in FIB (work only with point-to-point links)
+	 *
+	 * \param nodeName Node name
+	 * \param prefix Routing prefix
+	 * \param otherNode The other node name, to which interests (will be used to infer face id
+	 */
+	static void
+	RemoveRoute(const std::string& nodeName, const Name& prefix,
+			const std::string& otherNodeName);
+	static void
+	RemoveRoute(const std::string& nodeName, const Name& prefix,
+			const std::string& otherNodeName, std::string macAddress);
+	static void
+	RemoveRoute(const std::string& nodeName, const Name& prefix,
+			const std::string& otherNodeName, std::string macAddress,
+			double position, double baseTime, double deltaTime);
 
 private:
-  static void
-  GenerateCommand(Interest& interest);
+	static void
+	GenerateCommand(Interest& interest);
 
-  static void
-  AddNextHop(const ControlParameters& parameters, Ptr<Node> node);
+	static void
+	AddNextHop(const ControlParameters& parameters, Ptr<Node> node);
 
-  static void
-  RemoveNextHop(const ControlParameters& parameters, Ptr<Node> node);
+	static void
+	RemoveNextHop(const ControlParameters& parameters, Ptr<Node> node);
 };
 
 } // namespace ndn
