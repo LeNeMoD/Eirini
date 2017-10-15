@@ -57,7 +57,7 @@ Entry::hasNextHop(const Face& face) const
 }
 
 void
-Entry::addNextHop(Face& face, uint64_t cost, std::string mac)
+Entry::addNextHop(Face& face, uint64_t cost, std::string mac, double position, double baseTime, double deltaTime)
 {
   auto it = this->findNextHop(mac);
   if (it == m_nextHops.end()) {
@@ -66,6 +66,9 @@ Entry::addNextHop(Face& face, uint64_t cost, std::string mac)
   }
   it->setMac(mac);
   it->setCost(cost);
+  it->setPosition(position);
+  it->setBaseTime(baseTime);
+  it->setDeltaTime(deltaTime);
   this->sortNextHops();
 }
 
