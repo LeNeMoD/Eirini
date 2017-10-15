@@ -65,9 +65,8 @@ public:
 		return m_position;
 	}
 	void setPosition(double pos) {
-		m_position(0) = pos(0);
-		m_position(1) = pos(1);
-		m_position(2) = pos(2);
+		m_position = pos;
+		;
 	}
 
 	void setBaseTime(double baseTime) {
