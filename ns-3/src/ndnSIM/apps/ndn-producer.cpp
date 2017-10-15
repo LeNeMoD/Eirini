@@ -24,6 +24,10 @@
 #include "ns3/packet.h"
 #include "ns3/simulator.h"
 
+#include "ns3/mobility-module.h"
+#include "ns3/object.h"
+#include "ns3/node.h"
+
 #include "model/ndn-l3-protocol.hpp"
 #include "helper/ndn-fib-helper.hpp"
 
@@ -79,7 +83,10 @@ Producer::StartApplication()
   NS_LOG_FUNCTION_NOARGS();
   App::StartApplication();
 //insert MAC as eirini2 so no broadcast will occur
-  FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0, "eirini2");
+  Node node = GetNode();
+  Ptr<MobilityModel> model = node->GetObject<MobilityModel>();
+  Vector pos = model->GetPosition();
+  FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0, "eirini2", pos.x, 0, 0);
 }
 
 void
