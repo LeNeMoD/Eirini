@@ -40,6 +40,21 @@ FibUpdate::createAddUpdate(const Name& name, const uint64_t faceId, const uint64
 
   return update;
 }
+FibUpdate
+FibUpdate::createAddUpdate(const Name& name, const uint64_t faceId, const uint64_t cost, const double position, const double baseTime, const double deltaTime)
+{
+  FibUpdate update;
+
+  update.name = name;
+  update.faceId = faceId;
+  update.cost = cost;
+  update.position = position;
+  update.baseTime = baseTime;
+  update.deltaTime = deltaTime;
+  update.action = ADD_NEXTHOP;
+
+  return update;
+}
 
 FibUpdate
 FibUpdate::createRemoveUpdate(const Name& name, const uint64_t faceId)

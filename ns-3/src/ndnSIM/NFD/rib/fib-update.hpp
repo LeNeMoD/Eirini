@@ -40,6 +40,9 @@ public:
   FibUpdate()
     : faceId(0)
     , cost(0)
+,position(0)
+,baseTime(0)
+,deltaTime(0)
   {
   }
 
@@ -56,6 +59,9 @@ public:
   createAddUpdate(const Name& name, const uint64_t faceId, const uint64_t cost);
 
   static FibUpdate
+  createAddUpdate(const Name& name, const uint64_t faceId, const uint64_t cost, const double position, const double baseTime, const double deltaTime);
+
+  static FibUpdate
   createRemoveUpdate(const Name& name, const uint64_t faceId);
 
   enum Action {
@@ -67,6 +73,9 @@ public:
   Name name;
   uint64_t faceId;
   uint64_t cost;
+  double position;
+  double baseTime;
+  double deltaTime;
   Action action;
 };
 

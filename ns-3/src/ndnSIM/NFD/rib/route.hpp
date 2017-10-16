@@ -80,6 +80,7 @@ public:
   uint64_t origin;
   uint64_t flags;
   uint64_t cost;
+  double position;
   time::steady_clock::TimePoint expires;
 
 private:
