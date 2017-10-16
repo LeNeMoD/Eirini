@@ -136,6 +136,9 @@ public:
             .setFaceId(faceId)
             .setOrigin(ROUTE_ORIGIN_AUTOREG)
             .setCost(m_cost)
+			.setPosition(m_position)
+			.setBaseTime(m_baseTime)
+			.setDeltaTime(m_deltaTime)
             .setExpirationPeriod(time::milliseconds::max()),
           bind(&AutoregServer::onRegisterCommandSuccess, this, faceId, *prefix),
           bind(&AutoregServer::onRegisterCommandFailure, this, faceId, *prefix, _1));
@@ -340,6 +343,9 @@ private:
   std::vector<ndn::Name> m_autoregPrefixes;
   std::vector<ndn::Name> m_allFacesPrefixes;
   uint64_t m_cost;
+  double m_position;
+  double m_baseTime;
+  double m_deltaTime;
   std::vector<Network> m_whiteList;
   std::vector<Network> m_blackList;
 };
