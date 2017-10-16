@@ -375,6 +375,9 @@ RibRegisterCommand::RibRegisterCommand()
     .required(CONTROL_PARAMETER_ORIGIN)
     .required(CONTROL_PARAMETER_COST)
     .required(CONTROL_PARAMETER_MAC)
+	.required(CONTROL_PARAMETER_POSITION)
+	.required(CONTROL_PARAMETER_BASETIME)
+	.required(CONTROL_PARAMETER_DELTATIME)
     .required(CONTROL_PARAMETER_FLAGS)
     .optional(CONTROL_PARAMETER_EXPIRATION_PERIOD);
 }
@@ -442,6 +445,15 @@ RibUnregisterCommand::applyDefaultsToRequest(ControlParameters& parameters) cons
   }
   if (!parameters.hasMac()) {
 	  parameters.setMac("eirini");
+  }
+  if (!parameters.hasPosition()){
+	  parameters.setPosition(0);
+  }
+  if (!parameters.hasBaseTime()){
+	  parameters.setBaseTime(0);
+  }
+  if (!parameters.hasDeltaTime()){
+	  parameters.setDeltaTime(0);
   }
 }
 
