@@ -121,7 +121,8 @@ FibUpdater::computeUpdatesForRegistration(const RibUpdate& update)
       routeToUpdate.flags = route.flags;
       routeToUpdate.cost = route.cost;
       routeToUpdate.position = route.position;
-      routeToUpdate.b
+      routeToUpdate.baseTime = route.baseTime;
+      routeToUpdate.deltaTime = route.deltaTime;
       routeToUpdate.expires = route.expires;
 
       createFibUpdatesForUpdatedRoute(entryCopy, route, *existingRoute);

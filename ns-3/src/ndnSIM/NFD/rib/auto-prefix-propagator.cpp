@@ -83,9 +83,9 @@ AutoPrefixPropagator::loadConfig(const ConfigSection& configSection)
     if (i.first == "cost") {
       m_controlParameters.setCost(i.second.get_value<uint64_t>());
     }
-    else if (i.first == "position") {
-      m_commandOptions.setTimeout(time::milliseconds(i.second.get_value<double>()));
-    }
+//    else if (i.first == "position") {
+//      m_commandOptions.setPosition(i.second.get_value<double>());
+//    }
 
     else if (i.first == "timeout") {
       m_commandOptions.setTimeout(time::milliseconds(i.second.get_value<size_t>()));
