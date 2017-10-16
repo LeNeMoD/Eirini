@@ -249,12 +249,18 @@ FibAddNextHopCommand::FibAddNextHopCommand()
     .required(CONTROL_PARAMETER_NAME)
     .optional(CONTROL_PARAMETER_FACE_ID)
     .optional(CONTROL_PARAMETER_COST)
-    .optional(CONTROL_PARAMETER_MAC);
+    .optional(CONTROL_PARAMETER_MAC)
+	.optional(CONTROL_PARAMETER_POSITION)
+	.optional(CONTROL_PARAMETER_BASETIME)
+	.optional(CONTROL_PARAMETER_DELTATIME);
   m_responseValidator
     .required(CONTROL_PARAMETER_NAME)
     .required(CONTROL_PARAMETER_FACE_ID)
     .required(CONTROL_PARAMETER_COST)
-    .required(CONTROL_PARAMETER_MAC);
+    .required(CONTROL_PARAMETER_MAC)
+	.required(CONTROL_PARAMETER_POSITION)
+	.required(CONTROL_PARAMETER_BASETIME)
+	.required(CONTROL_PARAMETER_DELTATIME);
 }
 
 void
