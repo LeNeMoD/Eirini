@@ -256,56 +256,56 @@ Consumer::OnData(shared_ptr<const Data> data)
   if (hopCountTag != nullptr) { // e.g., packet came from local node's cache
     hopCount = *hopCountTag;
   }
-//LOGS
-  NS_LOG_DEBUG("Hop count: " << hopCount);
-  std::cout << "*****************************************************************" << std::endl;
-  std::cout << "......Consumer receiving data for: " << seq << " with hopcount: " << hopCount << " and name " << data->getName() << std::endl;
-  std::cout << "*****************************************************************" << std::endl;
-  Name name;
-  name = data->getName();
-  std::ostringstream tmpName;
-  tmpName << name;
-  std::string dataName = tmpName.str();
-  for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
-	  if(results[i][0] == dataName && results[i][0] != "OK") {
-		  results[i][1] = "OK";
-		  results[i][3] = std::to_string(Simulator::Now().GetNanoSeconds());
-		  results[i][4] = std::to_string(std::stod(results[i][3]) - std::stod(results[i][2]));
-	  }
-	  else if(results[i][0] == "x") {
-		  break;
-	  }
-
-	}
-  double totalLatency = 0;
-  int arrivedData = 0;
-  int send = 0;
-  for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
-	  if(results[i][0] != "x") {
-		  std::cout << results[i][0] << " - " << results[i][1] << " - " << results[i][2] << " - " << results[i][3] << " - "<< results[i][4] << std::endl;
-			send++;
-			if(results[i][1] == "OK") {
-				arrivedData++;
-				totalLatency += std::stod(results[i][4]);
-			}
-		}
-	  else {
-			break;
-	  }
-  }
-	std::cout << "-> allSendAndReceivedData: \n\n" << allSendAndReceivedData << "\n"<< std::endl;
-	std::cout << "-- -- -->> " << arrivedData << "/" << send << "<<-- -- --" << std::endl;
-    std::cout << "-- -- -->> RETRANSMISSIONS: " << retransmissions << "<<-- -- --" << std::endl;
-    std::cout << "-- -- -->> RETRANSMISSIONS + SENDS: " << retransmissions + send << "<<-- -- --\n" << std::endl;
-	std::cout << "-- -->> average latency: " << totalLatency/arrivedData << " ns <<-- --\n" << std::endl;
-	std::cout << "-- -->> average latency: " << (totalLatency/arrivedData)/1000 << " us <<-- --\n" << std::endl;
-	std::cout << "-- -->> average latency: " << (totalLatency/arrivedData)/1000000 << " ms <<-- --\n" << std::endl;
-
-  // TODO: delete the following two lines after finished testing.
-  counter++;
-  std::cout << "counter of received Data Packages is: " << counter << std::endl;
-
-  //END LOGS
+////LOGS
+//  NS_LOG_DEBUG("Hop count: " << hopCount);
+//  std::cout << "*****************************************************************" << std::endl;
+//  std::cout << "......Consumer receiving data for: " << seq << " with hopcount: " << hopCount << " and name " << data->getName() << std::endl;
+//  std::cout << "*****************************************************************" << std::endl;
+//  Name name;
+//  name = data->getName();
+//  std::ostringstream tmpName;
+//  tmpName << name;
+//  std::string dataName = tmpName.str();
+//  for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
+//	  if(results[i][0] == dataName && results[i][0] != "OK") {
+//		  results[i][1] = "OK";
+//		  results[i][3] = std::to_string(Simulator::Now().GetNanoSeconds());
+//		  results[i][4] = std::to_string(std::stod(results[i][3]) - std::stod(results[i][2]));
+//	  }
+//	  else if(results[i][0] == "x") {
+//		  break;
+//	  }
+//
+//	}
+//  double totalLatency = 0;
+//  int arrivedData = 0;
+//  int send = 0;
+//  for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
+//	  if(results[i][0] != "x") {
+//		  std::cout << results[i][0] << " - " << results[i][1] << " - " << results[i][2] << " - " << results[i][3] << " - "<< results[i][4] << std::endl;
+//			send++;
+//			if(results[i][1] == "OK") {
+//				arrivedData++;
+//				totalLatency += std::stod(results[i][4]);
+//			}
+//		}
+//	  else {
+//			break;
+//	  }
+//  }
+//	std::cout << "-> allSendAndReceivedData: \n\n" << allSendAndReceivedData << "\n"<< std::endl;
+//	std::cout << "-- -- -->> " << arrivedData << "/" << send << "<<-- -- --" << std::endl;
+//    std::cout << "-- -- -->> RETRANSMISSIONS: " << retransmissions << "<<-- -- --" << std::endl;
+//    std::cout << "-- -- -->> RETRANSMISSIONS + SENDS: " << retransmissions + send << "<<-- -- --\n" << std::endl;
+//	std::cout << "-- -->> average latency: " << totalLatency/arrivedData << " ns <<-- --\n" << std::endl;
+//	std::cout << "-- -->> average latency: " << (totalLatency/arrivedData)/1000 << " us <<-- --\n" << std::endl;
+//	std::cout << "-- -->> average latency: " << (totalLatency/arrivedData)/1000000 << " ms <<-- --\n" << std::endl;
+//
+//  // TODO: delete the following two lines after finished testing.
+//  counter++;
+//  std::cout << "counter of received Data Packages is: " << counter << std::endl;
+//
+//  //END LOGS
   SeqTimeoutsContainer::iterator entry = m_seqLastDelay.find(seq);
   if (entry != m_seqLastDelay.end()) {
     m_lastRetransmittedInterestDataDelay(this, seq, Simulator::Now() - entry->time, hopCount);
