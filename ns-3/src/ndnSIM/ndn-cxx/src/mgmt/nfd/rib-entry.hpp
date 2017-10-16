@@ -110,6 +110,48 @@ public:
     return *this;
   }
 
+  double
+    getPosition() const
+    {
+      return m_position;
+    }
+
+    Route&
+    setPosition(double position)
+    {
+      m_position = position;
+      m_wire.reset();
+      return *this;
+    }
+
+    double
+      getBaseTime() const
+      {
+        return m_baseTime;
+      }
+
+      Route&
+      setBaseTime(double baseTime)
+      {
+        m_baseTime = baseTime;
+        m_wire.reset();
+        return *this;
+      }
+
+      double
+        getDeltaTime() const
+        {
+          return m_deltaTime;
+        }
+
+        Route&
+        setDeltaTime(double deltaTime)
+        {
+          m_deltaTime = deltaTime;
+          m_wire.reset();
+          return *this;
+        }
+
   uint64_t
   getFlags() const
   {
@@ -166,6 +208,9 @@ private:
   uint64_t m_faceId;
   uint64_t m_origin;
   uint64_t m_cost;
+  double m_position;
+  double m_baseTime;
+  double m_deltaTime;
   uint64_t m_flags;
   time::milliseconds m_expirationPeriod;
   bool m_hasInfiniteExpirationPeriod;

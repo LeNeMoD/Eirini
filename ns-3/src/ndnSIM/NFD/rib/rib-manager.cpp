@@ -186,6 +186,7 @@ RibManager::registerEntry(const Name& topPrefix, const Interest& interest,
   route.faceId = parameters.getFaceId();
   route.origin = parameters.getOrigin();
   route.cost = parameters.getCost();
+  route.position = parameters.getPosition();
   route.flags = parameters.getFlags();
 
   if (parameters.hasExpirationPeriod() &&
@@ -263,6 +264,7 @@ RibManager::listEntries(const Name& topPrefix, const Interest& interest,
       routeElement.setFaceId(route.faceId)
               .setOrigin(route.origin)
               .setCost(route.cost)
+			  .setPosition(route.position)
               .setFlags(route.flags);
 
       if (route.expires < time::steady_clock::TimePoint::max()) {

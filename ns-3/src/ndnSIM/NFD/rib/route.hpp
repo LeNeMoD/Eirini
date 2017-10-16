@@ -42,6 +42,9 @@ public:
     , origin(0)
     , flags(0)
     , cost(0)
+	, position(0)
+	, baseTime(0)
+	, deltaTime(0)
     , expires(time::steady_clock::TimePoint::min())
     , m_expirationEvent()
   {
@@ -80,6 +83,9 @@ public:
   uint64_t origin;
   uint64_t flags;
   uint64_t cost;
+  double position;
+  double baseTime;
+  double deltaTime;
   time::steady_clock::TimePoint expires;
 
 private:
