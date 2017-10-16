@@ -83,23 +83,27 @@ size_t ControlParameters::wireEncode(EncodingImpl<TAG>& encoder) const {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
 				tlv::nfd::Position, m_position);
 	}
-	if (this->hasDeltaTime()) {
-		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::DeltaTime, m_deltaTime);
-	}
+
 	if (this->hasBaseTime()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
 				tlv::nfd::BaseTime, m_baseTime);
+	}
+
+	if (this->hasDeltaTime()) {
+		totalLength += prependNonNegativeIntegerBlock(encoder,
+				tlv::nfd::DeltaTime, m_deltaTime);
 	}
 
 	if (this->hasOrigin()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder, tlv::nfd::Origin,
 				m_origin);
 	}
+
 	if (this->hasLocalControlFeature()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
 				tlv::nfd::LocalControlFeature, m_localControlFeature);
 	}
+
 	if (this->hasUri()) {
 		size_t valLength = encoder.prependByteArray(
 				reinterpret_cast<const uint8_t*>(m_uri.c_str()), m_uri.size());

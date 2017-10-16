@@ -52,6 +52,9 @@ public:
     return (this->name == other.name &&
             this->faceId == other.faceId &&
             this->cost == other.cost &&
+			this->position == other.position &&
+			this->baseTime == other.baseTime &&
+			this->deltaTime == other.deltaTime &&
             this->action == other.action);
   }
 
