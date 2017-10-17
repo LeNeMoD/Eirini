@@ -28,6 +28,9 @@
 #include "ns3/node-list.h"
 #include "ns3/node.h"
 
+#include "ns3/mobility-module.h"
+#include "ns3/object.h"
+
 namespace nfd {
 namespace fw {
 
@@ -46,6 +49,8 @@ MulticastStrategy::afterReceiveInterest(const Face& inFace, const Interest& inte
   const fib::Entry& fibEntry = this->lookupFib(*pitEntry);
   const fib::NextHopList& nexthops = fibEntry.getNextHops();
   ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
+  ns3::Ptr<ns3::MobilityModel> model = node->GetObject<ns3::MobilityModel>();
+    ns3::Vector pos = model->GetPosition();
      std::ostringstream addr[node->GetNDevices()];
         std::string currentMacAddresses[node->GetNDevices()];
 
@@ -54,10 +59,10 @@ MulticastStrategy::afterReceiveInterest(const Face& inFace, const Interest& inte
       	  currentMacAddresses[index] = addr[index].str().substr(6);
         }
 //print to check what the FIB contains
-//  for (fib::NextHopList::const_iterator it = nexthops.begin(); it != nexthops.end(); ++it) {
-//
-//	  std::cout<< " FIB: NODE: " <<node->GetId() << " name: " << interest.getName() << " face " << it->getFace() << " mac : "<< it->getMac() << std::endl;
-//  }
+  for (fib::NextHopList::const_iterator it = nexthops.begin(); it != nexthops.end(); ++it) {
+
+	  std::cout<< " FIB: NODE: " <<node->GetId() << " name: " << interest.getName() << " face " << it->getFace() << " mac : "<< it->getMac()<< " position : "<< it->getPosition() << std::endl;
+  }
   for (fib::NextHopList::const_iterator it = nexthops.begin(); it != nexthops.end(); ++it) {
     Face& outFace = it->getFace();
     if (!wouldViolateScope(inFace, interest, outFace) &&

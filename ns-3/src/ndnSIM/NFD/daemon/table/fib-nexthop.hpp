@@ -61,11 +61,12 @@ public:
 		return m_mac;
 	}
 
-	double getPosition() {
+	double getPosition() const{
 		return m_position;
 	}
-	void setPosition(double pos) {
-		m_position = pos;
+
+	void setPosition(double position) {
+		m_position = position;
 		;
 	}
 
@@ -73,7 +74,7 @@ public:
 		m_baseTime = baseTime;
 	}
 
-	double Mac() const {
+	double getBaseTime() const {
 		return m_baseTime;
 	}
 
