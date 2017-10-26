@@ -88,5 +88,11 @@ Entry::sortNextHops()
             [] (const NextHop& a, const NextHop& b) { return a.getCost() < b.getCost(); });
 }
 
+void
+Entry::updatePositionNextHop(Face& face, std::string mac, double position){
+	 auto it = this->findNextHop(mac);
+	  it->setPosition(position);
+}
+
 } // namespace fib
 } // namespace nfd

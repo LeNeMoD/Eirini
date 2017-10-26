@@ -37,6 +37,8 @@
 #include "ns3/callback.h"
 #include "ns3/node-list.h"
 #include "ns3/data-rate.h"
+#include "ns3/mobility-module.h"
+
 
 #include "daemon/mgmt/fib-manager.hpp"
 #include "ns3/ndnSIM/model/ndn-l3-protocol.hpp"
@@ -127,12 +129,16 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	// Get the forwarder instance
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
+	Ptr<MobilityModel> model = node->GetObject<MobilityModel>();
+
+    ns3::Vector pos = model->GetPosition();
+
 	ControlParameters parameters;
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setCost(metric);
 	parameters.setMac(macAddress);
-	parameters.setPosition(position);
+	parameters.setPosition(555);
 	parameters.setBaseTime(baseTime);
 	parameters.setDeltaTime(deltaTime);
 

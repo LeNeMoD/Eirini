@@ -182,6 +182,7 @@ static Vector SetInitialPosition (Ptr<ConstantVelocityMobilityModel> model, std:
 static Vector SetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at, std::string coord, double coordVal);
 
 
+
 Ns2MobilityHelper::Ns2MobilityHelper (std::string filename)
   : m_filename (filename)
 {
@@ -192,6 +193,10 @@ Ns2MobilityHelper::Ns2MobilityHelper (std::string filename)
 Ptr<ConstantVelocityMobilityModel>
 Ns2MobilityHelper::GetMobilityModel (std::string idString, const ObjectStore &store) const
 {
+
+	//  std::cout<< "get ns2 mobility model-->from mobility helper.cc " << std::endl;
+
+
   std::istringstream iss;
   iss.str (idString);
   uint32_t id (0);
@@ -793,6 +798,9 @@ SetInitialPosition (Ptr<ConstantVelocityMobilityModel> model, std::string coord,
 Vector
 SetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at, std::string coord, double coordVal)
 {
+	ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
+
+	std::cout<<"set position"<< coordVal << " at time:"<< at << "for node:" << node->GetId() <<std::endl;
   // update position
   model->SetPosition (SetOneInitialCoord (model->GetPosition (), coord, coordVal));
 
@@ -805,6 +813,16 @@ SetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at, std::stri
   Simulator::Schedule (Seconds (at), &ConstantVelocityMobilityModel::SetPosition, model,position);
 
   return position;
+}
+
+Vector
+Ns2MobilityHelper::GetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at){
+	ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
+	Vector position;
+	  position.x = model->GetPosition ().x;
+	  position.y = model->GetPosition ().y;
+	  position.z = model->GetPosition ().z;
+	return position;
 }
 
 void
