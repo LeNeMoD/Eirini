@@ -83,9 +83,10 @@ Producer::StartApplication()
   NS_LOG_FUNCTION_NOARGS();
   App::StartApplication();
 //insert MAC as eirini2 so no broadcast will occur
-//  Node node = GetNode();
+//  Ptr<Node> node = GetNode();
 //  Ptr<MobilityModel> model = node->GetObject<MobilityModel>();
 //  Vector pos = model->GetPosition();
+////  Vector baseTime = model->
   FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0, "eirini2");
 }
 

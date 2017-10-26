@@ -60,8 +60,9 @@ MulticastStrategy::afterReceiveInterest(const Face& inFace, const Interest& inte
         }
 //print to check what the FIB contains
   for (fib::NextHopList::const_iterator it = nexthops.begin(); it != nexthops.end(); ++it) {
-
-	  std::cout<< " FIB: NODE: " <<node->GetId() << " name: " << interest.getName() << " face " << it->getFace() << " mac : "<< it->getMac()<< " position : "<< it->getPosition() << std::endl;
+	  double positionX = pos.x;
+	  it->setPosition(positionX);
+	  std::cout<<  " FIB: NODE: " <<node->GetId() << " name: " << interest.getName() << " face " << it->getFace() << " mac : "<< it->getMac()<< " position : "<< positionX << std::endl;
   }
   for (fib::NextHopList::const_iterator it = nexthops.begin(); it != nexthops.end(); ++it) {
     Face& outFace = it->getFace();

@@ -53,6 +53,8 @@ ConstantVelocityHelper::SetPosition (const Vector &position)
   m_position = position;
   m_velocity = Vector (0.0, 0.0, 0.0);
   m_lastUpdate = Simulator::Now ();
+  std::cout<< "NOWNOWNOWNOWONWONWONWONWONWO"<< m_lastUpdate << std::endl;
+
 }
 
 Vector
