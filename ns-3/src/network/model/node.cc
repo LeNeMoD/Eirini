@@ -359,6 +359,26 @@ Node::NotifyDeviceAdded (Ptr<NetDevice> device)
       (*i) (device);
     }  
 }
+
+void
+Node::setCurrentPosition(double currentPos){
+
+}
+
+void
+Node::setPositionAtDeltaTime(double futurePosition){
+
+}
  
+double
+Node::getCurrentPosition(){
+	return 0;
+}
+
+double
+Node::getFuturePosition(){
+	return 0;
+}
+
 
 } // namespace ns3

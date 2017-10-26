@@ -54,12 +54,15 @@ ConstantVelocityMobilityModel::SetVelocity (const Vector &speed)
 Vector
 ConstantVelocityMobilityModel::DoGetPosition (void) const
 {
+	std::cout<<"constvelocitymobilitymodel---do get position"<<std::endl;
+
   m_helper.Update ();
   return m_helper.GetCurrentPosition ();
 }
 void 
 ConstantVelocityMobilityModel::DoSetPosition (const Vector &position)
 {
+	std::cout<<"constvelocitymobilitymodel"<<std::endl;
   m_helper.SetPosition (position);
   NotifyCourseChange ();
 }
@@ -68,5 +71,10 @@ ConstantVelocityMobilityModel::DoGetVelocity (void) const
 {
   return m_helper.GetVelocity ();
 }
+
+//Vector
+//ConstantVelocityMobilityModel::GetScheduledPositionFromNS2Helper(Ptr<ConstantVelocityMobilityModel> model, double at){
+//	return Ns2MobilityHelper::GetSchedPosition(model,at);
+//}
 
 } // namespace ns3

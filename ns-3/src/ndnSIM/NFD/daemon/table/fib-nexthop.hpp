@@ -85,6 +85,12 @@ public:
 	double getDeltaTime() const {
 		return m_deltaTime;
 	}
+
+//	void
+//	updatePosition(double position){
+//		  setPosition(position);
+//	}
+
 private:
 	Face* m_face;
 	uint64_t m_cost;

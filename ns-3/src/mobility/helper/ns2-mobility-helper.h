@@ -89,7 +89,7 @@ public:
    * file.
    */
   void Install (void) const;
-
+  Vector GetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at);
   /**
    * \param begin an iterator which points to the start of the input
    *        object array.
