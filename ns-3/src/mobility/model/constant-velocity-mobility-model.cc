@@ -54,15 +54,12 @@ ConstantVelocityMobilityModel::SetVelocity (const Vector &speed)
 Vector
 ConstantVelocityMobilityModel::DoGetPosition (void) const
 {
-	std::cout<<"constvelocitymobilitymodel---do get position"<<std::endl;
-
   m_helper.Update ();
   return m_helper.GetCurrentPosition ();
 }
 void 
 ConstantVelocityMobilityModel::DoSetPosition (const Vector &position)
 {
-	std::cout<<"constvelocitymobilitymodel"<<std::endl;
   m_helper.SetPosition (position);
   NotifyCourseChange ();
 }

@@ -800,8 +800,7 @@ SetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at, std::stri
 {
 	ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
 
-	std::cout<<"set position"<< coordVal << " at time:"<< at << "for node:" << node->GetId() <<std::endl;
-  // update position
+	// update position
   model->SetPosition (SetOneInitialCoord (model->GetPosition (), coord, coordVal));
 
   Vector position;

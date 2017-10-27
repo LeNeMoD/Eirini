@@ -62,21 +62,7 @@ MulticastStrategy::afterReceiveInterest(const Face& inFace, const Interest& inte
         }
 //print to check what the FIB contains
   for (fib::NextHopList::const_iterator it = nexthops.begin(); it != nexthops.end(); ++it) {
-//	  double positionVar = 234;
-//	  it->updatePosition(positionVar);
-//	  ns3::Ptr<ns3::ConstantVelocityMobilityModel> constMobModel = model->GetMobilityModel(node);
-//	  ns3::Ptr<ns3::Ns2MobilityHelper> ns2Helper = node->GetObject<ns3::Ns2MobilityHelper>();
-//	  ns3::Ptr<ns3::ConstantPositionMobilityModel> constPosMobModel = ns2Helper->GetMobilityModel(node->GetId(), );
-//	  ns3::Vector3D positionVector = ns2Helper->GetSchedPosition(constMobModel, 3);
-
-//	  fibEntry.updatePositionNextHop(it->getFace(), it->getMac(), 354);
-
-//	  double posdouble = (double) pos.z;
-//	 it->updatePosition(it, posdouble);
-
-
 	  std::cout<< "x,y,z:  " << pos.x <<"  " <<  pos.y<< "  " << pos.z<< "  "<< std::endl;
-
 	  std::cout<<  " FIB: NODE: " <<node->GetId() << " name: " << interest.getName() << " face " << it->getFace() << " mac : "<< it->getMac()<< " position : "<< it->getPosition() << std::endl;
   }
   for (fib::NextHopList::const_iterator it = nexthops.begin(); it != nexthops.end(); ++it) {

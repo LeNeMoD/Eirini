@@ -53,7 +53,7 @@ ConstantVelocityHelper::SetPosition (const Vector &position)
   m_position = position;
   m_velocity = Vector (0.0, 0.0, 0.0);
   m_lastUpdate = Simulator::Now ();
-  std::cout<< "NOWNOWNOWNOWONWONWONWONWONWO"<< m_lastUpdate << std::endl;
+  std::cout<< "Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO"<< m_lastUpdate << std::endl;
 
 }
 
@@ -90,10 +90,10 @@ ConstantVelocityHelper::Update (void) const
     {
       return;
     }
-  Time deltaTime2=Seconds (1);
+  Time secondsToFuture=Seconds (1);
   double deltaS = (deltaTime).GetSeconds ();
   m_position.x += m_velocity.x * deltaS;
-  std::cout<<" MOBILITY MODEL TEST " << m_position.x << " VELOCITY " << m_velocity.x <<" TEST2 " <<(m_position.x + ( m_velocity.x * ((deltaTime2+deltaTime).GetSeconds()))) << std::endl;
+  std::cout<<" MOBILITY MODEL TEST " << m_position.x << " VELOCITY " << m_velocity.x <<" TEST2 " <<(m_position.x + ( m_velocity.x * ((secondsToFuture+deltaTime).GetSeconds()))) << std::endl;
 
   m_position.y += m_velocity.y * deltaS;
   m_position.z += m_velocity.z * deltaS;
