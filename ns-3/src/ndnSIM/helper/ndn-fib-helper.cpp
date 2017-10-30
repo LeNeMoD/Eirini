@@ -66,6 +66,8 @@ void FibHelper::AddNextHop(const ControlParameters& parameters,
 
 	Ptr<L3Protocol> l3protocol = node->GetObject<L3Protocol>();
 	l3protocol->injectInterest(*command);
+
+
 }
 
 void FibHelper::RemoveNextHop(const ControlParameters& parameters,
@@ -96,8 +98,8 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
 	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
-	std::cout<<"first addRoute is called ... not mine--PositionX: "<< model->getMHelper().GetCurrentPosition().x <<std::endl;
-	std::cout<<"first addRoute is called ... not mine--PositionY: "<< model->getMHelper().GetCurrentPosition().y <<std::endl;
+	std::cout<<"first addRoute is called ... not mine--for Node "<<node->GetId()<<" PositionX: "<< model->getMHelper().GetCurrentPosition().x <<std::endl;
+	std::cout<<"first addRoute is called ... not mine--for Node "<<node->GetId()<<" PositionY: "<< model->getMHelper().GetCurrentPosition().y <<std::endl;
 
 	ControlParameters parameters;
 	parameters.setName(prefix);
@@ -120,8 +122,8 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> fa
 
 	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
 
-	std::cout<<"ndn-Fib-Helper- addRoute Eirini: positionX: " << model->getMHelper().GetCurrentPosition().x <<std::endl;
-	std::cout<<"ndn-Fib-Helper- addRoute Eirini: positionY: " << model->getMHelper().GetCurrentPosition().y <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute Eirini:for Node "<<node->GetId()<<" positionX: " << model->getMHelper().GetCurrentPosition().x <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute Eirini:for Node "<<node->GetId()<<" positionY: " << model->getMHelper().GetCurrentPosition().y <<std::endl;
 
 	ControlParameters parameters;
 	parameters.setName(prefix);
@@ -147,8 +149,8 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	// Get the forwarder instance
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
-	std::cout<<"ndn-Fib-Helper- addRoute new one mine : positionX: "<< positionX <<std::endl;
-	std::cout<<"ndn-Fib-Helper- addRoute new one mine : positionY: "<< positionY <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute new one mine :for Node "<<node->GetId()<<" positionX: "<< positionX <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute new one mine :for Node "<<node->GetId()<<" positionY: "<< positionY <<std::endl;
 
 	ControlParameters parameters;
 	parameters.setName(prefix);
@@ -161,10 +163,6 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 
 	AddNextHop(parameters, node);
 }
-//void FibHelper::UpdateParameters(Ptr<Node> node, double positionX) {
-//	ControlParameters parameters;
-//	parameters.setPosition(positionX);
-//}
 
 void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
 		int32_t metric) {

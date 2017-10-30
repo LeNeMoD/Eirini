@@ -479,7 +479,7 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
     	std::cout<< "check position-X pass in forwarder  :" << model->getMHelper().GetCurrentPosition().x <<std::endl;
     	std::cout<< "check position-Y pass in forwarder  :" << model->getMHelper().GetCurrentPosition().y <<std::endl;
 
-    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,model->getMHelper().GetCurrentPosition().y,456);
+    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,model->getMHelper().GetCurrentPosition().y,123);
 
 
   }
