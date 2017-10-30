@@ -66,8 +66,8 @@ Entry::addNextHop(Face& face, uint64_t cost, std::string mac, double position, d
   }
   it->setMac(mac);
   it->setCost(cost);
-  it->setPosition(position);
-  it->setBaseTime(baseTime);
+  it->setPositionX(position);
+  it->setPositionY(baseTime);
   it->setDeltaTime(deltaTime);
   this->sortNextHops();
 }
@@ -91,7 +91,7 @@ Entry::sortNextHops()
 void
 Entry::updatePositionNextHop(Face& face, std::string mac, double position){
 	 auto it = this->findNextHop(mac);
-	  it->setPosition(position);
+	  it->setPositionX(position);
 }
 
 } // namespace fib

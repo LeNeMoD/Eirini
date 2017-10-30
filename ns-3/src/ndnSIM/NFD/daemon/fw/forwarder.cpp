@@ -472,13 +472,14 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
 
     	//update position to Fib
     	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
-    	model->getMHelper().GetCurrentPosition().x;
     	//FIB POPULATION WHEN A DATA MSG IS COMING BACK
-    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a);
+//    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a);
 
 
-    	std::cout<< "check position pass in forwarder  :" << model->getMHelper().GetCurrentPosition().x <<std::endl;
-//    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,123,456);
+    	std::cout<< "check position-X pass in forwarder  :" << model->getMHelper().GetCurrentPosition().x <<std::endl;
+    	std::cout<< "check position-Y pass in forwarder  :" << model->getMHelper().GetCurrentPosition().y <<std::endl;
+
+    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,model->getMHelper().GetCurrentPosition().y,456);
 
 
   }

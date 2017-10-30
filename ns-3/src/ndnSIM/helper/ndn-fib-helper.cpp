@@ -54,6 +54,7 @@ NS_LOG_COMPONENT_DEFINE("ndn.FibHelper");
 void FibHelper::AddNextHop(const ControlParameters& parameters,
 		Ptr<Node> node) {
 	NS_LOG_DEBUG("Add Next Hop command was initialized");
+	std::cout<<"Add Next Hop command was initialized"<<std::endl;
 	Block encodedParameters(parameters.wireEncode());
 
 	Name commandName("/localhost/nfd/fib");
@@ -89,18 +90,21 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 			"[" << node->GetId() << "]$ route add " << prefix << " via " << face->getLocalUri() << " metric " << metric);
 
 
-	std::cout<<"first addRoute is called ... not mine"<<std::endl;
 	// Get L3Protocol object
 	Ptr<L3Protocol> L3protocol = node->GetObject<L3Protocol>();
 	// Get the forwarder instance
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
+	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
+	std::cout<<"first addRoute is called ... not mine--PositionX: "<< model->getMHelper().GetCurrentPosition().x <<std::endl;
+	std::cout<<"first addRoute is called ... not mine--PositionY: "<< model->getMHelper().GetCurrentPosition().y <<std::endl;
+
 	ControlParameters parameters;
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setCost(metric);
-	parameters.setPositionX(66666);
-	parameters.setPositionY(55555);
+	parameters.setPositionX(model->getMHelper().GetCurrentPosition().x);
+	parameters.setPositionY(model->getMHelper().GetCurrentPosition().y);
 
 	AddNextHop(parameters, node);
 }
@@ -114,8 +118,10 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> fa
 	// Get the forwarder instance
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
-	std::cout<<"ndn-Fib-Helper- addRoute Eirini: position: " <<std::endl;
 	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
+
+	std::cout<<"ndn-Fib-Helper- addRoute Eirini: positionX: " << model->getMHelper().GetCurrentPosition().x <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute Eirini: positionY: " << model->getMHelper().GetCurrentPosition().y <<std::endl;
 
 	ControlParameters parameters;
 	parameters.setName(prefix);
@@ -131,7 +137,7 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> fa
 
 void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 		shared_ptr<Face> face, int32_t metric, std::string macAddress,
-		double position, double baseTime, double deltaTime) {
+		double positionX, double positionY, double deltaTime) {
 	NS_LOG_LOGIC(
 			"[" << node->GetId() << "]$ route add " << prefix << " via " << face->getLocalUri() << " metric " << metric);
 
@@ -141,14 +147,16 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	// Get the forwarder instance
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
-	std::cout<<"ndn-Fib-Helper- addRoute : position: "<< position <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute new one mine : positionX: "<< positionX <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute new one mine : positionY: "<< positionY <<std::endl;
+
 	ControlParameters parameters;
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setCost(metric);
 	parameters.setMac(macAddress);
-	parameters.setPositionX(position);
-	parameters.setPositionY(baseTime);
+	parameters.setPositionX(positionX);
+	parameters.setPositionY(positionY);
 	parameters.setDeltaTime(deltaTime);
 
 	AddNextHop(parameters, node);
@@ -183,8 +191,8 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
 }
 
 void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
-		int32_t metric, std::string macAddress, double position,
-		double baseTime, double deltaTime) {
+		int32_t metric, std::string macAddress, double positionX,
+		double positionY, double deltaTime) {
 	Ptr<L3Protocol> ndn = node->GetObject<L3Protocol>();
 	NS_ASSERT_MSG(ndn != 0, "Ndn stack should be installed on the node");
 
@@ -192,7 +200,7 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
 	NS_ASSERT_MSG(face != 0,
 			"Face with ID [" << faceId << "] does not exist on node [" << node->GetId() << "]");
 
-	AddRoute(node, prefix, face, metric, macAddress, position, baseTime,
+	AddRoute(node, prefix, face, metric, macAddress, positionX, positionY,
 			deltaTime);
 }
 
@@ -228,7 +236,7 @@ void FibHelper::AddRoute(const std::string& nodeName, const Name& prefix,
 
 void FibHelper::AddRoute(const std::string& nodeName, const Name& prefix,
 		uint32_t faceId, int32_t metric, std::string macAddress,
-		double position, double baseTime, double deltaTime) {
+		double positionX, double positionY, double deltaTime) {
 	Ptr<Node> node = Names::Find<Node>(nodeName);
 	NS_ASSERT_MSG(node != 0, "Node [" << nodeName << "] does not exist");
 
@@ -239,7 +247,7 @@ void FibHelper::AddRoute(const std::string& nodeName, const Name& prefix,
 	NS_ASSERT_MSG(face != 0,
 			"Face with ID [" << faceId << "] does not exist on node [" << nodeName << "]");
 
-	AddRoute(node, prefix, face, metric, macAddress, position, baseTime,
+	AddRoute(node, prefix, face, metric, macAddress, positionX, positionY,
 			deltaTime);
 }
 
@@ -309,7 +317,7 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 
 void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 		Ptr<Node> otherNode, int32_t metric, std::string macAddress,
-		double position, double baseTime, double deltaTime) {
+		double positionX, double positionY, double deltaTime) {
 	for (uint32_t deviceId = 0; deviceId < node->GetNDevices(); deviceId++) {
 		Ptr<PointToPointNetDevice> netDevice =
 				DynamicCast<PointToPointNetDevice>(node->GetDevice(deviceId));
@@ -330,7 +338,7 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 			NS_ASSERT_MSG(face != 0,
 					"There is no face associated with the p2p link");
 
-			AddRoute(node, prefix, face, metric, macAddress, position, baseTime,
+			AddRoute(node, prefix, face, metric, macAddress, positionX, positionY,
 					deltaTime);
 
 			return;
@@ -368,7 +376,7 @@ void FibHelper::AddRoute(const std::string& nodeName, const Name& prefix,
 
 void FibHelper::AddRoute(const std::string& nodeName, const Name& prefix,
 		const std::string& otherNodeName, int32_t metric,
-		std::string macAddress, double position, double baseTime,
+		std::string macAddress, double positionX, double positionY,
 		double deltaTime) {
 	Ptr<Node> node = Names::Find<Node>(nodeName);
 	NS_ASSERT_MSG(node != 0, "Node [" << nodeName << "] does not exist");
@@ -377,7 +385,7 @@ void FibHelper::AddRoute(const std::string& nodeName, const Name& prefix,
 	NS_ASSERT_MSG(otherNode != 0,
 			"Node [" << otherNodeName << "] does not exist");
 
-	AddRoute(node, prefix, otherNode, metric, macAddress, position, baseTime,
+	AddRoute(node, prefix, otherNode, metric, macAddress, positionX, positionY,
 			deltaTime);
 }
 
@@ -411,8 +419,8 @@ void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix,
 }
 
 void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix,
-		shared_ptr<Face> face, std::string macAddress, double position,
-		double baseTime, double deltaTime) {
+		shared_ptr<Face> face, std::string macAddress, double positionX,
+		double positionY, double deltaTime) {
 	// Get L3Protocol object
 	Ptr<L3Protocol> L3protocol = node->GetObject<L3Protocol>();
 	// Get the forwarder instance
@@ -422,9 +430,9 @@ void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix,
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setMac(macAddress);
-	parameters.setPositionX(position);
+	parameters.setPositionX(positionX);
 	parameters.setDeltaTime(deltaTime);
-	parameters.setPositionY(baseTime);
+	parameters.setPositionY(positionY);
 
 	RemoveNextHop(parameters, node);
 }
@@ -454,7 +462,7 @@ void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
 }
 
 void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
-		std::string macAddress, double position, double baseTime,
+		std::string macAddress, double positionX, double positionY,
 		double deltaTime) {
 	Ptr<L3Protocol> ndn = node->GetObject<L3Protocol>();
 	NS_ASSERT_MSG(ndn != 0, "Ndn stack should be installed on the node");
@@ -463,7 +471,7 @@ void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
 	NS_ASSERT_MSG(face != 0,
 			"Face with ID [" << faceId << "] does not exist on node [" << node->GetId() << "]");
 
-	RemoveRoute(node, prefix, face, macAddress, position, baseTime, deltaTime);
+	RemoveRoute(node, prefix, face, macAddress, positionX, positionY, deltaTime);
 }
 
 void FibHelper::RemoveRoute(const std::string& nodeName, const Name& prefix,
@@ -493,8 +501,8 @@ void FibHelper::RemoveRoute(const std::string& nodeName, const Name& prefix,
 }
 
 void FibHelper::RemoveRoute(const std::string& nodeName, const Name& prefix,
-		uint32_t faceId, std::string macAddress, double position,
-		double baseTime, double deltaTime) {
+		uint32_t faceId, std::string macAddress, double positionX,
+		double positionY, double deltaTime) {
 	Ptr<Node> node = Names::Find<Node>(nodeName);
 	Ptr<L3Protocol> ndn = node->GetObject<L3Protocol>();
 	NS_ASSERT_MSG(ndn != 0, "Ndn stack should be installed on the node");
@@ -503,7 +511,7 @@ void FibHelper::RemoveRoute(const std::string& nodeName, const Name& prefix,
 	NS_ASSERT_MSG(face != 0,
 			"Face with ID [" << faceId << "] does not exist on node [" << node->GetId() << "]");
 
-	RemoveRoute(node, prefix, face, macAddress, position, baseTime, deltaTime);
+	RemoveRoute(node, prefix, face, macAddress, positionX, positionY, deltaTime);
 }
 
 void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix,
@@ -571,8 +579,8 @@ void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix,
 }
 
 void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix,
-		Ptr<Node> otherNode, std::string macAddress, double position,
-		double baseTime, double deltaTime) {
+		Ptr<Node> otherNode, std::string macAddress, double positionX,
+		double positionY, double deltaTime) {
 	for (uint32_t deviceId = 0; deviceId < node->GetNDevices(); deviceId++) {
 		Ptr<PointToPointNetDevice> netDevice =
 				DynamicCast<PointToPointNetDevice>(node->GetDevice(deviceId));
@@ -593,7 +601,7 @@ void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix,
 			NS_ASSERT_MSG(face != 0,
 					"There is no face associated with the p2p link");
 
-			RemoveRoute(node, prefix, face, macAddress, position, baseTime,
+			RemoveRoute(node, prefix, face, macAddress, positionX, positionY,
 					deltaTime);
 
 			return;
@@ -620,10 +628,10 @@ void FibHelper::RemoveRoute(const std::string& nodeName, const Name& prefix,
 
 void FibHelper::RemoveRoute(const std::string& nodeName, const Name& prefix,
 		const std::string& otherNodeName, std::string macAddress,
-		double position, double baseTime, double deltaTime) {
+		double positionX, double positionY, double deltaTime) {
 	Ptr<Node> node = Names::Find<Node>(nodeName);
 	Ptr<Node> otherNode = Names::Find<Node>(otherNodeName);
-	RemoveRoute(node, prefix, otherNode, macAddress, position, baseTime,
+	RemoveRoute(node, prefix, otherNode, macAddress, positionX, positionY,
 			deltaTime);
 }
 
