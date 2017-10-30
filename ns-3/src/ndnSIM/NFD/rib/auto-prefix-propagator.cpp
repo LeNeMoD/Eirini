@@ -66,7 +66,7 @@ void AutoPrefixPropagator::loadConfig(const ConfigSection& configSection) {
 	m_baseRetryWait = PREFIX_PROPAGATION_DEFAULT_BASE_RETRY_WAIT;
 	m_maxRetryWait = PREFIX_PROPAGATION_DEFAULT_MAX_RETRY_WAIT;
 
-	m_controlParameters.setCost(PREFIX_PROPAGATION_DEFAULT_COST).setPosition(0).setOrigin(
+	m_controlParameters.setCost(PREFIX_PROPAGATION_DEFAULT_COST).setPositionX(0).setOrigin(
 			ndn::nfd::ROUTE_ORIGIN_CLIENT) // set origin to client.
 	.setFaceId(0); // the remote hub will take the input face as the faceId.
 
@@ -80,11 +80,11 @@ void AutoPrefixPropagator::loadConfig(const ConfigSection& configSection) {
 			m_controlParameters.setCost(i.second.get_value<uint64_t>());
 
 		} else if (i.first == "position") {
-			m_controlParameters.setPosition(i.second.get_value<double>());
+			m_controlParameters.setPositionX(i.second.get_value<double>());
 		}
 
 		else if (i.first == "baseTime") {
-			m_controlParameters.setBaseTime(i.second.get_value<double>());
+			m_controlParameters.setPositionY(i.second.get_value<double>());
 		}
 
 		else if (i.first == "deltaTime") {

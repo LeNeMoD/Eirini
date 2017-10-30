@@ -186,7 +186,7 @@ RibManager::registerEntry(const Name& topPrefix, const Interest& interest,
   route.faceId = parameters.getFaceId();
   route.origin = parameters.getOrigin();
   route.cost = parameters.getCost();
-  route.position = parameters.getPosition();
+  route.position = parameters.getPositionX();
   route.flags = parameters.getFlags();
 
   if (parameters.hasExpirationPeriod() &&

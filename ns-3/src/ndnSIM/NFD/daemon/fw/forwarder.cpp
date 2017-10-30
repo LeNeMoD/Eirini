@@ -42,6 +42,8 @@
 #include "model/ndn-l3-protocol.hpp"
 #include "model/ndn-net-device-transport.hpp"
 
+#include "../../../../mobility/model/constant-velocity-mobility-model.h"
+
 #include "ns3/channel.h"
 #include "ns3/net-device.h"
 
@@ -467,8 +469,17 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
     			return;
     		}
     	}
+
+    	//update position to Fib
+    	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
+    	model->getMHelper().GetCurrentPosition().x;
     	//FIB POPULATION WHEN A DATA MSG IS COMING BACK
     	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a);
+
+
+    	std::cout<< "check position pass in forwarder  :" << model->getMHelper().GetCurrentPosition().x <<std::endl;
+//    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,123,456);
+
 
   }
     // invoke PIT satisfy callback
@@ -499,6 +510,7 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
     // goto outgoing Data pipeline
     this->onOutgoingData(data, *pendingDownstream);
   }
+
 }
 
 void

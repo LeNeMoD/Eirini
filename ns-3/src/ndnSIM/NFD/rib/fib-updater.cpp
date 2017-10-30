@@ -245,8 +245,8 @@ FibUpdater::sendAddNextHopUpdate(const FibUpdate& update,
       .setName(update.name)
       .setFaceId(update.faceId)
       .setCost(update.cost)
-	  .setPosition(update.position)
-	  .setBaseTime(update.baseTime)
+	  .setPositionX(update.position)
+	  .setPositionY(update.baseTime)
 	  .setDeltaTime(update.deltaTime),
     bind(&FibUpdater::onUpdateSuccess, this, update, onSuccess, onFailure),
     bind(&FibUpdater::onUpdateError, this, update, onSuccess, onFailure, _1, nTimeouts));

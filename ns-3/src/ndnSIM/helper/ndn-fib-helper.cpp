@@ -43,6 +43,8 @@
 #include "daemon/mgmt/fib-manager.hpp"
 #include "ns3/ndnSIM/model/ndn-l3-protocol.hpp"
 #include "ns3/ndnSIM/helper/ndn-stack-helper.hpp"
+#include "../../mobility/model/constant-velocity-mobility-model.h"
+
 
 namespace ns3 {
 namespace ndn {
@@ -86,6 +88,8 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	NS_LOG_LOGIC(
 			"[" << node->GetId() << "]$ route add " << prefix << " via " << face->getLocalUri() << " metric " << metric);
 
+
+	std::cout<<"first addRoute is called ... not mine"<<std::endl;
 	// Get L3Protocol object
 	Ptr<L3Protocol> L3protocol = node->GetObject<L3Protocol>();
 	// Get the forwarder instance
@@ -95,12 +99,13 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setCost(metric);
+	parameters.setPositionX(66666);
+	parameters.setPositionY(55555);
 
 	AddNextHop(parameters, node);
 }
 
-void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
-		shared_ptr<Face> face, int32_t metric, std::string macAddress) {
+void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face, int32_t metric, std::string macAddress) {
 	NS_LOG_LOGIC(
 			"[" << node->GetId() << "]$ route add " << prefix << " via " << face->getLocalUri() << " metric " << metric);
 
@@ -109,11 +114,17 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	// Get the forwarder instance
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
+	std::cout<<"ndn-Fib-Helper- addRoute Eirini: position: " <<std::endl;
+	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
+
 	ControlParameters parameters;
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setCost(metric);
 	parameters.setMac(macAddress);
+	parameters.setPositionX(model->getMHelper().GetCurrentPosition().x);
+	parameters.setPositionY(model->getMHelper().GetCurrentPosition().y);
+
 
 	AddNextHop(parameters, node);
 }
@@ -124,26 +135,28 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	NS_LOG_LOGIC(
 			"[" << node->GetId() << "]$ route add " << prefix << " via " << face->getLocalUri() << " metric " << metric);
 
+	std::cout<<"fibhelper is called"<<std::endl;
 	// Get L3Protocol object
 	Ptr<L3Protocol> L3protocol = node->GetObject<L3Protocol>();
 	// Get the forwarder instance
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
-	Ptr<MobilityModel> model = node->GetObject<MobilityModel>();
-
-    ns3::Vector pos = model->GetPosition();
-
+	std::cout<<"ndn-Fib-Helper- addRoute : position: "<< position <<std::endl;
 	ControlParameters parameters;
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setCost(metric);
 	parameters.setMac(macAddress);
-	parameters.setPosition(555);
-	parameters.setBaseTime(baseTime);
+	parameters.setPositionX(position);
+	parameters.setPositionY(baseTime);
 	parameters.setDeltaTime(deltaTime);
 
 	AddNextHop(parameters, node);
 }
+//void FibHelper::UpdateParameters(Ptr<Node> node, double positionX) {
+//	ControlParameters parameters;
+//	parameters.setPosition(positionX);
+//}
 
 void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
 		int32_t metric) {
@@ -409,9 +422,9 @@ void FibHelper::RemoveRoute(Ptr<Node> node, const Name& prefix,
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setMac(macAddress);
-	parameters.setPosition(position);
+	parameters.setPositionX(position);
 	parameters.setDeltaTime(deltaTime);
-	parameters.setBaseTime(baseTime);
+	parameters.setPositionY(baseTime);
 
 	RemoveNextHop(parameters, node);
 }

@@ -94,7 +94,7 @@ NextHopRecord::wireEncode(EncodingImpl<TAG>& block) const
                                                 m_faceId);
 
   totalLength += prependNonNegativeIntegerBlock(block,
-                                                  ndn::tlv::nfd::Position,
+                                                  ndn::tlv::nfd::PositionX,
                                                   m_position);
 
   totalLength += block.prependVarNumber(totalLength);
@@ -169,7 +169,7 @@ NextHopRecord::wireDecode(const Block& wire)
   if (val == m_wire.elements_end()) {
       BOOST_THROW_EXCEPTION(Error("Unexpected end of NextHopRecord"));
     }
-    else if (val->type() != tlv::nfd::Position) {
+    else if (val->type() != tlv::nfd::PositionX) {
       std::stringstream error;
       error << "Expected Position, but Block is of a different type: #"
             << m_wire.type();

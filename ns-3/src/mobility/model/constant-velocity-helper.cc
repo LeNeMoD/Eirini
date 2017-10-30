@@ -23,6 +23,7 @@
 #include "ns3/log.h"
 #include "constant-velocity-helper.h"
 
+
 namespace ns3 {
 
 NS_LOG_COMPONENT_DEFINE ("ConstantVelocityHelper");
