@@ -93,6 +93,9 @@ public:
   void
   removeNextHop(const Face& face);
 
+  void
+  updatePositionNextHop(Face& face, std::string mac, double position);
+
 private:
   /** \note This method is non-const because mutable iterators are needed by callers.
    */

@@ -79,8 +79,8 @@ void
 ConsumerCbr::ScheduleNextPacket()
 {
    if (m_firstTime) {
-    m_sendEvent = Simulator::Schedule(Seconds(0.0), &Consumer::SendPacket, this);
-    m_firstTime = false;
+ 	  m_sendEvent = Simulator::Schedule(Seconds(0.0), &Consumer::SendPacket, this);
+ 	  m_firstTime = false;
   }
   else if (!m_sendEvent.IsRunning())
     m_sendEvent = Simulator::Schedule((m_random == 0) ? Seconds(1.0 / m_frequency)

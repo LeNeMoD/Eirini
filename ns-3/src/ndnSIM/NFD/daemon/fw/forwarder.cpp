@@ -42,6 +42,8 @@
 #include "model/ndn-l3-protocol.hpp"
 #include "model/ndn-net-device-transport.hpp"
 
+#include "../../../../mobility/model/constant-velocity-mobility-model.h"
+
 #include "ns3/channel.h"
 #include "ns3/net-device.h"
 
@@ -188,7 +190,8 @@ Forwarder::onIncomingInterest(Face& inFace, const Interest& interest)
 			  return;
 		  }
 	  }
-  }
+  //std::cout<< " on incoming interest node: " << node->GetId() << " comes from mac add: " << a<< " interest name: "<< interest.getName()<<std::endl;
+	  }
   const pit::InRecordCollection& inRecords = pitEntry->getInRecords();
   bool isPending = inRecords.begin() != inRecords.end();
   if (!isPending) {
@@ -320,8 +323,24 @@ Forwarder::onContentStoreHit(const Face& inFace, const shared_ptr<pit::Entry>& p
   // set PIT straggler timer
   this->setStragglerTimer(pitEntry, true, data.getFreshnessPeriod());
   ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
-
+  auto transport = dynamic_cast<ns3::ndn::NetDeviceTransport*>(inFace.getTransport());
+  std::string currentMacAddresses[node->GetNDevices()];
+  std::ostringstream addr[node->GetNDevices()];
+  for(int index = 0; index < node->GetNDevices(); index++) {
+   	addr[index] << node->GetDevice(index)->GetAddress();
+   	currentMacAddresses[index] = addr[index].str().substr(6);
+   }
+     if (transport!=NULL){
+     	//LOOP DETECTION FOR 1 NODE
+     	std::string a = transport->m_receivednetDevice;
+     	for (int i=0; i< node->GetNDevices(); i++){
+     		if (a== currentMacAddresses[i]){
+     			return;
+     		}
+     	} targetmac=a;
+     }
   // goto outgoing Data pipeline
+
   this->onOutgoingData(data, *const_pointer_cast<Face>(inFace.shared_from_this()));
 }
 
@@ -335,6 +354,8 @@ Forwarder::onOutgoingInterest(const shared_ptr<pit::Entry>& pitEntry, Face& outF
   pitEntry->insertOrUpdateOutRecord(outFace, interest);
   ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
   targetmac= mac;
+
+ // std::cout<< " on outgoing interest: " << mac << " node : " << node->GetId() << " Interest name " << interest.getName() << std::endl;
 
   // send Interest
   outFace.sendInterest(interest);
@@ -424,7 +445,7 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
     return;
   }
   ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
-
+//std::cout << " on INcoming Data node " << node->GetId() << " name " << data.getName() << std::endl;
   shared_ptr<Data> dataCopyWithoutTag = make_shared<Data>(data);
   dataCopyWithoutTag->removeTag<lp::HopCountTag>();
 
@@ -467,8 +488,18 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
     			return;
     		}
     	}
+
+    	//update position to Fib
+    	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
     	//FIB POPULATION WHEN A DATA MSG IS COMING BACK
-    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a );
+//    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a);
+
+
+        std::cout<< "check position pass in forwarder  :" << model->getMHelper().GetCurrentPosition().x << " node id: " << node->GetId() <<std::endl;
+    	std::cout<< "check position-Y pass in forwarder  :" << model->getMHelper().GetCurrentPosition().y <<std::endl;
+
+    	ns3::ndn::FibHelper::AddRoute(node, "/", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,model->getMHelper().GetCurrentPosition().y,123);
+
 
   }
     // invoke PIT satisfy callback
@@ -496,9 +527,11 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
     if (pendingDownstream == &inFace) {
       continue;
     }
+  // std::cout<< " incoming data node: " << node->GetId() << " target mac: " << targetmac << " name of data: " << data.getName() << std::endl;
     // goto outgoing Data pipeline
     this->onOutgoingData(data, *pendingDownstream);
   }
+
 }
 
 void
@@ -539,6 +572,10 @@ Forwarder::onOutgoingData(const Data& data, Face& outFace)
   }
   // TODO traffic manager
   // send Data
+  ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
+
+  //std::cout<< " outgoing data node: " << node->GetId() << " target mac: " << targetmac << " name of data: " << data.getName() << std::endl;
+
   outFace.sendData(data);
   ++m_counters.nOutData;
 }

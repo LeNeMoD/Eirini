@@ -55,6 +55,14 @@ class Address;
 class Node : public Object
 {
 public:
+
+  void setCurrentPosition(double currPosition);
+
+  void setPositionAtDeltaTime(double futurePosition);
+
+  double getCurrentPosition();
+
+  double getFuturePosition();
   /**
    * \brief Get the type ID.
    * \return the object TypeId

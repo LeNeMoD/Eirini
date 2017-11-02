@@ -186,6 +186,10 @@ operator<<(std::ostream& os, const Route& route)
      << "FaceId: " << route.getFaceId() << ", "
      << "Origin: " << route.getOrigin() << ", "
      << "Cost: " << route.getCost() << ", "
+     << "PositionX: " << route.getPositionX() << ", "
+     << "PositionY: " << route.getCost() << ", "
+     << "FuturePositionX: " << route.getCost() << ", "
+     << "FuturePositionY: " << route.getCost() << ", "
      << "Flags: " << route.getFlags() << ", ";
 
   if (!route.hasInfiniteExpirationPeriod()) {

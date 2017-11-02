@@ -40,9 +40,6 @@ public:
   FibUpdate()
     : faceId(0)
     , cost(0)
-,position(0)
-,baseTime(0)
-,deltaTime(0)
   {
   }
 
@@ -52,17 +49,11 @@ public:
     return (this->name == other.name &&
             this->faceId == other.faceId &&
             this->cost == other.cost &&
-			this->position == other.position &&
-			this->baseTime == other.baseTime &&
-			this->deltaTime == other.deltaTime &&
             this->action == other.action);
   }
 
   static FibUpdate
   createAddUpdate(const Name& name, const uint64_t faceId, const uint64_t cost);
-
-  static FibUpdate
-  createAddUpdate(const Name& name, const uint64_t faceId, const uint64_t cost, const double position, const double baseTime, const double deltaTime);
 
   static FibUpdate
   createRemoveUpdate(const Name& name, const uint64_t faceId);
@@ -76,9 +67,6 @@ public:
   Name name;
   uint64_t faceId;
   uint64_t cost;
-  double position;
-  double baseTime;
-  double deltaTime;
   Action action;
 };
 
@@ -91,6 +79,7 @@ operator<<(std::ostream& os, const FibUpdate& update)
 
   if (update.action == FibUpdate::ADD_NEXTHOP) {
     os << "cost: " << update.cost << ", "
+
        << "action: ADD_NEXTHOP";
   }
   else {

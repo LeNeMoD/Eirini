@@ -61,20 +61,36 @@ public:
 		return m_mac;
 	}
 
-	double getPosition() {
-		return m_position;
-	}
-	void setPosition(double pos) {
-		m_position = pos;
-		;
+	double getPositionX() const{
+		return m_positionX;
 	}
 
-	void setBaseTime(double baseTime) {
-		m_baseTime = baseTime;
+	void setPositionX(double positionX) {
+		m_positionX = positionX;
 	}
 
-	double Mac() const {
-		return m_baseTime;
+	void setPositionY(double positionY) {
+		m_positionY = positionY;
+	}
+
+	double getPositionY() const {
+		return m_positionY;
+	}
+
+	double getFuturePositionX() const{
+		return m_futurePositionX;
+	}
+
+	void setFuturePositionX(double futurePositionX) {
+		m_futurePositionX = futurePositionX;
+	}
+
+	void setFuturePositionY(double futurePositionY) {
+		m_futurePositionY = futurePositionY;
+	}
+
+	double getFuturePositionY() const {
+		return m_futurePositionY;
 	}
 
 	void setDeltaTime(double deltaTime) {
@@ -84,12 +100,20 @@ public:
 	double getDeltaTime() const {
 		return m_deltaTime;
 	}
+
+//	void
+//	updatePosition(double position){
+//		  setPosition(position);
+//	}
+
 private:
 	Face* m_face;
 	uint64_t m_cost;
 	std::string m_mac;
-	double m_position;
-	double m_baseTime;
+	double m_positionX;
+	double m_positionY;
+	double m_futurePositionX;
+	double m_futurePositionY;
 	double m_deltaTime;
 };
 

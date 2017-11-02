@@ -23,6 +23,7 @@
 #include "ns3/log.h"
 #include "constant-velocity-helper.h"
 
+
 namespace ns3 {
 
 NS_LOG_COMPONENT_DEFINE ("ConstantVelocityHelper");
@@ -53,6 +54,8 @@ ConstantVelocityHelper::SetPosition (const Vector &position)
   m_position = position;
   m_velocity = Vector (0.0, 0.0, 0.0);
   m_lastUpdate = Simulator::Now ();
+  std::cout<< "Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO"<< m_lastUpdate << std::endl;
+
 }
 
 Vector
@@ -88,8 +91,11 @@ ConstantVelocityHelper::Update (void) const
     {
       return;
     }
-  double deltaS = deltaTime.GetSeconds ();
+  Time secondsToFuture=Seconds (1);
+  double deltaS = (deltaTime).GetSeconds ();
   m_position.x += m_velocity.x * deltaS;
+//  std::cout<<" MOBILITY MODEL TEST " << m_position.x << " VELOCITY " << m_velocity.x <<" TEST2 " <<(m_position.x + ( m_velocity.x * ((secondsToFuture+deltaTime).GetSeconds()))) << std::endl;
+
   m_position.y += m_velocity.y * deltaS;
   m_position.z += m_velocity.z * deltaS;
 }

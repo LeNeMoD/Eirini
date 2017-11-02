@@ -120,9 +120,6 @@ FibUpdater::computeUpdatesForRegistration(const RibUpdate& update)
 
       routeToUpdate.flags = route.flags;
       routeToUpdate.cost = route.cost;
-      routeToUpdate.position = route.position;
-      routeToUpdate.baseTime = route.baseTime;
-      routeToUpdate.deltaTime = route.deltaTime;
       routeToUpdate.expires = route.expires;
 
       createFibUpdatesForUpdatedRoute(entryCopy, route, *existingRoute);
@@ -244,10 +241,7 @@ FibUpdater::sendAddNextHopUpdate(const FibUpdate& update,
     ControlParameters()
       .setName(update.name)
       .setFaceId(update.faceId)
-      .setCost(update.cost)
-	  .setPosition(update.position)
-	  .setBaseTime(update.baseTime)
-	  .setDeltaTime(update.deltaTime),
+      .setCost(update.cost),
     bind(&FibUpdater::onUpdateSuccess, this, update, onSuccess, onFailure),
     bind(&FibUpdater::onUpdateError, this, update, onSuccess, onFailure, _1, nTimeouts));
 }
@@ -335,9 +329,6 @@ FibUpdater::addFibUpdate(FibUpdate update)
     FibUpdate& existingUpdate = *it;
     existingUpdate.action = update.action;
     existingUpdate.cost = update.cost;
-    existingUpdate.position = update.position;
-    existingUpdate.baseTime = update.baseTime;
-    existingUpdate.deltaTime = update.deltaTime;
   }
   else {
     updates.push_back(update);
@@ -353,7 +344,7 @@ FibUpdater::addInheritedRoutes(const RibEntry& entry, const Rib::RouteSet& route
       // Create a record of the inherited route so it can be added to the RIB later
       addInheritedRoute(entry.getName(), route);
 
-      addFibUpdate(FibUpdate::createAddUpdate(entry.getName(), route.faceId, route.cost, route.position, route.baseTime,route.deltaTime));
+      addFibUpdate(FibUpdate::createAddUpdate(entry.getName(), route.faceId, route.cost));
     }
   }
 }
