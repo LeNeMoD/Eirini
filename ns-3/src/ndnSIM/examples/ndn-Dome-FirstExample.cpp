@@ -108,8 +108,8 @@ int main(int argc, char* argv[]) {
 	// 1. Install Wifi
 	NetDeviceContainer wifiNetDevices = wifi.Install(wifiPhyHelper,
 			wifiMacHelper, MobileNodes);
-	//NetDeviceContainer wifiNetDevices2 = wifi.Install(wifiPhyHelper,
-		//		wifiMacHelper, MobileNodes);
+	NetDeviceContainer wifiNetDevices2 = wifi.Install(wifiPhyHelper,
+				wifiMacHelper, MobileNodes);
 	// 2. Install Mobility model
 //  mobility.Install(nodes);
 
@@ -134,10 +134,10 @@ int main(int argc, char* argv[]) {
 	consumerHelper.SetAttribute("Frequency", DoubleValue(10.0));
 	consumerHelper.Install(MobileNodes.Get(0));
 
-//	ndn::AppHelper consumerHelper("ns3::ndn::ConsumerCbr");
-	consumerHelper.SetPrefix("/test/prefix");
-	consumerHelper.SetAttribute("Frequency", DoubleValue(10.0));
-	consumerHelper.Install(MobileNodes.Get(2));
+ 	ndn::AppHelper consumerHelper2("ns3::ndn::ConsumerCbr");
+	consumerHelper2.SetPrefix("/test/prefix");
+	consumerHelper2.SetAttribute("Frequency", DoubleValue(10.0));
+	consumerHelper2.Install(MobileNodes.Get(2));
 
 	ndn::AppHelper producerHelper("ns3::ndn::Producer");
 	producerHelper.SetPrefix("/");
