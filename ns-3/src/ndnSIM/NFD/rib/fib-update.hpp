@@ -55,9 +55,6 @@ public:
   static FibUpdate
   createAddUpdate(const Name& name, const uint64_t faceId, const uint64_t cost);
 
- // static FibUpdate
- // createAddUpdate(const Name& name, const uint64_t faceId, const uint64_t cost, const double positionX, const double positionY, const double futurePositionX, const double futurePositionY, const double deltaTime);
-
   static FibUpdate
   createRemoveUpdate(const Name& name, const uint64_t faceId);
 
@@ -70,11 +67,6 @@ public:
   Name name;
   uint64_t faceId;
   uint64_t cost;
-  double positionX;
-  double positionY;
-  double futurePositionX;
-  double futurePositionY;
-  double deltaTime;
   Action action;
 };
 

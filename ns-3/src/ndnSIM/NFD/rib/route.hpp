@@ -42,11 +42,6 @@ public:
     , origin(0)
     , flags(0)
     , cost(0)
-	, positionX(0)
-	, positionY(0)
-	, futurePositionX(0)
-	, futurePositionY(0)
-	, deltaTime(0)
     , expires(time::steady_clock::TimePoint::min())
     , m_expirationEvent()
   {
@@ -85,11 +80,6 @@ public:
   uint64_t origin;
   uint64_t flags;
   uint64_t cost;
-  double positionX;
-  double positionY;
-  double futurePositionX;
-  double futurePositionY;
-  double deltaTime;
   time::steady_clock::TimePoint expires;
 
 private:

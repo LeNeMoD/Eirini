@@ -35,11 +35,6 @@ Route::operator==(const Route& other) const
           this->origin == other.origin &&
           this->flags == other.flags &&
           this->cost == other.cost &&
-          this->positionX == other.positionX &&
-          this->positionY == other.positionY &&
-          this->futurePositionX == other.futurePositionX &&
-          this->futurePositionY == other.futurePositionY &&
-          this->deltaTime == other.deltaTime &&
           this->expires == other.expires);
 }
 
@@ -50,11 +45,6 @@ operator<<(std::ostream& os, const Route& route)
      << "faceid: " << route.faceId
      << ", origin: " << route.origin
      << ", cost: " << route.cost
-     << ", positionX: " << route.positionX
-     << ", positionY: " << route.positionY
-     << ", futurePositionX: " << route.futurePositionX
-     << ", futurePositionY: " << route.futurePositionY
-     << ", deltaTime: " << route.deltaTime
      << ", flags: " << route.flags;
   if (route.expires != time::steady_clock::TimePoint::max()) {
     os << ", expires in: " << (route.expires - time::steady_clock::now());

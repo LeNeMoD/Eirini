@@ -116,10 +116,6 @@ Rib::insert(const Name& prefix, const Route& route)
 
       entryIt->flags = route.flags;
       entryIt->cost = route.cost;
-      entryIt->positionX = route.positionX;
-      entryIt->positionY = route.positionY;
-      entryIt->futurePositionX = route.futurePositionX;
-      entryIt->futurePositionY = route.futurePositionY;
       entryIt->expires = route.expires;
     }
   }
