@@ -98,8 +98,8 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
 	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
-	std::cout<<"first addRoute is called ... not mine--for Node "<<node->GetId()<<" PositionX: "<< model->getMHelper().GetCurrentPosition().x <<std::endl;
-	std::cout<<"first addRoute is called ... not mine--for Node "<<node->GetId()<<" PositionY: "<< model->getMHelper().GetCurrentPosition().y <<std::endl;
+	//std::cout<<"first addRoute is called ... not mine--for Node "<<node->GetId()<<" PositionX: "<< model->getMHelper().GetCurrentPosition().x <<std::endl;
+	//std::cout<<"first addRoute is called ... not mine--for Node "<<node->GetId()<<" PositionY: "<< model->getMHelper().GetCurrentPosition().y <<std::endl;
 
 	ControlParameters parameters;
 	parameters.setName(prefix);

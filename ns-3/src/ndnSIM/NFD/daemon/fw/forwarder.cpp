@@ -338,6 +338,8 @@ Forwarder::onOutgoingInterest(const shared_ptr<pit::Entry>& pitEntry, Face& outF
   ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
   targetmac= mac;
 
+  std::cout<< " on outgoing interest: " << mac << " node : " << node->GetId() << std::endl;
+
   // send Interest
   outFace.sendInterest(interest);
   ++m_counters.nOutInterests;
@@ -476,10 +478,10 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
 //    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a);
 
 
-    	std::cout<< "check position-X pass in forwarder  :" << model->getMHelper().GetCurrentPosition().x <<std::endl;
+        std::cout<< "check position pass in forwarder  :" << model->getMHelper().GetCurrentPosition().x << " node id: " << node->GetId() <<std::endl;
     	std::cout<< "check position-Y pass in forwarder  :" << model->getMHelper().GetCurrentPosition().y <<std::endl;
 
-    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,model->getMHelper().GetCurrentPosition().y,123);
+    	ns3::ndn::FibHelper::AddRoute(node, "/", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,model->getMHelper().GetCurrentPosition().y,123);
 
 
   }

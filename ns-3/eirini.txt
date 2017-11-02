@@ -1,0 +1,177 @@
+Waf: Entering directory `/home/domenico/ndnSimEiriniCopy/Eirini/ns-3/build'
+[1653/2949] Compiling src/ndnSIM/apps/ndn-consumer.cpp
+[2865/2949] Linking build/libns3-dev-ndnSIM-debug.so
+[2868/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-cxx-simple-debug
+[2869/2949] Linking build/bindings/python/ns/nix_vector_routing.so
+[2870/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-zipf-mandelbrot-debug
+[2871/2949] Linking build/bindings/python/ns/network.so
+[2872/2949] Linking build/bindings/python/ns/visualizer.so
+[2873/2949] Linking build/scratch/scratch-simulator
+[2874/2949] Linking build/bindings/python/ns/lte.so
+[2875/2949] Linking build/bindings/python/ns/applications.so
+[2876/2949] Linking build/bindings/python/ns/lr_wpan.so
+[2877/2949] Linking build/bindings/python/ns/mpi.so
+[2878/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-custom-apps-debug
+[2879/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-Dome-MoveWithFile-Task-debug
+[2880/2949] Linking build/bindings/python/ns/dsdv.so
+[2881/2949] Linking build/utils/ns3-dev-print-introspected-doxygen-debug
+[2882/2949] Linking build/bindings/python/ns/propagation.so
+[2883/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-wifi-debug
+[2884/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-with-different-sizes-content-store-debug
+[2885/2949] Linking build/utils/ns3-dev-test-runner-debug
+[2886/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-topo-plugin-red-queues-debug
+[2887/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-load-balancer-debug
+[2888/2949] Linking build/bindings/python/ns/mesh.so
+[2889/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-congestion-alt-topo-plugin-debug
+[2890/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-for-nrt-helper-debug
+[2891/2949] Linking build/bindings/python/ns/stats.so
+[2892/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-tree-cs-tracers-debug
+[2893/2949] Linking build/bindings/python/ns/ndnSIM.so
+[2894/2949] Linking build/bindings/python/ns/_core.so
+[2895/2949] Linking build/scratch/subdir/subdir
+[2896/2949] Linking build/bindings/python/ns/olsr.so
+[2897/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-topo-plugin-loss-debug
+[2898/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-multiple-strategies-debug
+[2899/2949] Linking build/bindings/python/ns/topology_read.so
+[2900/2949] Linking build/bindings/python/ns/wave.so
+[2901/2949] Linking build/bindings/python/ns/aodv.so
+[2902/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-triangle-calculate-routes-debug
+[2903/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-debug
+[2904/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-congestion-topo-plugin-debug
+[2905/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-with-link-failure-debug
+[2906/2949] Linking build/bindings/python/ns/tap_bridge.so
+[2907/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-debug
+[2908/2949] Linking build/bindings/python/ns/energy.so
+[2909/2949] Linking build/bindings/python/ns/flow_monitor.so
+[2910/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-tree-with-l2tracer-debug
+[2911/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-different-strategy-per-prefix-debug
+[2912/2949] Linking build/bindings/python/ns/wimax.so
+[2913/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-with-content-freshness-debug
+[2914/2949] Linking build/bindings/python/ns/spectrum.so
+[2915/2949] Linking build/bindings/python/ns/config_store.so
+[2916/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-Dome-extractCoordsFromFile-debug
+[2917/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-topo-plugin-debug
+[2918/2949] Linking build/bindings/python/ns/internet.so
+[2919/2949] Linking build/bindings/python/ns/point_to_point_layout.so
+[2920/2949] Linking build/bindings/python/ns/virtual_net_device.so
+[2921/2949] Linking build/bindings/python/ns/dsr.so
+[2922/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-with-pcap-debug
+[2923/2949] Linking build/bindings/python/ns/antenna.so
+[2924/2949] Linking build/bindings/python/ns/buildings.so
+[2925/2949] Linking build/bindings/python/ns/wifi.so
+[2926/2949] Linking build/bindings/python/ns/csma_layout.so
+[2927/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-csma-debug
+[2928/2949] Linking build/bindings/python/ns/sixlowpan.so
+[2929/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-tree-app-delay-tracer-debug
+[2930/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-Dome-FirstExample-debug
+[2931/2949] Linking build/bindings/python/ns/csma.so
+[2932/2949] Linking build/bindings/python/ns/mobility.so
+[2933/2949] Linking build/bindings/python/ns/bridge.so
+[2934/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-tree-tracers-debug
+[2935/2949] Linking build/bindings/python/ns/fd_net_device.so
+[2936/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-wifi2-debug
+[2937/2949] Linking build/bindings/python/ns/point_to_point.so
+[2938/2949] Linking build/bindings/python/ns/uan.so
+Waf: Leaving directory `/home/domenico/ndnSimEiriniCopy/Eirini/ns-3/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (38.734s)
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+first addRoute is called ... not mine--for Node 0 PositionX: 1
+first addRoute is called ... not mine--for Node 0 PositionY: 1
+Add Next Hop command was initialized
+first addRoute is called ... not mine--for Node 0 PositionX: 1
+first addRoute is called ... not mine--for Node 0 PositionY: 1
+Add Next Hop command was initialized
+first addRoute is called ... not mine--for Node 1 PositionX: 1
+first addRoute is called ... not mine--for Node 1 PositionY: 1
+Add Next Hop command was initialized
+first addRoute is called ... not mine--for Node 1 PositionX: 1
+first addRoute is called ... not mine--for Node 1 PositionY: 1
+Add Next Hop command was initialized
+first addRoute is called ... not mine--for Node 2 PositionX: 200
+first addRoute is called ... not mine--for Node 2 PositionY: 200
+Add Next Hop command was initialized
+first addRoute is called ... not mine--for Node 2 PositionX: 200
+first addRoute is called ... not mine--for Node 2 PositionY: 200
+Add Next Hop command was initialized
+addRoute producer Eirini is called
+ndn-Fib-Helper- addRoute Eirini:for Node 1 positionX: 1
+ndn-Fib-Helper- addRoute Eirini:for Node 1 positionY: 1
+Add Next Hop command was initialized
++0.0ns
+x,y,z:  1  1  0  
+ FIB: NODE: 0 name: /test/prefix/%FE%00 face netdev://[00:00:00:00:00:01] mac : eirini
+ position-X : 1 position-Y : 1
+ on outgoing interest: eirini node : 0
++0.0ns
+x,y,z:  1  1  0  
+ FIB: NODE: 0 name: /test/prefix/%FE%01 face netdev://[00:00:00:00:00:01] mac : eirini
+ position-X : 1 position-Y : 1
+ on outgoing interest: eirini node : 0
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
++0.0ns
+x,y,z:  200  200  0  
+ FIB: NODE: 2 name: /test/prefix/%FE%00 face netdev://[00:00:00:00:00:03] mac : eirini
+ position-X : 200 position-Y : 200
+ on outgoing interest: eirini node : 2
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
++0.0ns
+x,y,z:  200  200  0  
+ FIB: NODE: 2 name: /test/prefix/%FE%01 face netdev://[00:00:00:00:00:03] mac : eirini
+ position-X : 200 position-Y : 200
+ on outgoing interest: eirini node : 2
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
+ MOBILITY MODEL TEST 200 VELOCITY 0 TEST2 200
++459938.0ns
+x,y,z:  1  1  0  
+ FIB: NODE: 1 name: /test/prefix/%FE%00 face appFace:// mac : eirini2
+ position-X : 1 position-Y : 1
+x,y,z:  1  1  0  
+ FIB: NODE: 1 name: /test/prefix/%FE%00 face netdev://[00:00:00:00:00:02] mac : eirini
+ position-X : 1 position-Y : 1
+ on outgoing interest: eirini2 node : 1

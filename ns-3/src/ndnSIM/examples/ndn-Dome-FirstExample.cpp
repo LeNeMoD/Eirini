@@ -108,7 +108,8 @@ int main(int argc, char* argv[]) {
 	// 1. Install Wifi
 	NetDeviceContainer wifiNetDevices = wifi.Install(wifiPhyHelper,
 			wifiMacHelper, MobileNodes);
-
+	//NetDeviceContainer wifiNetDevices2 = wifi.Install(wifiPhyHelper,
+		//		wifiMacHelper, MobileNodes);
 	// 2. Install Mobility model
 //  mobility.Install(nodes);
 
