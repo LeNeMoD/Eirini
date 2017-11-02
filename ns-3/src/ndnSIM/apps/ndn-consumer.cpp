@@ -65,7 +65,7 @@ Consumer::GetTypeId(void)
 
       .AddAttribute("Prefix", "Name of the Interest", StringValue("/"),
                     MakeNameAccessor(&Consumer::m_interestName), MakeNameChecker())
-      .AddAttribute("LifeTime", "LifeTime for interest packet", StringValue("4s"),
+      .AddAttribute("LifeTime", "LifeTime for interest packet", StringValue("12s"),
                     MakeTimeAccessor(&Consumer::m_interestLifeTime), MakeTimeChecker())
 
       .AddAttribute("RetxTimer",
@@ -164,71 +164,67 @@ Consumer::StopApplication() // Called at time specified by Stop
   App::StopApplication();
 }
 
-   void
-   Consumer::SendPacket()
-   {
-     if (!m_active)
-       return;
+void
+Consumer::SendPacket()
+{
+  if (!m_active)
+    return;
 
-     NS_LOG_FUNCTION_NOARGS();
+  NS_LOG_FUNCTION_NOARGS();
+  time::milliseconds interestLifeTime(m_interestLifeTime.GetMilliSeconds());
+  ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
+  int nofinterfaces= node->GetNDevices();
+  shared_ptr<Interest> interest2[nofinterfaces] = make_shared<Interest>();
+  uint32_t seq2[nofinterfaces];
+  shared_ptr<Name> nameWithSequence[nofinterfaces];// = make_shared<Name>(m_interestName);
+  //send as many interests as a nodes interface, at the same time
+  for (int i=0; i<nofinterfaces; i++){
+	  seq2[i]= std::numeric_limits<uint32_t>::max(); // invalid
+	  while (m_retxSeqs.size()) {
+		  seq2[i] = *m_retxSeqs.begin();
+		  m_retxSeqs.erase(m_retxSeqs.begin());
+		    break;
+	  }
 
-     uint32_t seq = std::numeric_limits<uint32_t>::max(); // invalid
+	  if (seq2[i] == std::numeric_limits<uint32_t>::max()) {
+		  if (m_seqMax != std::numeric_limits<uint32_t>::max()) {
+			  if (m_seq >= m_seqMax) {
+				  return; // we are tota lly done
+			  }
+		  }
 
-     while (m_retxSeqs.size()) {
-       seq = *m_retxSeqs.begin();
-       m_retxSeqs.erase(m_retxSeqs.begin());
-       break;
-     }
+		  seq2[i] = m_seq++;
 
-     if (seq == std::numeric_limits<uint32_t>::max()) {
-       if (m_seqMax != std::numeric_limits<uint32_t>::max()) {
-         if (m_seq >= m_seqMax) {
-           return; // we are totally done
-         }
-       }
+	  }
+	  nameWithSequence[i] = make_shared<Name>(m_interestName);
+	  nameWithSequence[i]->appendSequenceNumber(seq2[i]);
+	  interest2[i]->setNonce(m_rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
+	  interest2[i]->setName(*nameWithSequence[i]);
+	  WillSendOutInterest(seq2[i]);
+	  m_transmittedInterests(interest2[i], this, m_face);
+	  m_appLink->onReceiveInterest(*interest2[i]);}
 
-       seq = m_seq++;
-     }
+      for (int i=0;i< nofinterfaces;i++){
+    	Name name;
+    	name = interest2[i]->getName();
+    	std::ostringstream tmpName;
+    	tmpName << name;
+    	std::string interestName = tmpName.str();
+    	//LOGS
+    	for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
+    		if(results[i][0] == interestName) {
+    			retransmissions++;
+    			break;
+    		} else if(results[i][0] == "x") {
+    			results[i][0] = interestName;
+    			results[i][2] = std::to_string(Simulator::Now().GetNanoSeconds());
+    			break;
+    		}
 
-     //
-     shared_ptr<Name> nameWithSequence = make_shared<Name>(m_interestName);
-     nameWithSequence->appendSequenceNumber(seq);
-     //
-
-    // shared_ptr<Interest> interest = make_shared<Interest> ();
-     shared_ptr<Interest> interest = make_shared<Interest>();
-     interest->setNonce(m_rand->GetValue(0, std::numeric_limits<uint32_t>::max()));
-     interest->setName(*nameWithSequence);
-     time::milliseconds interestLifeTime(m_interestLifeTime.GetMilliSeconds());
-     interest->setInterestLifetime(interestLifeTime);
-
-     // NS_LOG_INFO ("Requesting Interest: \n" << *interest);
-     NS_LOG_INFO("> Interest for " << seq);
-     //LOGS
-     Name name;
-     	name = interest->getName();
-     	std::ostringstream tmpName;
-     	tmpName << name;
-     	std::string interestName = tmpName.str();
-
-     	for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
-     		if(results[i][0] == interestName) {
-     			retransmissions++;
-     			break;
-     		} else if(results[i][0] == "x") {
-     			results[i][0] = interestName;
-     			results[i][2] = std::to_string(Simulator::Now().GetNanoSeconds());
-     			break;
-     		}
-     	}
-     WillSendOutInterest(seq);
-
-     m_transmittedInterests(interest, this, m_face);
-     m_appLink->onReceiveInterest(*interest);
-
-     ScheduleNextPacket();
+    	}
   }
-
+      ScheduleNextPacket();
+}
 
 
 ///////////////////////////////////////////////////
@@ -256,56 +252,54 @@ Consumer::OnData(shared_ptr<const Data> data)
   if (hopCountTag != nullptr) { // e.g., packet came from local node's cache
     hopCount = *hopCountTag;
   }
-////LOGS
-//  NS_LOG_DEBUG("Hop count: " << hopCount);
-//  std::cout << "*****************************************************************" << std::endl;
-//  std::cout << "......Consumer receiving data for: " << seq << " with hopcount: " << hopCount << " and name " << data->getName() << std::endl;
-//  std::cout << "*****************************************************************" << std::endl;
-//  Name name;
-//  name = data->getName();
-//  std::ostringstream tmpName;
-//  tmpName << name;
-//  std::string dataName = tmpName.str();
-//  for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
-//	  if(results[i][0] == dataName && results[i][0] != "OK") {
-//		  results[i][1] = "OK";
-//		  results[i][3] = std::to_string(Simulator::Now().GetNanoSeconds());
-//		  results[i][4] = std::to_string(std::stod(results[i][3]) - std::stod(results[i][2]));
-//	  }
-//	  else if(results[i][0] == "x") {
-//		  break;
-//	  }
-//
-//	}
-//  double totalLatency = 0;
-//  int arrivedData = 0;
-//  int send = 0;
-//  for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
-//	  if(results[i][0] != "x") {
-//		  std::cout << results[i][0] << " - " << results[i][1] << " - " << results[i][2] << " - " << results[i][3] << " - "<< results[i][4] << std::endl;
-//			send++;
-//			if(results[i][1] == "OK") {
-//				arrivedData++;
-//				totalLatency += std::stod(results[i][4]);
-//			}
-//		}
-//	  else {
-//			break;
-//	  }
-//  }
-//	std::cout << "-> allSendAndReceivedData: \n\n" << allSendAndReceivedData << "\n"<< std::endl;
-//	std::cout << "-- -- -->> " << arrivedData << "/" << send << "<<-- -- --" << std::endl;
-//    std::cout << "-- -- -->> RETRANSMISSIONS: " << retransmissions << "<<-- -- --" << std::endl;
-//    std::cout << "-- -- -->> RETRANSMISSIONS + SENDS: " << retransmissions + send << "<<-- -- --\n" << std::endl;
-//	std::cout << "-- -->> average latency: " << totalLatency/arrivedData << " ns <<-- --\n" << std::endl;
-//	std::cout << "-- -->> average latency: " << (totalLatency/arrivedData)/1000 << " us <<-- --\n" << std::endl;
-//	std::cout << "-- -->> average latency: " << (totalLatency/arrivedData)/1000000 << " ms <<-- --\n" << std::endl;
-//
-//  // TODO: delete the following two lines after finished testing.
-//  counter++;
-//  std::cout << "counter of received Data Packages is: " << counter << std::endl;
-//
-//  //END LOGS
+//LOGS
+  NS_LOG_DEBUG("Hop count: " << hopCount);
+  std::cout << "*****************************************************************" << std::endl;
+  std::cout << "......consumer receiving data for: " << seq << " with hopcount: " << hopCount << " and name " << data->getName() << std::endl;
+  std::cout << "*****************************************************************" << std::endl;
+  Name name;
+  name = data->getName();
+  std::ostringstream tmpName;
+  tmpName << name;
+  std::string dataName = tmpName.str();
+  for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
+	  if(results[i][0] == dataName && results[i][0] != "OK") {
+		  results[i][1] = "OK";
+		  results[i][3] = std::to_string(Simulator::Now().GetNanoSeconds());
+		  results[i][4] = std::to_string(std::stod(results[i][3]) - std::stod(results[i][2]));
+	  }
+	  else if(results[i][0] == "x") {
+		  break;
+	  }
+
+  }
+  double totalLatency = 0;
+  int arrivedData = 0;
+  int send = 0;
+  for(int i = 0; i < NUMBER_OF_INTERESTS; i++) {
+	  if(results[i][0] != "x") {
+		  std::cout << results[i][0] << " - " << results[i][1] << " - " << results[i][2] << " - " << results[i][3] << " - "<< results[i][4] << std::endl;
+		  send++;
+		  if(results[i][1] == "OK") {
+			  arrivedData++;
+			  totalLatency += std::stod(results[i][4]);
+		  }
+	  } else {
+			break;
+		}
+	}
+  	std::cout << "-> allSendAndReceivedData: \n\n" << allSendAndReceivedData << "\n"<< std::endl;
+	std::cout << "-- -- -->> " << arrivedData << "/" << send << "<<-- -- --" << std::endl;
+    std::cout << "-- -- -->> RETRANSMISSIONS: " << retransmissions << "<<-- -- --" << std::endl;
+    std::cout << "-- -- -->> RETRANSMISSIONS + SENDS: " << retransmissions + send << "<<-- -- --\n" << std::endl;
+	std::cout << "-- -->> average latency: " << totalLatency/arrivedData << " ns <<-- --\n" << std::endl;
+	std::cout << "-- -->> average latency: " << (totalLatency/arrivedData)/1000 << " us <<-- --\n" << std::endl;
+	std::cout << "-- -->> average latency: " << (totalLatency/arrivedData)/1000000 << " ms <<-- --\n" << std::endl;
+
+  // TODO: delete the following two lines after finished testing.
+  counter++;
+  std::cout << "counter of received Data Packages is: " << counter << std::endl;
+  //END LOGS
   SeqTimeoutsContainer::iterator entry = m_seqLastDelay.find(seq);
   if (entry != m_seqLastDelay.end()) {
     m_lastRetransmittedInterestDataDelay(this, seq, Simulator::Now() - entry->time, hopCount);

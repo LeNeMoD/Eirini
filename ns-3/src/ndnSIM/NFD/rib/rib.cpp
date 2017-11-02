@@ -116,7 +116,6 @@ Rib::insert(const Name& prefix, const Route& route)
 
       entryIt->flags = route.flags;
       entryIt->cost = route.cost;
-      entryIt->position = route.position;
       entryIt->expires = route.expires;
     }
   }

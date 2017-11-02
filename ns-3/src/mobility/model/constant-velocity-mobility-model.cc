@@ -69,9 +69,9 @@ ConstantVelocityMobilityModel::DoGetVelocity (void) const
   return m_helper.GetVelocity ();
 }
 
-//Vector
-//ConstantVelocityMobilityModel::GetScheduledPositionFromNS2Helper(Ptr<ConstantVelocityMobilityModel> model, double at){
-//	return Ns2MobilityHelper::GetSchedPosition(model,at);
-//}
+ConstantVelocityHelper
+ConstantVelocityMobilityModel::getMHelper(){
+	return m_helper;
+}
 
 } // namespace ns3

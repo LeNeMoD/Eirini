@@ -136,8 +136,8 @@ public:
             .setFaceId(faceId)
             .setOrigin(ROUTE_ORIGIN_AUTOREG)
             .setCost(m_cost)
-			.setPosition(m_position)
-			.setBaseTime(m_baseTime)
+			.setPositionX(m_position)
+			.setPositionY(m_baseTime)
 			.setDeltaTime(m_deltaTime)
             .setExpirationPeriod(time::milliseconds::max()),
           bind(&AutoregServer::onRegisterCommandSuccess, this, faceId, *prefix),

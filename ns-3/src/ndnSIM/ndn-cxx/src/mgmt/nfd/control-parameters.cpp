@@ -79,15 +79,25 @@ size_t ControlParameters::wireEncode(EncodingImpl<TAG>& encoder) const {
 				m_cost);
 	}
 
-	if (this->hasPosition()) {
+	if (this->hasPositionX()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::Position, m_position);
+				tlv::nfd::PositionX, m_positionX);
 	}
 
-	if (this->hasBaseTime()) {
+	if (this->hasPositionY()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::BaseTime, m_baseTime);
+				tlv::nfd::PositionY, m_positionY);
 	}
+
+	if (this->hasFuturePositionX()) {
+			totalLength += prependNonNegativeIntegerBlock(encoder,
+					tlv::nfd::FuturePositionX, m_futurePositionX);
+		}
+
+	if (this->hasFuturePositionY()) {
+			totalLength += prependNonNegativeIntegerBlock(encoder,
+					tlv::nfd::FuturePositionY, m_futurePositionY);
+		}
 
 	if (this->hasDeltaTime()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
@@ -200,16 +210,28 @@ void ControlParameters::wireDecode(const Block& block) {
 				val->value_size());
 	}
 
-	val = m_wire.find(tlv::nfd::Position);
-	m_hasFields[CONTROL_PARAMETER_POSITION] = val != m_wire.elements_end();
-	if (this->hasPosition()) {
-		m_position = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	val = m_wire.find(tlv::nfd::PositionX);
+	m_hasFields[CONTROL_PARAMETER_POSITION_X] = val != m_wire.elements_end();
+	if (this->hasPositionX()) {
+		m_positionX = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
-	val = m_wire.find(tlv::nfd::BaseTime);
-	m_hasFields[CONTROL_PARAMETER_BASETIME] = val != m_wire.elements_end();
-	if (this->hasBaseTime()) {
-		m_baseTime = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	val = m_wire.find(tlv::nfd::PositionY);
+	m_hasFields[CONTROL_PARAMETER_POSITION_Y] = val != m_wire.elements_end();
+	if (this->hasPositionY()) {
+		m_positionY = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	}
+
+	val = m_wire.find(tlv::nfd::FuturePositionX);
+	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_X] = val != m_wire.elements_end();
+	if (this->hasFuturePositionX()) {
+	m_futurePositionX = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	}
+
+	val = m_wire.find(tlv::nfd::FuturePositionY);
+	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Y] = val != m_wire.elements_end();
+	if (this->hasFuturePositionY()) {
+	m_futurePositionY = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
 	val = m_wire.find(tlv::nfd::DeltaTime);
@@ -356,12 +378,20 @@ operator<<(std::ostream& os, const ControlParameters& parameters) {
 		os << "Cost: " << parameters.getCost() << ", ";
 	}
 
-	if (parameters.hasPosition()) {
-		os << "Position: " << parameters.getPosition() << ", ";
+	if (parameters.hasPositionX()) {
+		os << "PositionX: " << parameters.getPositionX() << ", ";
 	}
 
-	if (parameters.hasBaseTime()) {
-		os << "BaseTime: " << parameters.getBaseTime() << ", ";
+	if (parameters.hasPositionY()) {
+		os << "PositionY: " << parameters.getPositionY() << ", ";
+	}
+
+	if (parameters.hasFuturePositionX()) {
+		os << "FuturePositionX: " << parameters.getFuturePositionX() << ", ";
+	}
+
+	if (parameters.hasFuturePositionY()) {
+		os << "FuturePositionY: " << parameters.getFuturePositionY() << ", ";
 	}
 
 	if (parameters.hasDeltaTime()) {

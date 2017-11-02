@@ -48,174 +48,171 @@ namespace nfd {
  *
  * @sa http://redmine.named-data.net/projects/nfd/wiki/RibMgmt
  */
-class Route : public RibFlagsTraits<Route>
-{
+class Route: public RibFlagsTraits<Route> {
 public:
-  class Error : public tlv::Error
-  {
-  public:
-    explicit
-    Error(const std::string& what) : tlv::Error(what)
-    {
-    }
-  };
+	class Error: public tlv::Error {
+	public:
+		explicit Error(const std::string& what) :
+				tlv::Error(what) {
+		}
+	};
 
-  Route();
+	Route();
 
-  explicit
-  Route(const Block& block);
+	explicit
+	Route(const Block& block);
 
-  uint64_t
-  getFaceId() const
-  {
-    return m_faceId;
-  }
+	uint64_t getFaceId() const {
+		return m_faceId;
+	}
 
-  Route&
-  setFaceId(uint64_t faceId)
-  {
-    m_faceId = faceId;
-    m_wire.reset();
-    return *this;
-  }
+	Route&
+	setFaceId(uint64_t faceId) {
+		m_faceId = faceId;
+		m_wire.reset();
+		return *this;
+	}
 
-  uint64_t
-  getOrigin() const
-  {
-    return m_origin;
-  }
+	uint64_t getOrigin() const {
+		return m_origin;
+	}
 
-  /** @brief set Origin
-   *  @param origin a code defined in ndn::nfd::RouteOrigin
-   */
-  Route&
-  setOrigin(uint64_t origin)
-  {
-    m_origin = origin;
-    m_wire.reset();
-    return *this;
-  }
+	/** @brief set Origin
+	 *  @param origin a code defined in ndn::nfd::RouteOrigin
+	 */
+	Route&
+	setOrigin(uint64_t origin) {
+		m_origin = origin;
+		m_wire.reset();
+		return *this;
+	}
 
-  uint64_t
-  getCost() const
-  {
-    return m_cost;
-  }
+	uint64_t getCost() const {
+		return m_cost;
+	}
 
-  Route&
-  setCost(uint64_t cost)
-  {
-    m_cost = cost;
-    m_wire.reset();
-    return *this;
-  }
+	Route&
+	setCost(uint64_t cost) {
+		m_cost = cost;
+		m_wire.reset();
+		return *this;
+	}
 
-  double
-    getPosition() const
-    {
-      return m_position;
-    }
 
-    Route&
-    setPosition(double position)
-    {
-      m_position = position;
-      m_wire.reset();
-      return *this;
-    }
+	double getPositionX() const {
+		return m_positionX;
+	}
 
-    double
-      getBaseTime() const
-      {
-        return m_baseTime;
-      }
+	Route&
+	setPositionX(double positionX) {
+		m_positionX = positionX;
+		m_wire.reset();
+		return *this;
+	}
 
-      Route&
-      setBaseTime(double baseTime)
-      {
-        m_baseTime = baseTime;
-        m_wire.reset();
-        return *this;
-      }
+	double getPositionY() const {
+		return m_positionY;
+	}
 
-      double
-        getDeltaTime() const
-        {
-          return m_deltaTime;
-        }
+	Route&
+	setPositionY(double positionY) {
+		m_positionY = positionY;
+		m_wire.reset();
+		return *this;
+	}
 
-        Route&
-        setDeltaTime(double deltaTime)
-        {
-          m_deltaTime = deltaTime;
-          m_wire.reset();
-          return *this;
-        }
+	double getfuturePositionX() const {
+		return m_futurePositionX;
+	}
 
-  uint64_t
-  getFlags() const
-  {
-    return m_flags;
-  }
+	Route&
+	setFuturePositionX(double futurePositionX) {
+		m_futurePositionX = futurePositionX;
+		m_wire.reset();
+		return *this;
+	}
 
-  /** @brief set route inheritance flags
-   *  @param flags a bitwise OR'ed code from ndn::nfd::RouteFlags
-   */
-  Route&
-  setFlags(uint64_t flags)
-  {
-    m_flags = flags;
-    m_wire.reset();
-    return *this;
-  }
+	double getFuturePositionY() const {
+		return m_futurePositionY;
+	}
 
-  static const time::milliseconds INFINITE_EXPIRATION_PERIOD;
+	Route&
+	setFuturePositionY(double futurePositionY) {
+		m_futurePositionY = futurePositionY;
+		m_wire.reset();
+		return *this;
+	}
+	double getDeltaTime() const {
+		return m_deltaTime;
+	}
 
-  const time::milliseconds&
-  getExpirationPeriod() const
-  {
-    return m_expirationPeriod;
-  }
+	Route&
+	setDeltaTime(double deltaTime) {
+		m_deltaTime = deltaTime;
+		m_wire.reset();
+		return *this;
+	}
 
-  Route&
-  setExpirationPeriod(const time::milliseconds& expirationPeriod)
-  {
-    m_expirationPeriod = expirationPeriod;
+	uint64_t getFlags() const {
+		return m_flags;
+	}
 
-    m_hasInfiniteExpirationPeriod = m_expirationPeriod == INFINITE_EXPIRATION_PERIOD;
+	/** @brief set route inheritance flags
+	 *  @param flags a bitwise OR'ed code from ndn::nfd::RouteFlags
+	 */
+	Route&
+	setFlags(uint64_t flags) {
+		m_flags = flags;
+		m_wire.reset();
+		return *this;
+	}
 
-    m_wire.reset();
-    return *this;
-  }
+	static const time::milliseconds INFINITE_EXPIRATION_PERIOD;
 
-  bool
-  hasInfiniteExpirationPeriod() const
-  {
-    return m_hasInfiniteExpirationPeriod;
-  }
+	const time::milliseconds&
+	getExpirationPeriod() const {
+		return m_expirationPeriod;
+	}
 
-  template<encoding::Tag TAG>
-  size_t
-  wireEncode(EncodingImpl<TAG>& block) const;
+	Route&
+	setExpirationPeriod(const time::milliseconds& expirationPeriod) {
+		m_expirationPeriod = expirationPeriod;
 
-  const Block&
-  wireEncode() const;
+		m_hasInfiniteExpirationPeriod = m_expirationPeriod
+				== INFINITE_EXPIRATION_PERIOD;
 
-  void
-  wireDecode(const Block& wire);
+		m_wire.reset();
+		return *this;
+	}
+
+	bool hasInfiniteExpirationPeriod() const {
+		return m_hasInfiniteExpirationPeriod;
+	}
+
+	template<encoding::Tag TAG>
+	size_t
+	wireEncode(EncodingImpl<TAG>& block) const;
+
+	const Block&
+	wireEncode() const;
+
+	void
+	wireDecode(const Block& wire);
 
 private:
-  uint64_t m_faceId;
-  uint64_t m_origin;
-  uint64_t m_cost;
-  double m_position;
-  double m_baseTime;
-  double m_deltaTime;
-  uint64_t m_flags;
-  time::milliseconds m_expirationPeriod;
-  bool m_hasInfiniteExpirationPeriod;
+	uint64_t m_faceId;
+	uint64_t m_origin;
+	uint64_t m_cost;
+	double m_positionX;
+	double m_positionY;
+	double m_futurePositionX;
+	double m_futurePositionY;
+	double m_deltaTime;
+	uint64_t m_flags;
+	time::milliseconds m_expirationPeriod;
+	bool m_hasInfiniteExpirationPeriod;
 
-  mutable Block m_wire;
+	mutable Block m_wire;
 };
 
 std::ostream&
@@ -234,93 +231,82 @@ operator<<(std::ostream& os, const Route& route);
  *
  * @sa http://redmine.named-data.net/projects/nfd/wiki/RibMgmt
  */
-class RibEntry
-{
+class RibEntry {
 public:
-  class Error : public tlv::Error
-  {
-  public:
-    Error(const std::string& what) : tlv::Error(what)
-    {
-    }
-  };
+	class Error: public tlv::Error {
+	public:
+		Error(const std::string& what) :
+				tlv::Error(what) {
+		}
+	};
 
-  typedef std::list<Route> RouteList;
-  typedef RouteList::const_iterator iterator;
+	typedef std::list<Route> RouteList;
+	typedef RouteList::const_iterator iterator;
 
-  RibEntry();
+	RibEntry();
 
-  explicit
-  RibEntry(const Block& block);
+	explicit
+	RibEntry(const Block& block);
 
-  const Name&
-  getName() const
-  {
-    return m_prefix;
-  }
+	const Name&
+	getName() const {
+		return m_prefix;
+	}
 
-  RibEntry&
-  setName(const Name& prefix)
-  {
-    m_prefix = prefix;
-    m_wire.reset();
-    return *this;
-  }
+	RibEntry&
+	setName(const Name& prefix) {
+		m_prefix = prefix;
+		m_wire.reset();
+		return *this;
+	}
 
-  const std::list<Route>&
-  getRoutes() const
-  {
-    return m_routes;
-  }
+	const std::list<Route>&
+	getRoutes() const {
+		return m_routes;
+	}
 
-  RibEntry&
-  addRoute(const Route& route)
-  {
-    m_routes.push_back(route);
-    m_wire.reset();
-    return *this;
-  }
+	RibEntry&
+	addRoute(const Route& route) {
+		m_routes.push_back(route);
+		m_wire.reset();
+		return *this;
+	}
 
-  RibEntry&
-  clearRoutes()
-  {
-    m_routes.clear();
-    return *this;
-  }
+	RibEntry&
+	clearRoutes() {
+		m_routes.clear();
+		return *this;
+	}
 
-  template<encoding::Tag TAG>
-  size_t
-  wireEncode(EncodingImpl<TAG>& block) const;
+	template<encoding::Tag TAG>
+	size_t
+	wireEncode(EncodingImpl<TAG>& block) const;
 
-  const Block&
-  wireEncode() const;
+	const Block&
+	wireEncode() const;
 
-  void
-  wireDecode(const Block& wire);
+	void
+	wireDecode(const Block& wire);
 
-  iterator
-  begin() const;
+	iterator
+	begin() const;
 
-  iterator
-  end() const;
+	iterator
+	end() const;
 
 private:
-  Name m_prefix;
-  RouteList m_routes;
+	Name m_prefix;
+	RouteList m_routes;
 
-  mutable Block m_wire;
+	mutable Block m_wire;
 };
 
-inline RibEntry::iterator
-RibEntry::begin() const
-{
-  return m_routes.begin();
+inline RibEntry::iterator RibEntry::begin() const {
+	return m_routes.begin();
 }
 
-inline RibEntry::iterator
-RibEntry::end() const
-{
-  return m_routes.end();
+inline RibEntry::iterator RibEntry::end() const {
+	return m_routes.end();
 }
 
 std::ostream&

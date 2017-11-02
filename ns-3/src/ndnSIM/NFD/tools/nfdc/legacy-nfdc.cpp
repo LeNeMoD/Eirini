@@ -110,8 +110,8 @@ LegacyNfdc::fibAddNextHop()
       parameters
         .setName(m_name)
         .setCost(m_cost)
-		.setPosition(m_position)
-		.setBaseTime(m_baseTime)
+		.setPositionX(m_position)
+		.setPositionY(m_baseTime)
 		.setDeltaTime(m_deltaTime)
         .setFaceId(faceId);
 
@@ -154,8 +154,8 @@ LegacyNfdc::ribRegisterPrefix()
       parameters
         .setName(m_name)
         .setCost(m_cost)
-		.setPosition(m_position)
-		.setBaseTime(m_baseTime)
+		.setPositionX(m_position)
+		.setPositionY(m_baseTime)
 		.setDeltaTime(m_deltaTime)
         .setFlags(m_flags)
         .setOrigin(m_origin)

@@ -202,8 +202,8 @@ DummyClientFace::enableRegistrationReply()
     params.setOrigin(0);
     if (interest.getName().get(3) == name::Component("register")) {
       params.setCost(0);
-    		  params.setPosition(0);
-			  params.setBaseTime(0);
+    		  params.setPositionX(0);
+			  params.setPositionY(0);
 			  params.setDeltaTime(0);
     }
 

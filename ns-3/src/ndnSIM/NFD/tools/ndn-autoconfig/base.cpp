@@ -97,8 +97,8 @@ Base::registerPrefix(const Name& prefix, uint64_t faceId)
                                                 .setFaceId(faceId)
                                                 .setOrigin(nfd::ROUTE_ORIGIN_AUTOCONF)
                                                 .setCost(100)
-												.setPosition(550)
-												.setBaseTime(551)
+												.setPositionX(550)
+												.setPositionY(551)
 												.setDeltaTime(552)
                                                 .setExpirationPeriod(time::milliseconds::max()),
                                               bind(&Base::onPrefixRegistrationSuccess, this, _1),

@@ -59,8 +59,8 @@ FibManager::addNextHop(const Name& topPrefix, const Interest& interest,
   FaceId faceId = parameters.getFaceId();
   uint64_t cost = parameters.getCost();
   std::string mac = parameters.getMac();
-  double position = parameters.getPosition();
-  double baseTime = parameters.getBaseTime();
+  double position = parameters.getPositionX();
+  double baseTime = parameters.getPositionY();
   double deltaTime = parameters.getDeltaTime();
   NFD_LOG_TRACE("add-nexthop prefix: " << prefix
                 << " faceid: " << faceId

@@ -87,7 +87,8 @@ Producer::StartApplication()
 //  Ptr<MobilityModel> model = node->GetObject<MobilityModel>();
 //  Vector pos = model->GetPosition();
 ////  Vector baseTime = model->
-  FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0, "eirini2");
+  std::cout<<"addRoute producer Eirini is called"<<std::endl;
+  FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0, "");
 }
 
 void
