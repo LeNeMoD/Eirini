@@ -40,6 +40,7 @@ FibUpdate::createAddUpdate(const Name& name, const uint64_t faceId, const uint64
 
   return update;
 }
+/*
 FibUpdate
 FibUpdate::createAddUpdate(const Name& name, const uint64_t faceId, const uint64_t cost, const double positionX, const double positionY,const double futurePositionX, const double futurePositionY, const double deltaTime)
 {
@@ -57,7 +58,7 @@ FibUpdate::createAddUpdate(const Name& name, const uint64_t faceId, const uint64
 
   return update;
 }
-
+*/
 FibUpdate
 FibUpdate::createRemoveUpdate(const Name& name, const uint64_t faceId)
 {

@@ -120,11 +120,11 @@ FibUpdater::computeUpdatesForRegistration(const RibUpdate& update)
 
       routeToUpdate.flags = route.flags;
       routeToUpdate.cost = route.cost;
-      routeToUpdate.positionX = route.positionX;
-      routeToUpdate.positionY = route.positionY;
-      routeToUpdate.futurePositionX = route.futurePositionX;
-      routeToUpdate.futurePositionY = route.futurePositionY;
-      routeToUpdate.deltaTime = route.deltaTime;
+   //   routeToUpdate.positionX = route.positionX;
+    //  routeToUpdate.positionY = route.positionY;
+    //  routeToUpdate.futurePositionX = route.futurePositionX;
+     // routeToUpdate.futurePositionY = route.futurePositionY;
+   //   routeToUpdate.deltaTime = route.deltaTime;
       routeToUpdate.expires = route.expires;
 
       createFibUpdatesForUpdatedRoute(entryCopy, route, *existingRoute);
@@ -246,12 +246,12 @@ FibUpdater::sendAddNextHopUpdate(const FibUpdate& update,
     ControlParameters()
       .setName(update.name)
       .setFaceId(update.faceId)
-      .setCost(update.cost)
-	  .setPositionX(update.positionX)
-	  .setPositionY(update.positionY)
-	  .setFuturePositionX(update.futurePositionX)
-	  .setFuturePositionY(update.futurePositionY)
-	  .setDeltaTime(update.deltaTime),
+      .setCost(update.cost),
+//	  .setPositionX(update.positionX)
+//	  .setPositionY(update.positionY)
+//	  .setFuturePositionX(update.futurePositionX)
+//	  .setFuturePositionY(update.futurePositionY)
+//	  .setDeltaTime(update.deltaTime),
     bind(&FibUpdater::onUpdateSuccess, this, update, onSuccess, onFailure),
     bind(&FibUpdater::onUpdateError, this, update, onSuccess, onFailure, _1, nTimeouts));
 }
@@ -339,11 +339,11 @@ FibUpdater::addFibUpdate(FibUpdate update)
     FibUpdate& existingUpdate = *it;
     existingUpdate.action = update.action;
     existingUpdate.cost = update.cost;
-    existingUpdate.positionX = update.positionX;
-    existingUpdate.positionY = update.positionY;
-    existingUpdate.futurePositionX = update.futurePositionX;
-    existingUpdate.futurePositionY = update.futurePositionY;
-    existingUpdate.deltaTime = update.deltaTime;
+//    existingUpdate.positionX = update.positionX;
+//    existingUpdate.positionY = update.positionY;
+//    existingUpdate.futurePositionX = update.futurePositionX;
+//    existingUpdate.futurePositionY = update.futurePositionY;
+//    existingUpdate.deltaTime = update.deltaTime;
   }
   else {
     updates.push_back(update);
@@ -359,7 +359,7 @@ FibUpdater::addInheritedRoutes(const RibEntry& entry, const Rib::RouteSet& route
       // Create a record of the inherited route so it can be added to the RIB later
       addInheritedRoute(entry.getName(), route);
 
-      addFibUpdate(FibUpdate::createAddUpdate(entry.getName(), route.faceId, route.cost, route.positionX, route.positionY, route.futurePositionX, route.futurePositionY,route.deltaTime));
+      addFibUpdate(FibUpdate::createAddUpdate(entry.getName(), route.faceId, route.cost));
     }
   }
 }
@@ -373,7 +373,7 @@ FibUpdater::addInheritedRoutes(const Name& name, const Rib::RouteSet& routesToAd
       // Create a record of the inherited route so it can be added to the RIB later
       addInheritedRoute(name, route);
 
-      addFibUpdate(FibUpdate::createAddUpdate(name, route.faceId, route.cost, route.positionX, route.positionY, route.futurePositionX, route.futurePositionY,route.deltaTime));
+      addFibUpdate(FibUpdate::createAddUpdate(name, route.faceId, route.cost));
     }
   }
 }
