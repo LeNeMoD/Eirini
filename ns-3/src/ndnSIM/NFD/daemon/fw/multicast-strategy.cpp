@@ -50,10 +50,14 @@ void MulticastStrategy::afterReceiveInterest(const Face& inFace,
 	ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(
 			ns3::Simulator::GetContext());
 	ns3::Ptr<ns3::MobilityModel> model = node->GetObject<ns3::MobilityModel>();
+	ns3::Ns2MobilityHelper ns2MobHelper = ns3::Ns2MobilityHelper("ns-movements-test2-n3.txt");
+	ns3::Ptr<ns3::ConstantVelocityMobilityModel> constModel = node->GetObject<ns3::ConstantVelocityMobilityModel>();
+	std::cout<< ns2MobHelper.GetSchedPosition(constModel,5) << "  is sceduled position for node "<< node->GetId() << "at time 5 " <<std::endl;
 	ns3::Vector pos = model->GetPosition();
 	std::cout << ns3::Simulator::Now() << std::endl;
 	std::ostringstream addr[node->GetNDevices()];
 	std::string currentMacAddresses[node->GetNDevices()];
+
 
 	for (int index = 0; index < node->GetNDevices(); index++) {
 		addr[index] << node->GetDevice(index)->GetAddress();
