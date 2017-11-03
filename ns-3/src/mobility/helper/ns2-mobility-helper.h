@@ -88,8 +88,16 @@ public:
    * whose nodeId is matches the nodeId of the nodes in the trace
    * file.
    */
+
+
   void Install (void) const;
+
+  //Dome---------------
+  Vector GetPositionFromTCLFileForNodeAtTime (int Nodeid, double at);
   Vector GetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at);
+
+  // ---------------
+
   /**
    * \param begin an iterator which points to the start of the input
    *        object array.

@@ -1,0 +1,209 @@
+Waf: Entering directory `/home/domenico/ndnSimEiriniCopy/Eirini/ns-3/build'
+[2226/2949] Compiling src/mobility/helper/ns2-mobility-helper.cc
+[2656/2949] Linking build/libns3-dev-mobility-debug.so
+[2662/2949] Linking build/src/mobility/examples/ns3-dev-ns2-mobility-trace-debug
+[2663/2949] Linking build/libns3-dev-uan-debug.so
+[2664/2949] Linking build/src/mobility/examples/ns3-dev-main-grid-topology-debug
+[2668/2949] Linking build/libns3-dev-propagation-debug.so
+[2679/2949] Linking build/src/mobility/examples/ns3-dev-main-random-walk-debug
+[2700/2949] Linking build/src/mobility/examples/ns3-dev-main-random-topology-debug
+[2758/2949] Linking build/src/mobility/examples/ns3-dev-mobility-trace-example-debug
+[2759/2949] Linking build/src/mobility/examples/ns3-dev-bonnmotion-ns2-example-debug
+[2760/2949] Linking build/libns3-dev-point-to-point-layout-debug.so
+[2761/2949] Linking build/libns3-dev-wimax-debug.so
+[2762/2949] Linking build/libns3-dev-buildings-debug.so
+[2763/2949] Linking build/src/propagation/examples/ns3-dev-jakes-propagation-model-example-debug
+[2764/2949] Linking build/libns3-dev-wifi-debug.so
+[2765/2949] Linking build/libns3-dev-spectrum-debug.so
+[2766/2949] Linking build/src/propagation/examples/ns3-dev-main-propagation-loss-debug
+[2767/2949] Linking build/src/network/examples/ns3-dev-droptail_vs_red-debug
+[2768/2949] Linking build/src/buildings/examples/ns3-dev-buildings-pathloss-profiler-debug
+[2769/2949] Linking build/src/uan/examples/ns3-dev-uan-cw-example-debug
+[2770/2949] Linking build/src/uan/examples/ns3-dev-uan-rc-example-debug
+[2771/2949] Linking build/src/spectrum/examples/ns3-dev-tv-trans-example-debug
+[2772/2949] Linking build/src/spectrum/examples/ns3-dev-adhoc-aloha-ideal-phy-debug
+[2773/2949] Linking build/src/spectrum/examples/ns3-dev-tv-trans-regional-example-debug
+[2774/2949] Linking build/libns3-dev-lr-wpan-debug.so
+[2775/2949] Linking build/src/spectrum/examples/ns3-dev-adhoc-aloha-ideal-phy-matrix-propagation-loss-model-debug
+[2776/2949] Linking build/libns3-dev-lte-debug.so
+[2777/2949] Linking build/src/spectrum/examples/ns3-dev-adhoc-aloha-ideal-phy-with-microwave-oven-debug
+[2778/2949] Linking build/src/wimax/examples/ns3-dev-wimax-multicast-debug
+[2779/2949] Linking build/src/wimax/examples/ns3-dev-wimax-simple-debug
+[2780/2949] Linking build/src/wimax/examples/ns3-dev-wimax-ipv4-debug
+[2782/2949] Linking build/src/lr-wpan/examples/ns3-dev-lr-wpan-error-distance-plot-debug
+[2782/2949] Linking build/examples/ipv6/ns3-dev-wsn-ping6-debug
+[2783/2949] Linking build/src/sixlowpan/examples/ns3-dev-example-ping-lr-wpan-debug
+[2784/2949] Linking build/src/lr-wpan/examples/ns3-dev-lr-wpan-error-model-plot-debug
+[2785/2949] Linking build/src/lr-wpan/examples/ns3-dev-lr-wpan-packet-print-debug
+[2786/2949] Linking build/src/lr-wpan/examples/ns3-dev-lr-wpan-data-debug
+[2787/2949] Linking build/src/lr-wpan/examples/ns3-dev-lr-wpan-phy-test-debug
+[2789/2949] Linking build/examples/wireless/ns3-dev-simple-two-level-aggregation-debug
+[2789/2949] Linking build/examples/wireless/ns3-dev-wifi-timing-attributes-debug
+[2790/2949] Linking build/examples/wireless/ns3-dev-power-adaptation-distance-debug
+[2791/2949] Linking build/examples/wireless/ns3-dev-wifi-sleep-debug
+[2792/2949] Linking build/src/wifi/examples/ns3-dev-wifi-phy-test-debug
+[2793/2949] Linking build/src/olsr/examples/ns3-dev-olsr-hna-debug
+[2794/2949] Linking build/src/tap-bridge/examples/ns3-dev-tap-csma-debug
+[2795/2949] Linking build/examples/wireless/ns3-dev-simple-mpdu-aggregation-debug
+[2796/2949] Linking build/examples/stats/ns3-dev-wifi-example-sim-debug
+[2797/2949] Linking build/src/wifi/examples/ns3-dev-test-interference-helper-debug
+[2798/2949] Linking build/examples/tutorial/ns3-dev-third-debug
+[2799/2949] Linking build/examples/wireless/ns3-dev-wifi-clear-channel-cmu-debug
+[2800/2949] Linking build/examples/wireless/ns3-dev-ofdm-validation-debug
+[2801/2949] Linking build/examples/wireless/ns3-dev-rate-adaptation-distance-debug
+[2802/2949] Linking build/src/mpi/examples/ns3-dev-third-distributed-debug
+[2803/2949] Linking build/examples/wireless/ns3-dev-simple-ht-hidden-stations-debug
+[2804/2949] Linking build/examples/wireless/ns3-dev-wifi-wired-bridging-debug
+[2805/2949] Linking build/examples/wireless/ns3-dev-wifi-simple-adhoc-grid-debug
+[2806/2949] Linking build/examples/energy/ns3-dev-energy-model-example-debug
+[2807/2949] Linking build/src/energy/examples/ns3-dev-basic-energy-model-test-debug
+[2808/2949] Linking build/examples/wireless/ns3-dev-ht-wifi-network-debug
+[2809/2949] Linking build/libns3-dev-aodv-debug.so
+[2810/2949] Linking build/examples/energy/ns3-dev-energy-model-with-harvesting-example-debug
+[2811/2949] Linking build/libns3-dev-mesh-debug.so
+[2812/2949] Linking build/examples/wireless/ns3-dev-wifi-simple-interference-debug
+[2813/2949] Linking build/src/energy/examples/ns3-dev-rv-battery-model-test-debug
+[2814/2949] Linking build/libns3-dev-wave-debug.so
+[2815/2949] Linking build/examples/wireless/ns3-dev-wifi-hidden-terminal-debug
+[2816/2949] Linking build/src/tap-bridge/examples/ns3-dev-tap-wifi-virtual-machine-debug
+[2817/2949] Linking build/examples/wireless/ns3-dev-multirate-debug
+[2818/2949] Linking build/libns3-dev-test-debug.so
+[2819/2949] Linking build/examples/wireless/ns3-dev-wifi-simple-adhoc-debug
+[2820/2949] Linking build/examples/wireless/ns3-dev-wifi-ap-debug
+[2821/2949] Linking build/libns3-dev-visualizer-debug.so
+[2822/2949] Linking build/src/dsdv/examples/ns3-dev-dsdv-manet-debug
+[2823/2949] Linking build/src/olsr/examples/ns3-dev-simple-point-to-point-olsr-debug
+[2824/2949] Linking build/examples/wireless/ns3-dev-wifi-blockack-debug
+[2825/2949] Linking build/examples/wireless/ns3-dev-wifi-simple-infra-debug
+[2826/2949] Linking build/examples/wireless/ns3-dev-ofdm-ht-validation-debug
+[2827/2949] Linking build/examples/wireless/ns3-dev-simple-msdu-aggregation-debug
+[2828/2949] Linking build/examples/wireless/ns3-dev-wifi-adhoc-debug
+[2829/2949] Linking build/examples/wireless/ns3-dev-power-adaptation-interference-debug
+[2830/2949] Linking build/libns3-dev-dsr-debug.so
+[2831/2949] Linking build/src/tap-bridge/examples/ns3-dev-tap-wifi-dumbbell-debug
+[2832/2949] Linking build/src/aodv/examples/ns3-dev-aodv-debug
+[2833/2949] Linking build/src/mesh/examples/ns3-dev-mesh-debug
+[2834/2949] Linking build/src/wave/examples/ns3-dev-wave-simple-device-debug
+[2835/2949] Linking build/src/wave/examples/ns3-dev-wave-simple-80211p-debug
+[2836/2949] Linking build/libns3-dev-ndnSIM-debug.so
+[2837/2949] Linking build/src/lte/examples/ns3-dev-lena-profiling-debug
+[2838/2949] Linking build/src/lte/examples/ns3-dev-lena-rlc-traces-debug
+[2839/2949] Linking build/src/lte/examples/ns3-dev-lena-pathloss-traces-debug
+[2840/2949] Linking build/src/lte/examples/ns3-dev-lena-simple-debug
+[2841/2949] Linking build/src/lte/examples/ns3-dev-lena-deactivate-bearer-debug
+[2842/2949] Linking build/src/lte/examples/ns3-dev-lena-dual-stripe-debug
+[2843/2949] Linking build/src/lte/examples/ns3-dev-lena-simple-epc-debug
+[2844/2949] Linking build/src/lte/examples/ns3-dev-lena-fading-debug
+[2845/2949] Linking build/src/lte/examples/ns3-dev-lena-distributed-ffr-debug
+[2846/2949] Linking build/src/lte/examples/ns3-dev-lena-cqi-threshold-debug
+[2847/2949] Linking build/src/lte/examples/ns3-dev-lena-rem-debug
+[2848/2949] Linking build/libns3-dev-netanim-debug.so
+[2849/2949] Linking build/src/lte/examples/ns3-dev-lena-intercell-interference-debug
+[2850/2949] Linking build/src/lte/examples/ns3-dev-lena-frequency-reuse-debug
+[2851/2949] Linking build/src/lte/examples/ns3-dev-lena-uplink-power-control-debug
+[2852/2949] Linking build/src/lte/examples/ns3-dev-lena-x2-handover-measures-debug
+[2853/2949] Linking build/src/lte/examples/ns3-dev-lena-x2-handover-debug
+[2854/2949] Linking build/src/lte/examples/ns3-dev-lena-rem-sector-antenna-debug
+[2855/2949] Linking build/src/dsr/examples/ns3-dev-dsr-debug
+[2856/2949] Linking build/src/wave/examples/ns3-dev-vanet-routing-compare-debug
+[2857/2949] Linking build/examples/routing/ns3-dev-manet-routing-compare-debug
+[2858/2949] Linking build/src/netanim/examples/ns3-dev-star-animation-debug
+[2859/2949] Linking build/examples/wireless/ns3-dev-mixed-wireless-debug
+[2860/2949] Linking build/src/netanim/examples/ns3-dev-grid-animation-debug
+[2861/2949] Linking build/examples/matrix-topology/ns3-dev-matrix-topology-debug
+[2862/2949] Linking build/src/netanim/examples/ns3-dev-dumbbell-animation-debug
+[2863/2949] Linking build/src/netanim/examples/ns3-dev-dynamic_linknode-debug
+[2864/2949] Linking build/src/netanim/examples/ns3-dev-uan-animation-debug
+[2865/2949] Linking build/src/netanim/examples/ns3-dev-wireless-animation-debug
+[2866/2949] Linking build/examples/tcp/ns3-dev-star-debug
+[2867/2949] Linking build/src/netanim/examples/ns3-dev-resources_demo-debug
+[2868/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-custom-apps-debug
+[2869/2949] Linking build/bindings/python/ns/virtual_net_device.so
+[2871/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-tree-tracers-debug
+[2871/2949] Linking build/bindings/python/ns/flow_monitor.so
+[2872/2949] Linking build/bindings/python/ns/lr_wpan.so
+[2873/2949] Linking build/bindings/python/ns/wifi.so
+[2874/2949] Linking build/bindings/python/ns/mpi.so
+[2875/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-with-content-freshness-debug
+[2876/2949] Linking build/utils/ns3-dev-test-runner-debug
+[2877/2949] Linking build/bindings/python/ns/uan.so
+[2878/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-Dome-MoveWithFile-Task-debug
+[2879/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-tree-app-delay-tracer-debug
+[2880/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-load-balancer-debug
+[2881/2949] Linking build/bindings/python/ns/lte.so
+[2882/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-topo-plugin-debug
+[2883/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-csma-debug
+[2884/2949] Linking build/bindings/python/ns/point_to_point_layout.so
+[2885/2949] Linking build/bindings/python/ns/topology_read.so
+[2886/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-zipf-mandelbrot-debug
+[2887/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-Dome-FirstExample-debug
+[2888/2949] Linking build/bindings/python/ns/mobility.so
+[2889/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-wifi-debug
+[2890/2949] Linking build/bindings/python/ns/ndnSIM.so
+[2891/2949] Linking build/bindings/python/ns/mesh.so
+[2892/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-triangle-calculate-routes-debug
+[2893/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-wifi2-debug
+[2894/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-debug
+[2895/2949] Linking build/bindings/python/ns/wimax.so
+[2896/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-Dome-extractCoordsFromFile-debug
+[2897/2949] Linking build/scratch/subdir/subdir
+[2898/2949] Linking build/bindings/python/ns/energy.so
+[2899/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-topo-plugin-loss-debug
+[2900/2949] Linking build/bindings/python/ns/applications.so
+[2901/2949] Linking build/bindings/python/ns/csma.so
+[2902/2949] Linking build/bindings/python/ns/csma_layout.so
+[2903/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-with-link-failure-debug
+[2904/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-cxx-simple-debug
+[2905/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-tree-with-l2tracer-debug
+[2906/2949] Linking build/bindings/python/ns/propagation.so
+[2907/2949] Linking build/bindings/python/ns/dsdv.so
+[2908/2949] Linking build/bindings/python/ns/config_store.so
+[2909/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-with-pcap-debug
+[2910/2949] Linking build/bindings/python/ns/_core.so
+[2911/2949] Linking build/bindings/python/ns/buildings.so
+[2912/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-congestion-topo-plugin-debug
+[2913/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-topo-plugin-red-queues-debug
+[2914/2949] Linking build/bindings/python/ns/olsr.so
+[2915/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-tree-cs-tracers-debug
+[2916/2949] Linking build/bindings/python/ns/visualizer.so
+[2917/2949] Linking build/scratch/scratch-simulator
+[2918/2949] Linking build/bindings/python/ns/stats.so
+[2919/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-debug
+[2920/2949] Linking build/bindings/python/ns/antenna.so
+[2921/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-different-strategy-per-prefix-debug
+[2922/2949] Linking build/bindings/python/ns/wave.so
+[2923/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-congestion-alt-topo-plugin-debug
+[2924/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-for-nrt-helper-debug
+[2925/2949] Linking build/bindings/python/ns/dsr.so
+[2926/2949] Linking build/utils/ns3-dev-print-introspected-doxygen-debug
+[2927/2949] Linking build/bindings/python/ns/aodv.so
+[2928/2949] Linking build/bindings/python/ns/network.so
+[2929/2949] Linking build/bindings/python/ns/bridge.so
+[2930/2949] Linking build/bindings/python/ns/nix_vector_routing.so
+[2931/2949] Linking build/bindings/python/ns/point_to_point.so
+[2932/2949] Linking build/bindings/python/ns/tap_bridge.so
+[2933/2949] Linking build/bindings/python/ns/spectrum.so
+[2934/2949] Linking build/bindings/python/ns/sixlowpan.so
+[2935/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-simple-with-different-sizes-content-store-debug
+[2936/2949] Linking build/bindings/python/ns/fd_net_device.so
+[2937/2949] Linking build/bindings/python/ns/internet.so
+[2938/2949] Linking build/src/ndnSIM/examples/ns3-dev-ndn-grid-multiple-strategies-debug
+Waf: Leaving directory `/home/domenico/ndnSimEiriniCopy/Eirini/ns-3/build'
+Build commands will be stored in build/compile_commands.json
+'build' finished successfully (41.134s)
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Set the base position : time :....NOWNOWNOWNOWONWONWONWONWONWO+0.0ns
+Add Next Hop command was initialized
+Add Next Hop command was initialized
+Add Next Hop command was initialized
+Add Next Hop command was initialized
+Add Next Hop command was initialized
+Add Next Hop command was initialized
+addRoute producer Eirini is called
+Add Next Hop command was initialized
+GetPositionFromTCLFileForNodeAtTime is called :
+node id : 0 time: 0.0 time2 : 1 xy: 1.0 xy: 1.0 xy: 10.0

@@ -253,7 +253,7 @@ Consumer::OnData(shared_ptr<const Data> data)
     hopCount = *hopCountTag;
   }
 //LOGS
-  NS_LOG_DEBUG("Hop count: " << hopCount);
+  /*NS_LOG_DEBUG("Hop count: " << hopCount);
   std::cout << "*****************************************************************" << std::endl;
   std::cout << "......consumer receiving data for: " << seq << " with hopcount: " << hopCount << " and name " << data->getName() << std::endl;
   std::cout << "*****************************************************************" << std::endl;
@@ -300,6 +300,8 @@ Consumer::OnData(shared_ptr<const Data> data)
   counter++;
   std::cout << "counter of received Data Packages is: " << counter << std::endl;
   //END LOGS
+   * */
+
   SeqTimeoutsContainer::iterator entry = m_seqLastDelay.find(seq);
   if (entry != m_seqLastDelay.end()) {
     m_lastRetransmittedInterestDataDelay(this, seq, Simulator::Now() - entry->time, hopCount);

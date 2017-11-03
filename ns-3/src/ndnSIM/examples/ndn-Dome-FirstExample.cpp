@@ -95,7 +95,7 @@ int main(int argc, char* argv[]) {
 //  nodes.Create(2);
 
 	Ns2MobilityHelper ns2MobHelper = Ns2MobilityHelper(
-			"ns-movements-test2-n3.txt");
+			"ns-movements-Slow-Fast-3n-10s.txt");
 	//	mobility.SetPositionAllocator(); //(ns2MobHelper.Ns2MobilityHelper("ns-movements-test2.txt"));
 	//// Create Moble nodes.
 	NodeContainer MobileNodes;
