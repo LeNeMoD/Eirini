@@ -75,6 +75,8 @@ enum {
   MustBeFresh   = 18,
   Any           = 19,
   MetaInfo      = 20,
+  //Dome
+  FuturePosition = 1555,
   Content       = 21,
   SignatureInfo = 22,
   SignatureValue  = 23,

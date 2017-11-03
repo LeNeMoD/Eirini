@@ -203,6 +203,13 @@ MetaInfo::wireDecode(const Block& wire)
 
   Block::element_const_iterator val = m_wire.elements_begin();
 
+  //Dome
+  //FuturePosistion
+  if (val !=  m_wire.elements_end() && val->type() == tlv::FuturePosition) {
+	  m_type = readNonNegativeInteger(*val);
+	  ++val;
+  }
+
   // ContentType
   if (val != m_wire.elements_end() && val->type() == tlv::ContentType) {
     m_type = readNonNegativeInteger(*val);

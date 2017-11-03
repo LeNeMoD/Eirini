@@ -56,6 +56,7 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
   // Data ::= DATA-TLV TLV-LENGTH
   //            Name
   //            MetaInfo
+  //			FuturePosition
   //            Content
   //            Signature
 
@@ -150,6 +151,10 @@ Data::wireDecode(const Block& wire)
   // MetaInfo
   m_metaInfo.wireDecode(m_wire.get(tlv::MetaInfo));
 
+  //
+  m_futurePosition.wireDecode(m_wire.get(tlv::FuturePosition));
+
+
   // Content
   m_content = m_wire.get(tlv::Content);
 
@@ -195,6 +200,15 @@ Data::setMetaInfo(const MetaInfo& metaInfo)
 {
   onChanged();
   m_metaInfo = metaInfo;
+
+  return *this;
+}
+
+Data&
+Data::setFuturePosition(const FuturePosition& futurePosition)
+{
+  onChanged();
+  m_futurePosition = futurePosition;
 
   return *this;
 }
@@ -306,6 +320,7 @@ Data::operator==(const Data& other) const
 {
   return getName() == other.getName() &&
     getMetaInfo() == other.getMetaInfo() &&
+    getFuturePosition() == other.getFuturePosition() &&
     getContent() == other.getContent() &&
     getSignature() == other.getSignature();
 }
@@ -321,6 +336,7 @@ operator<<(std::ostream& os, const Data& data)
 {
   os << "Name: " << data.getName() << "\n";
   os << "MetaInfo: " << data.getMetaInfo() << "\n";
+  os << "FuturePosition: " << data.getFuturePosition() << "\n";
   os << "Content: (size: " << data.getContent().value_size() << ")\n";
   os << "Signature: (type: " << data.getSignature().getType() <<
     ", value_length: "<< data.getSignature().getValue().value_size() << ")";

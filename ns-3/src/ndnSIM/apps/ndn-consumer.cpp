@@ -167,6 +167,8 @@ Consumer::StopApplication() // Called at time specified by Stop
 void
 Consumer::SendPacket()
 {
+	// Dome
+	// consumer should send out his feature position, a time stamp to check RTT or time to data income
   if (!m_active)
     return;
 
@@ -234,6 +236,8 @@ Consumer::SendPacket()
 void
 Consumer::OnData(shared_ptr<const Data> data)
 {
+	// Dome
+	// consumer should now once where the station which is sending data to it.
   if (!m_active)
     return;
 

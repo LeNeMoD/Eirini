@@ -29,6 +29,7 @@
 #include "meta-info.hpp"
 #include "key-locator.hpp"
 #include "tag-host.hpp"
+#include "../../../core/model/vector.h"
 
 namespace ndn {
 
@@ -180,7 +181,12 @@ public:
   Data&
   setMetaInfo(const MetaInfo& metaInfo);
 
-  //
+  //Dome
+  const FuturePosition&
+  getFuturePosition() const;
+
+  Data&
+
 
   ///////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////
@@ -298,6 +304,7 @@ protected:
 private:
   Name m_name;
   MetaInfo m_metaInfo;
+  ns3::Vector m_futurePosition;
   mutable Block m_content;
   Signature m_signature;
 
