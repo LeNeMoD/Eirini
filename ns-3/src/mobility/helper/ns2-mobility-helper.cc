@@ -188,6 +188,7 @@ Ns2MobilityHelper::Ns2MobilityHelper (std::string filename)
   if (!(file.is_open ())) NS_FATAL_ERROR("Could not open trace file " << m_filename.c_str() << " for reading, aborting here \n"); 
 }
 
+
 Ptr<ConstantVelocityMobilityModel>
 Ns2MobilityHelper::GetMobilityModel (std::string idString, const ObjectStore &store) const
 {
@@ -213,19 +214,20 @@ Ns2MobilityHelper::GetMobilityModel (std::string idString, const ObjectStore &st
   return model;
 }
 
-bool entryFound = false;
 
+//Dome
 Vector
 Ns2MobilityHelper::GetPositionFromTCLFileForNodeAtTime(int Nodeid, double at){
-	std::cout<< "GetPositionFromTCLFileForNodeAtTime is called :" << std::endl;
+//	std::cout<< "GetPositionFromTCLFileForNodeAtTime is called :" << std::endl;
 	  std::ifstream file (m_filename.c_str (), std::ios::in);
 	  int       NodeId = Nodeid;
 	  double 	atTimeDouble = at;
 	  Time 		atTimeSeconds = Seconds(at);
 	  Vector futurePosition;
+	  bool entryFound = false;
 
 	  if (file.is_open ())
-	      {
+	      {std::cout<<"file is open"<<std::endl;
 	        while (!file.eof ()  && !entryFound )
 	          {
 //	        	std::cout<< "first while loop is called :" << std::endl;
@@ -247,18 +249,18 @@ Ns2MobilityHelper::GetPositionFromTCLFileForNodeAtTime(int Nodeid, double at){
 	                          continue;
 	                }else{
 
-	            std::cout << "node id : " <<GetNodeIdInt(pr) << " time: " << pr.tokens[2] << " time2 : " << pr.has_dval[2] <<" xy: " << pr.tokens[5] << " xy: " << pr.tokens[6] << " xy: " << pr.tokens[7]<< std::endl;
-//	            std::cout << "node id : " <<GetNodeIdInt(pr) << " time: " << pr.tokens[2] << " time2 : " << pr.has_dval[2] <<" X: " << pr.tokens[5] << " Y: " << pr.tokens[6] << " xy: " << pr.tokens[7]<< "speed?: " << pr.tokens[8]<< std::endl;
-
-	            std::cout<<" val1: "<< pr.ivals[1] <<" val1: "<< pr.ivals[1] << " val2: " << pr.ivals[2] << " val3: " << pr.ivals[3] << " val4: " << pr.ivals[4] << " val5: " << pr.ivals[5] << " val6: " << pr.ivals[6]<<std::endl;
-//	       	    std::cout<<" val1: "<< pr.ivals[1] <<" val1: "<< pr.ivals[1] << " val2: " << pr.ivals[2] << " val3: " << pr.ivals[3] << " val4: " << pr.ivals[4] << " val5: " << pr.ivals[5] << " val6: " << pr.ivals[6]<< " val7: " << pr.ivals[7]<< " val8: " << pr.ivals[8]<<std::endl;
+//	            std::cout << "node id : " <<GetNodeIdInt(pr) << " time: " << pr.tokens[2] << " time2 : " << pr.has_dval[2] <<" X: " << pr.tokens[5] << " Y: " << pr.tokens[6] << " speed...: " << pr.tokens[7]<< std::endl;
+//	            std::cout<<" val1: "<< pr.ivals[1] <<" val1: "<< pr.ivals[1] << " val2: " << pr.ivals[2] << " val3: " << pr.ivals[3] << " val4: " << pr.ivals[4] << " val5: " << pr.ivals[5] << " val6: " << pr.ivals[6]<<std::endl;
 
 
 	            if(pr.ivals[3] == NodeId && pr.dvals[2] == atTimeDouble){
-	            	futurePosition.x = pr.dvals[6];
-	            	futurePosition.y = pr.dvals[7];
-	            	futurePosition.z = pr.dvals[8];
-	            	std::cout<< "from fileparser position x: " << futurePosition.x << std::endl;
+	            	futurePosition.x = pr.dvals[5];
+	            	futurePosition.y = pr.dvals[6];
+	            	futurePosition.z = pr.dvals[7];
+//	            	std::cout<< "futurePosition from nsHelper"<< futurePosition <<std::endl;
+	            	std::cout<<"----------------------Requestet Future Position--------------------------------------"<<std::endl;
+	            	std::cout<< "from ns2Helper:: requestet NodeID: "<< NodeId << " = " << pr.ivals[3] <<" at req time: " << atTimeDouble << " = " << pr.dvals[2] << " has Future Position X Y Z" << pr.tokens[5] << pr.tokens[6] << std::endl;
+	            	std::cout<<""<<std::endl;
 	            	entryFound = true;
 	            }
 	            }

@@ -56,11 +56,8 @@ void MulticastStrategy::afterReceiveInterest(const Face& inFace,
 //		std::cout<< ns2MobHelper.GetSchedPosition(constModel,i) << "  is scheduled position for node "<< node->GetId() << "at time 5 " <<std::endl;
 //	}
 			std::cout<< ns2MobHelper.GetPositionFromTCLFileForNodeAtTime(node->GetId(),1)<< "  is scheduled position for node "<< node->GetId() << "at time 1 " <<std::endl;
-			std::cout<< ns2MobHelper.GetPositionFromTCLFileForNodeAtTime(node->GetId(),2) << "  is scheduled position for node "<< node->GetId() << "at time 2 " <<std::endl;
-			std::cout<< ns2MobHelper.GetPositionFromTCLFileForNodeAtTime(node->GetId(),3) << "  is scheduled position for node "<< node->GetId() << "at time 3 " <<std::endl;
-			std::cout<< ns2MobHelper.GetPositionFromTCLFileForNodeAtTime(node->GetId(),4) << "  is scheduled position for node "<< node->GetId() << "at time 4 " <<std::endl;
 			std::cout<< ns2MobHelper.GetPositionFromTCLFileForNodeAtTime(node->GetId(),5) << "  is scheduled position for node "<< node->GetId() << "at time 5 " <<std::endl;
-			std::cout<< ns2MobHelper.GetPositionFromTCLFileForNodeAtTime(node->GetId(),6) << "  is scheduled position for node "<< node->GetId() << "at time 6 " <<std::endl;
+			std::cout<< ns2MobHelper.GetPositionFromTCLFileForNodeAtTime(node->GetId(),9) << "  is scheduled position for node "<< node->GetId() << "at time 9 " <<std::endl;
 
 	ns3::Vector pos = model->GetPosition();
 	std::cout << ns3::Simulator::Now() << std::endl;
