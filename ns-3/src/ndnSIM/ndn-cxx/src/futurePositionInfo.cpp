@@ -5,10 +5,10 @@
  *      Author: domenico
  */
 
-#include "futurePositionInfo-info.hpp"
-
 #include "encoding/block-helpers.hpp"
 #include "encoding/encoding-buffer.hpp"
+#include "futurePositionInfo.hpp"
+//#include "../../../core/model/nstime.h"
 
 namespace ndn {
 
@@ -22,12 +22,11 @@ FuturePositionInfo::FuturePositionInfo() {
 
 }
 
-FuturePositionInfo::FuturePositionInfo(ns3::Vector positionVector,
-		double timeAtFutureLocation) {
+FuturePositionInfo::FuturePositionInfo(ns3::Vector positionVector, double timeAtFutureLocation) {
 	m_location_X_Coord = positionVector.x;
 	m_location_Y_Coord = positionVector.y;
 	m_location_Z_Coord_Velocity = positionVector.z;
-	m_time = time::seconds(timeAtFutureLocation);
+	m_time = timeAtFutureLocation;
 	m_bool_position_is_empty = false;
 
 }

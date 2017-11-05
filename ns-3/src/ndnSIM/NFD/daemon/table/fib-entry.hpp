@@ -84,7 +84,7 @@ public:
    *  If a NextHop record for \p face already exists, its cost is updated.
    */
   void
-  addNextHop(Face& face, uint64_t cost,std::string mac, double position, double baseTime, double deltaTime);
+  addNextHop(Face& face, uint64_t cost,std::string mac, double positionX, double positionY, double positionZ, double futurePositionX, double futurePositionY, double timeAtFuturePosition);
 
   /** \brief removes a NextHop record
    *
@@ -93,6 +93,7 @@ public:
   void
   removeNextHop(const Face& face);
 
+  //Dome
   void
   updatePositionNextHop(Face& face, std::string mac, double position);
 

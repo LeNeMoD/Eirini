@@ -99,7 +99,7 @@ Base::registerPrefix(const Name& prefix, uint64_t faceId)
                                                 .setCost(100)
 												.setPositionX(550)
 												.setPositionY(551)
-												.setDeltaTime(552)
+												.setTimeAtFuturePosition(552)
                                                 .setExpirationPeriod(time::milliseconds::max()),
                                               bind(&Base::onPrefixRegistrationSuccess, this, _1),
                                               bind(&Base::onPrefixRegistrationError, this, _1));

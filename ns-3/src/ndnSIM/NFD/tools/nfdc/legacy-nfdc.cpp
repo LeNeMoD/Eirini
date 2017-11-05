@@ -112,7 +112,7 @@ LegacyNfdc::fibAddNextHop()
         .setCost(m_cost)
 		.setPositionX(m_position)
 		.setPositionY(m_baseTime)
-		.setDeltaTime(m_deltaTime)
+		.setTimeAtFuturePosition(m_deltaTime)
         .setFaceId(faceId);
 
       m_controller.start<ndn::nfd::FibAddNextHopCommand>(parameters,
@@ -156,7 +156,7 @@ LegacyNfdc::ribRegisterPrefix()
         .setCost(m_cost)
 		.setPositionX(m_position)
 		.setPositionY(m_baseTime)
-		.setDeltaTime(m_deltaTime)
+		.setTimeAtFuturePosition(m_deltaTime)
         .setFlags(m_flags)
         .setOrigin(m_origin)
         .setFaceId(faceId);

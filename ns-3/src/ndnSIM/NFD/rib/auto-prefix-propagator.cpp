@@ -88,7 +88,7 @@ void AutoPrefixPropagator::loadConfig(const ConfigSection& configSection) {
 		}
 
 		else if (i.first == "deltaTime") {
-			m_controlParameters.setDeltaTime(i.second.get_value<double>());
+			m_controlParameters.setTimeAtFuturePosition(i.second.get_value<double>());
 		}
 
 		else if (i.first == "timeout") {

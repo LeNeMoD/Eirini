@@ -30,7 +30,7 @@
 #include "key-locator.hpp"
 #include "tag-host.hpp"
 #include "../../../core/model/vector.h"
-#include "futurePositionInfo-info.hpp"
+#include "futurePositionInfo.hpp"
 
 namespace ndn {
 

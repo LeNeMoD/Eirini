@@ -343,7 +343,7 @@ Data::operator==(const Data& other) const
 {
   return getName() == other.getName() &&
     getMetaInfo() == other.getMetaInfo() &&
-    getFuturePositionInfo() == other.getFuturePositionInfo() &&
+//    getFuturePositionInfo() == other.getFuturePositionInfo() &&
     getContent() == other.getContent() &&
     getSignature() == other.getSignature();
 }
@@ -359,7 +359,7 @@ operator<<(std::ostream& os, const Data& data)
 {
   os << "Name: " << data.getName() << "\n";
   os << "MetaInfo: " << data.getMetaInfo() << "\n";
-  os << "FuturePositionInfo: " << data.getFuturePositionInfo() << "\n";
+//  os << "FuturePositionInfo: " << data.getFuturePositionInfo() << "\n";
   os << "Content: (size: " << data.getContent().value_size() << ")\n";
   os << "Signature: (type: " << data.getSignature().getType() <<
     ", value_length: "<< data.getSignature().getValue().value_size() << ")";

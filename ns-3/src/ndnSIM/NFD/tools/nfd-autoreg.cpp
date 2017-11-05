@@ -138,7 +138,7 @@ public:
             .setCost(m_cost)
 			.setPositionX(m_position)
 			.setPositionY(m_baseTime)
-			.setDeltaTime(m_deltaTime)
+			.setTimeAtFuturePosition(m_deltaTime)
             .setExpirationPeriod(time::milliseconds::max()),
           bind(&AutoregServer::onRegisterCommandSuccess, this, faceId, *prefix),
           bind(&AutoregServer::onRegisterCommandFailure, this, faceId, *prefix, _1));

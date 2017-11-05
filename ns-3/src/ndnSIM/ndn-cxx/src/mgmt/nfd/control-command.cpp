@@ -281,8 +281,8 @@ FibAddNextHopCommand::applyDefaultsToRequest(ControlParameters& parameters) cons
   if (!parameters.hasPositionY()) {
         parameters.setPositionY(0);
   }
-  if (!parameters.hasDeltaTime()) {
-        parameters.setDeltaTime(0);
+  if (!parameters.hasTimeAtFuturePosition()) {
+        parameters.setTimeAtFuturePosition(0);
   }
 }
 
@@ -406,8 +406,8 @@ RibRegisterCommand::applyDefaultsToRequest(ControlParameters& parameters) const
   if(!parameters.hasPositionX()){
 	  parameters.setPositionX(0);
   }
-  if (!parameters.hasDeltaTime()) {
-        parameters.setDeltaTime(0);
+  if (!parameters.hasTimeAtFuturePosition()) {
+        parameters.setTimeAtFuturePosition(0);
   }
   if (!parameters.hasPositionY()) {
         parameters.setPositionY(0);
@@ -458,8 +458,8 @@ RibUnregisterCommand::applyDefaultsToRequest(ControlParameters& parameters) cons
   if (!parameters.hasPositionY()){
 	  parameters.setPositionY(0);
   }
-  if (!parameters.hasDeltaTime()){
-	  parameters.setDeltaTime(0);
+  if (!parameters.hasTimeAtFuturePosition()){
+	  parameters.setTimeAtFuturePosition(0);
   }
 }
 

@@ -99,9 +99,9 @@ size_t ControlParameters::wireEncode(EncodingImpl<TAG>& encoder) const {
 					tlv::nfd::FuturePositionY, m_futurePositionY);
 		}
 
-	if (this->hasDeltaTime()) {
+	if (this->hasTimeAtFuturePosition()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::DeltaTime, m_deltaTime);
+				tlv::nfd::DeltaTimeToFuturePos, m_timeAtFuturePosition);
 	}
 
 	if (this->hasOrigin()) {
@@ -234,10 +234,10 @@ void ControlParameters::wireDecode(const Block& block) {
 	m_futurePositionY = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
-	val = m_wire.find(tlv::nfd::DeltaTime);
+	val = m_wire.find(tlv::nfd::DeltaTimeToFuturePos);
 	m_hasFields[CONTROL_PARAMETER_DELTATIME] = val != m_wire.elements_end();
-	if (this->hasDeltaTime()) {
-		m_deltaTime = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	if (this->hasTimeAtFuturePosition()) {
+		m_timeAtFuturePosition = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
 	val = m_wire.find(tlv::nfd::Flags);
@@ -394,8 +394,8 @@ operator<<(std::ostream& os, const ControlParameters& parameters) {
 		os << "FuturePositionY: " << parameters.getFuturePositionY() << ", ";
 	}
 
-	if (parameters.hasDeltaTime()) {
-		os << "DeltaTime: " << parameters.getDeltaTime() << ", ";
+	if (parameters.hasTimeAtFuturePosition()) {
+		os << "DeltaTime: " << parameters.getTimeAtFuturePosition() << ", ";
 	}
 
 	if (parameters.hasFlags()) {
