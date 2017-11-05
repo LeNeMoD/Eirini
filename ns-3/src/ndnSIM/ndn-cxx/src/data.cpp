@@ -57,6 +57,7 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
   //            Name
   //            MetaInfo
   //			FuturePosition
+  //			TimeAtFuturePosition
   //            Content
   //            Signature
 
@@ -78,6 +79,15 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
 
   // Content
   totalLength += encoder.prependBlock(getContent());
+
+
+//  //Dome
+//  //TimeAtFutureLoPosition
+//  totalLength += encoder.prependBlock(getTimeAtFuturePosition());
+
+  //FuturePositionInfo
+  totalLength += encoder.prependBlock(getFuturePositionInfo());
+
 
   // MetaInfo
   totalLength += getMetaInfo().wireEncode(encoder);
@@ -142,6 +152,7 @@ Data::wireDecode(const Block& wire)
   // Data ::= DATA-TLV TLV-LENGTH
   //            Name
   //            MetaInfo
+  //			FuturePosition
   //            Content
   //            Signature
 
@@ -151,8 +162,10 @@ Data::wireDecode(const Block& wire)
   // MetaInfo
   m_metaInfo.wireDecode(m_wire.get(tlv::MetaInfo));
 
-  //
-  m_futurePosition.wireDecode(m_wire.get(tlv::FuturePosition));
+
+  //Dome
+  // FuturePositionInfo
+  m_futurePositonInfo.wireDecode(m_wire.get(tlv::FuturePosition));
 
 
   // Content
@@ -204,14 +217,24 @@ Data::setMetaInfo(const MetaInfo& metaInfo)
   return *this;
 }
 
+//Dome
 Data&
-Data::setFuturePosition(const FuturePosition& futurePosition)
+Data::setFuturePositionInfo(FuturePositionInfo futurePositionInfoObject)
 {
   onChanged();
-  m_futurePosition = futurePosition;
+  m_futurePositonInfo = futurePositionInfoObject;
 
   return *this;
 }
+//
+//Data&
+//Data::setTimeAtFuturePosition(double timeAtFuturePosition)
+//{
+//	onChanged();
+//	m_timeAtFuturePosition = timeAtFuturePosition;
+//
+//	return *this;
+//}
 
 Data&
 Data::setContentType(uint32_t type)
@@ -320,7 +343,7 @@ Data::operator==(const Data& other) const
 {
   return getName() == other.getName() &&
     getMetaInfo() == other.getMetaInfo() &&
-    getFuturePosition() == other.getFuturePosition() &&
+    getFuturePositionInfo() == other.getFuturePositionInfo() &&
     getContent() == other.getContent() &&
     getSignature() == other.getSignature();
 }
@@ -336,7 +359,7 @@ operator<<(std::ostream& os, const Data& data)
 {
   os << "Name: " << data.getName() << "\n";
   os << "MetaInfo: " << data.getMetaInfo() << "\n";
-  os << "FuturePosition: " << data.getFuturePosition() << "\n";
+  os << "FuturePositionInfo: " << data.getFuturePositionInfo() << "\n";
   os << "Content: (size: " << data.getContent().value_size() << ")\n";
   os << "Signature: (type: " << data.getSignature().getType() <<
     ", value_length: "<< data.getSignature().getValue().value_size() << ")";

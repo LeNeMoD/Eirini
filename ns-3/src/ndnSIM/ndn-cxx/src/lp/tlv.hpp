@@ -36,6 +36,7 @@ enum {
   FragIndex = 82,
   FragCount = 83,
   HopCountTag = 84,
+  //Dome Question : does it would be better to add the position to the header ?
   Nack = 800,
   NackReason = 801,
   NextHopFaceId = 816,

@@ -30,6 +30,7 @@
 #include "key-locator.hpp"
 #include "tag-host.hpp"
 #include "../../../core/model/vector.h"
+#include "futurePositionInfo-info.hpp"
 
 namespace ndn {
 
@@ -181,11 +182,21 @@ public:
   Data&
   setMetaInfo(const MetaInfo& metaInfo);
 
-  //Dome
-  const FuturePosition&
-  getFuturePosition() const;
+//  //Dome
+//  const ns3::Vector&
+//  getFutureLocation() const;
+
+  const FuturePositionInfo&
+  getFuturePositionInfo() const;
 
   Data&
+  setFuturePositionInfo(const FuturePositionInfo futureLocationVector);
+
+  const double
+  getTimeAtFuturePosition() const;
+
+  Data&
+  setTimeAtFuturePosition(const double timeAtFuturePosition);
 
 
   ///////////////////////////////////////////////////////////////
@@ -304,7 +315,9 @@ protected:
 private:
   Name m_name;
   MetaInfo m_metaInfo;
-  ns3::Vector m_futurePosition;
+  FuturePositionInfo m_futurePositonInfo;
+  ns3::Vector m_futureLocation;
+  double m_timeAtFuturePosition;
   mutable Block m_content;
   Signature m_signature;
 

@@ -76,7 +76,9 @@ enum {
   Any           = 19,
   MetaInfo      = 20,
   //Dome
-  FuturePosition = 1555,
+  FuturePositionInfo = 1555,
+  FuturePosition = 1556,
+  TimeAtFuturePosition = 1557,
   Content       = 21,
   SignatureInfo = 22,
   SignatureValue  = 23,
