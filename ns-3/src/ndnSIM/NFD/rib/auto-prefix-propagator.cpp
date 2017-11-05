@@ -79,15 +79,27 @@ void AutoPrefixPropagator::loadConfig(const ConfigSection& configSection) {
 		if (i.first == "cost") {
 			m_controlParameters.setCost(i.second.get_value<uint64_t>());
 
-		} else if (i.first == "position") {
+		} else if (i.first == "positionX") {
 			m_controlParameters.setPositionX(i.second.get_value<double>());
 		}
 
-		else if (i.first == "baseTime") {
-			m_controlParameters.setPositionY(i.second.get_value<double>());
+		else if (i.first == "positionY") {
+				m_controlParameters.setPositionY(i.second.get_value<double>());
 		}
 
-		else if (i.first == "deltaTime") {
+		else if (i.first == "positionZ") {
+			m_controlParameters.setPositionZ(i.second.get_value<double>());
+		}
+
+		else if (i.first == "futurePositionX") {
+			m_controlParameters.setFuturePositionX(i.second.get_value<double>());
+		}
+
+		else if (i.first == "futurePositionY") {
+			m_controlParameters.setFuturePositionY(i.second.get_value<double>());
+		}
+
+		else if (i.first == "timeAtFuturePosition") {
 			m_controlParameters.setTimeAtFuturePosition(i.second.get_value<double>());
 		}
 

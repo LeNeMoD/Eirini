@@ -61,7 +61,7 @@ public:
 		return m_mac;
 	}
 
-	double getPositionX() const{
+	double getPositionX() const {
 		return m_positionX;
 	}
 
@@ -77,7 +77,15 @@ public:
 		return m_positionY;
 	}
 
-	double getFuturePositionX() const{
+	void setPositionZ(double positionZ) {
+		m_positionZ = positionZ;
+	}
+
+	double getPositionZ() const {
+		return m_positionZ;
+	}
+
+	double getFuturePositionX() const {
 		return m_futurePositionX;
 	}
 
@@ -93,12 +101,12 @@ public:
 		return m_futurePositionY;
 	}
 
-	void setDeltaTime(double deltaTime) {
-		m_deltaTime = deltaTime;
+	void setTimeAtFuturePosition(double timeAtFuturePosition) {
+		m_timeAtFuturePosition = timeAtFuturePosition;
 	}
 
-	double getDeltaTime() const {
-		return m_deltaTime;
+	double getTimeAtFuturePosition() const {
+		return m_timeAtFuturePosition;
 	}
 
 //	void
@@ -112,9 +120,10 @@ private:
 	std::string m_mac;
 	double m_positionX;
 	double m_positionY;
+	double m_positionZ;
 	double m_futurePositionX;
 	double m_futurePositionY;
-	double m_deltaTime;
+	double m_timeAtFuturePosition;
 };
 
 } // namespace fib

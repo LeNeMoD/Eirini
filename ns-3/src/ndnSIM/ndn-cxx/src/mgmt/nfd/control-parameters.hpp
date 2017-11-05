@@ -413,9 +413,9 @@ public:
 	}
 
 	ControlParameters&
-	setTimeAtFuturePosition(double deltaTime) {
+	setTimeAtFuturePosition(double timeAtFuturePosition) {
 		m_wire.reset();
-		m_timeAtFuturePosition = deltaTime;
+		m_timeAtFuturePosition = timeAtFuturePosition;
 		m_hasFields[CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION] = true;
 		return *this;
 	}

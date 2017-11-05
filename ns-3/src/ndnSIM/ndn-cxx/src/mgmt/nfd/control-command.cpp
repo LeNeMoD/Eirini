@@ -252,7 +252,10 @@ FibAddNextHopCommand::FibAddNextHopCommand()
     .optional(CONTROL_PARAMETER_MAC)
 	.optional(CONTROL_PARAMETER_POSITION_X)
 	.optional(CONTROL_PARAMETER_POSITION_Y)
-	.optional(CONTROL_PARAMETER_DELTATIME);
+	.optional(CONTROL_PARAMETER_POSITION_Z)
+	.optional(CONTROL_PARAMETER_FUTURE_POSITION_X)
+	.optional(CONTROL_PARAMETER_FUTURE_POSITION_Y)
+	.optional(CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION);
   m_responseValidator
     .required(CONTROL_PARAMETER_NAME)
     .required(CONTROL_PARAMETER_FACE_ID)
@@ -260,7 +263,10 @@ FibAddNextHopCommand::FibAddNextHopCommand()
     .required(CONTROL_PARAMETER_MAC)
 	.required(CONTROL_PARAMETER_POSITION_X)
 	.required(CONTROL_PARAMETER_POSITION_Y)
-	.required(CONTROL_PARAMETER_DELTATIME);
+	.required(CONTROL_PARAMETER_POSITION_Z)
+	.required(CONTROL_PARAMETER_FUTURE_POSITION_X)
+	.required(CONTROL_PARAMETER_FUTURE_POSITION_Y)
+	.required(CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION);
 }
 
 void
@@ -281,6 +287,15 @@ FibAddNextHopCommand::applyDefaultsToRequest(ControlParameters& parameters) cons
   if (!parameters.hasPositionY()) {
         parameters.setPositionY(0);
   }
+  if (!parameters.hasPositionZ()) {
+          parameters.setPositionZ(0);
+    }
+  if (!parameters.hasFuturePositionX()) {
+          parameters.setFuturePositionX(0);
+    }
+  if (!parameters.hasFuturePositionY()) {
+          parameters.setFuturePositionY(0);
+    }
   if (!parameters.hasTimeAtFuturePosition()) {
         parameters.setTimeAtFuturePosition(0);
   }
@@ -372,7 +387,10 @@ RibRegisterCommand::RibRegisterCommand()
     .optional(CONTROL_PARAMETER_MAC)
 	.optional(CONTROL_PARAMETER_POSITION_X)
 	.optional(CONTROL_PARAMETER_POSITION_Y)
-	.optional(CONTROL_PARAMETER_DELTATIME)
+	.optional(CONTROL_PARAMETER_POSITION_Z)
+	.optional(CONTROL_PARAMETER_FUTURE_POSITION_X)
+	.optional(CONTROL_PARAMETER_FUTURE_POSITION_Y)
+	.optional(CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION)
     .optional(CONTROL_PARAMETER_FLAGS)
     .optional(CONTROL_PARAMETER_EXPIRATION_PERIOD);
   m_responseValidator
@@ -383,7 +401,10 @@ RibRegisterCommand::RibRegisterCommand()
     .required(CONTROL_PARAMETER_MAC)
 	.required(CONTROL_PARAMETER_POSITION_X)
 	.required(CONTROL_PARAMETER_POSITION_Y)
-	.required(CONTROL_PARAMETER_DELTATIME)
+	.required(CONTROL_PARAMETER_POSITION_Z)
+	.required(CONTROL_PARAMETER_FUTURE_POSITION_X)
+	.required(CONTROL_PARAMETER_FUTURE_POSITION_Y)
+	.required(CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION)
     .required(CONTROL_PARAMETER_FLAGS)
     .optional(CONTROL_PARAMETER_EXPIRATION_PERIOD);
 }
@@ -452,14 +473,23 @@ RibUnregisterCommand::applyDefaultsToRequest(ControlParameters& parameters) cons
   if (!parameters.hasMac()) {
 	  parameters.setMac("eirini");
   }
-  if (!parameters.hasPositionX()){
-	  parameters.setPositionX(0);
+  if (!parameters.hasPositionX()) {
+        parameters.setPositionX(0);
   }
-  if (!parameters.hasPositionY()){
-	  parameters.setPositionY(0);
+  if (!parameters.hasPositionY()) {
+        parameters.setPositionY(0);
   }
-  if (!parameters.hasTimeAtFuturePosition()){
-	  parameters.setTimeAtFuturePosition(0);
+  if (!parameters.hasPositionZ()) {
+          parameters.setPositionZ(0);
+    }
+  if (!parameters.hasFuturePositionX()) {
+          parameters.setFuturePositionX(0);
+    }
+  if (!parameters.hasFuturePositionY()) {
+          parameters.setFuturePositionY(0);
+    }
+  if (!parameters.hasTimeAtFuturePosition()) {
+        parameters.setTimeAtFuturePosition(0);
   }
 }
 
