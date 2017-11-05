@@ -80,14 +80,8 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
   // Content
   totalLength += encoder.prependBlock(getContent());
 
-
-//  //Dome
-//  //TimeAtFutureLoPosition
-//  totalLength += encoder.prependBlock(getTimeAtFuturePosition());
-
   //FuturePositionInfo
   totalLength += encoder.prependBlock(getFuturePositionInfo());
-
 
   // MetaInfo
   totalLength += getMetaInfo().wireEncode(encoder);
@@ -162,11 +156,9 @@ Data::wireDecode(const Block& wire)
   // MetaInfo
   m_metaInfo.wireDecode(m_wire.get(tlv::MetaInfo));
 
-
   //Dome
   // FuturePositionInfo
   m_futurePositonInfo.wireDecode(m_wire.get(tlv::FuturePosition));
-
 
   // Content
   m_content = m_wire.get(tlv::Content);

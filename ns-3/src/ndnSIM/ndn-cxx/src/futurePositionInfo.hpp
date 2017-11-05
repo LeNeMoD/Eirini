@@ -16,7 +16,8 @@
 
 namespace ndn {
 
-class FuturePositionInfo {
+class FuturePositionInfo : public enable_shared_from_this<Name>
+{
 
 public:
   class Error : public tlv::Error
@@ -80,9 +81,15 @@ public:
   	  bool m_bool_position_is_empty;
 
 private:
-  	  mutable Block m_wire;
-
+  	  mutable Block m_futurePositionInfoBlock;
 };
+
+//inline bool
+//FuturePositionInfo::hasWire() const
+//{
+//  return m_futurePositionInfoBlock.hasWire();
+//}
+
 } //end Namespace ndn
 
 #endif /* NS_3_FUTUREPOSITION_HPP_ */

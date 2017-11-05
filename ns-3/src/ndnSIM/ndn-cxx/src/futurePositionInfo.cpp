@@ -12,6 +12,11 @@
 
 namespace ndn {
 
+BOOST_CONCEPT_ASSERT((boost::EqualityComparable<FuturePositionInfo>));
+BOOST_CONCEPT_ASSERT((WireEncodable<FuturePositionInfo>));
+BOOST_CONCEPT_ASSERT((WireEncodableWithEncodingBuffer<FuturePositionInfo>));
+BOOST_CONCEPT_ASSERT((WireDecodable<FuturePositionInfo>));
+
 FuturePositionInfo::FuturePositionInfo() {
 //	m_futureLocation = 0;
 	m_location_X_Coord = 0;
@@ -32,7 +37,8 @@ FuturePositionInfo::FuturePositionInfo(ns3::Vector positionVector, double timeAt
 }
 
 template<encoding::Tag TAG>
-size_t FuturePositionInfo::wireEncode(EncodingImpl<TAG>& encoder) const {
+size_t
+FuturePositionInfo::wireEncode(EncodingImpl<TAG>& encoder) const {
 	size_t totalLength = 0;
 
 	// if position are not emptiy encode them
@@ -62,8 +68,8 @@ size_t FuturePositionInfo::wireEncode(EncodingImpl<TAG>& encoder) const {
 const Block&
 FuturePositionInfo::wireEncode() const {
 	{
-		if (m_wire.hasWire())
-			return m_wire;
+		if (m_futurePositionInfo.hasWire())
+			return m_futurePositionInfo;
 
 		EncodingEstimator estimator;
 		size_t estimatedSize = wireEncode(estimator);
@@ -71,8 +77,8 @@ FuturePositionInfo::wireEncode() const {
 		EncodingBuffer buffer(estimatedSize, 0);
 		wireEncode(buffer);
 
-		m_wire = buffer.block();
-		return m_wire;
+		m_futurePositionInfo = buffer.block();
+		return m_futurePositionInfo;
 	}
 
 }
