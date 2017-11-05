@@ -42,7 +42,7 @@ enum {
 	PositionX 				= 118,
 	PositionY 				= 119,
 	PositionZ				= 120,
-	FuturePosition			= 121,
+	FuturePositionX			= 121,
 	FuturePositionY			= 122,
 	TimeAtFuturePosition	= 123,
 	DeltaTimeToFuturePos 	= 124,
