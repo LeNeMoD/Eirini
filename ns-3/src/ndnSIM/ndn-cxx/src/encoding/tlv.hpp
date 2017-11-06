@@ -75,10 +75,7 @@ enum {
   MustBeFresh   = 18,
   Any           = 19,
   MetaInfo      = 20,
-  //Dome
-  FuturePositionInfo = 1555,
-  FuturePosition = 1556,
-  TimeAtFuturePosition = 1557,
+
   Content       = 21,
   SignatureInfo = 22,
   SignatureValue  = 23,
@@ -91,6 +88,13 @@ enum {
   LinkPreference = 30,
   LinkDelegation = 31,
   SelectedDelegation = 32,
+
+  //Dome
+   FuturePositionInfo = 33,
+   FuturePositionX = 34,
+   FuturePositionY= 35,
+   FuturePositionZ = 36,
+   TimeAtFuturePosition = 37,
 
   AppPrivateBlock1 = 128,
   AppPrivateBlock2 = 32767

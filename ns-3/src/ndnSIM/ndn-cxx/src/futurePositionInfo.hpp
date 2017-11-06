@@ -21,7 +21,7 @@
 
 
 namespace ndn {
-
+class FuturePositionInfo;
 class FuturePositionInfo : public enable_shared_from_this<FuturePositionInfo>
 {
 
@@ -57,6 +57,7 @@ public:
   void
   wireDecode(const Block& wire);
 
+
   public:
 
   const std::list<Block>&
@@ -65,47 +66,94 @@ public:
   FuturePositionInfo&
   setAppFuturePositionInfo(const std::list<Block>& info);
 
+  FuturePositionInfo&
+  addAppFuturePositionInfo(const Block& block);
+
   bool
   removeAppFuturePositionInfo(uint32_t tlvType);
 
+  const Block*
+  findAppFuturePositionInfo(uint32_t tlvType) const;
 
   FuturePositionInfo&
   setFuturePositionVector(ns3::Vector position);
 
-  double
-  getTime();
-
-  FuturePositionInfo&
-  setTime(double time);
-
   ns3::Vector
   getFuturePositionVector();
 
-  double
-  getLocation_X();
+  FuturePositionInfo&
+  setFutureLocationX(double futurelocation_X);
+
+  FuturePositionInfo&
+  setFutureLocationY(double futureLocation_Y);
+
+  FuturePositionInfo&
+  setFutureLocationZ(double futureLocation_Z);
 
   double
-  getLocation_Y();
+  getLocation_X() const;
 
   double
-  getLocation_Z();
+  getLocation_Y() const;
+
+  double
+  getLocation_Z() const;
+
+  double
+  getTimeAtFutureLocation() const;
+
+  FuturePositionInfo&
+  setTimeAtFutureLocation(double time);
+
 
 
   public:
-//  	  ns3::Vector m_futureLocation;
   	  double m_location_X_Coord;
   	  double m_location_Y_Coord;
   	  double m_location_Z_Coord_Velocity;
-  	  double m_time;
+  	  double m_timeAtFuturePosition;
   	  bool m_bool_position_is_empty;
   	  ns3::Vector m_futurePositionVector;
 
+
+  public: // EqualityComparable concept
+    bool
+    operator==(const FuturePositionInfo& other) const;
+
+    bool
+    operator!=(const FuturePositionInfo& other) const;
 
 private:
   	  std::list<Block> m_appFuturePositionInfo;
   	  mutable Block m_mWire_futurePositionInfo;
 };
 
+std::ostream&
+operator<<(std::ostream& os, const FuturePositionInfo& info);
+
+inline double
+FuturePositionInfo::getLocation_X() const
+{
+	return m_location_X_Coord;
+}
+
+inline double
+FuturePositionInfo::getLocation_Y() const
+{
+	return m_location_Y_Coord;
+}
+
+inline double
+FuturePositionInfo::getLocation_Z() const
+{
+	return m_location_Z_Coord_Velocity;
+}
+
+inline double
+FuturePositionInfo::getTimeAtFutureLocation() const
+{
+	return m_timeAtFuturePosition;
+}
 //inline bool
 //FuturePositionInfo::hasWire() const
 //{

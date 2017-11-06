@@ -346,6 +346,12 @@ Data::getMetaInfo() const
   return m_metaInfo;
 }
 
+inline const FuturePositionInfo&
+Data::getFuturePositionInfo() const
+{
+  return m_futurePositonInfo;
+}
+
 inline uint32_t
 Data::getContentType() const
 {
