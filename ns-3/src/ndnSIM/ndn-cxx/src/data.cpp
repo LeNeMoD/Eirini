@@ -211,7 +211,7 @@ Data::setMetaInfo(const MetaInfo& metaInfo)
 
 //Dome
 Data&
-Data::setFuturePositionInfo(FuturePositionInfo futurePositionInfoObject)
+Data::setFuturePositionInfo(const FuturePositionInfo& futurePositionInfoObject)
 {
   onChanged();
   m_futurePositonInfo = futurePositionInfoObject;

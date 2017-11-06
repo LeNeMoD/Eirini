@@ -190,7 +190,7 @@ public:
   getFuturePositionInfo() const;
 
   Data&
-  setFuturePositionInfo(const FuturePositionInfo futureLocationVector);
+  setFuturePositionInfo(const FuturePositionInfo& futurePositionInfo);
 
   const double
   getTimeAtFuturePosition() const;
