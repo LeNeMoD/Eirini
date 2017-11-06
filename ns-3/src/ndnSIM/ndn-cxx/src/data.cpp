@@ -81,7 +81,7 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
   totalLength += encoder.prependBlock(getContent());
 
   //FuturePositionInfo
-  totalLength += encoder.prependBlock(getFuturePositionInfo());
+  totalLength += getFuturePositionInfo().wireEncode(encoder);
 
   // MetaInfo
   totalLength += getMetaInfo().wireEncode(encoder);
@@ -146,7 +146,7 @@ Data::wireDecode(const Block& wire)
   // Data ::= DATA-TLV TLV-LENGTH
   //            Name
   //            MetaInfo
-  //			FuturePosition
+  //			FuturePositionInfo
   //            Content
   //            Signature
 
@@ -158,7 +158,7 @@ Data::wireDecode(const Block& wire)
 
   //Dome
   // FuturePositionInfo
-  m_futurePositonInfo.wireDecode(m_wire.get(tlv::FuturePosition));
+  m_futurePositonInfo.wireDecode(m_wire.get(tlv::FuturePositionInfo));
 
   // Content
   m_content = m_wire.get(tlv::Content);

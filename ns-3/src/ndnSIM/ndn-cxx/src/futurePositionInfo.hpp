@@ -66,17 +66,20 @@ public:
   setAppFuturePositionInfo(const std::list<Block>& info);
 
   bool
-  removeAppMetaInfo(uint32_t tlvType);
+  removeAppFuturePositionInfo(uint32_t tlvType);
 
 
-  void
-  setFutureLocation(ns3::Vector position);
+  FuturePositionInfo&
+  setFuturePositionVector(ns3::Vector position);
 
   double
   getTime();
 
+  FuturePositionInfo&
+  setTime(double time);
+
   ns3::Vector
-  getPositionVector();
+  getFuturePositionVector();
 
   double
   getLocation_X();
@@ -95,6 +98,7 @@ public:
   	  double m_location_Z_Coord_Velocity;
   	  double m_time;
   	  bool m_bool_position_is_empty;
+  	  ns3::Vector m_futurePositionVector;
 
 
 private:

@@ -57,7 +57,7 @@ FuturePositionInfo::setAppFuturePositionInfo(const std::list<Block>& info)
 }
 
 bool
-FuturePositionInfo::removeAppMetaInfo(uint32_t tlvType)
+FuturePositionInfo::removeAppFuturePositionInfo(uint32_t tlvType)
 {
   for (std::list<Block>::iterator iter = m_appFuturePositionInfo.begin();
        iter != m_appFuturePositionInfo.end(); ++iter) {
@@ -82,13 +82,13 @@ FuturePositionInfo::wireEncode(EncodingImpl<TAG>& encoder) const {
 
 	// if position are not emptiy encode them
 	if (!m_bool_position_is_empty) {
-		ns3::Vector futurePositionVector;
-		futurePositionVector.x = m_location_X_Coord;
-		futurePositionVector.y = m_location_Y_Coord;
-		futurePositionVector.z = m_location_Z_Coord_Velocity;
+
+		m_futurePositionVector.x = m_location_X_Coord;
+		m_futurePositionVector.y = m_location_Y_Coord;
+		m_futurePositionVector.z = m_location_Z_Coord_Velocity;
 
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::FuturePosition, futurePositionVector);
+				tlv::FuturePosition, m_futurePositionVector);
 	}
 
 	// time
@@ -122,7 +122,8 @@ FuturePositionInfo::wireEncode() const {
 
 }
 
-void FuturePositionInfo::wireDecode(const Block& wire) {
+void
+FuturePositionInfo::wireDecode(const Block& wire) {
 
 	m_mWire_futurePositionInfo = wire;
 	m_mWire_futurePositionInfo.parse();
@@ -152,16 +153,32 @@ void FuturePositionInfo::wireDecode(const Block& wire) {
 	  }
 }
 
-double FuturePositionInfo::getTime() {
+double
+FuturePositionInfo::getTime() {
 	return m_time;
 }
 
-ns3::Vector FuturePositionInfo::getPositionVector() {
-	ns3::Vector futurePosition;
-	m_location_X_Coord = futurePosition.x;
-	m_location_Y_Coord = futurePosition.y;
-	m_location_Z_Coord_Velocity = futurePosition.z;
-	return futurePosition;
+FuturePositionInfo&
+FuturePositionInfo::setTime(double time){
+	m_mWire_futurePositionInfo.reset();
+	m_time = time;
+	return *this;
+}
+
+ns3::Vector
+FuturePositionInfo::getFuturePositionVector() {
+	m_futurePositionVector.x = m_location_X_Coord;
+	m_futurePositionVector.y = m_location_Y_Coord;
+	m_futurePositionVector.z = m_location_Z_Coord_Velocity;
+	return m_futurePositionVector;
+}
+
+
+FuturePositionInfo&
+FuturePositionInfo::setFuturePositionVector(ns3::Vector positionVector){
+	m_mWire_futurePositionInfo.reset();
+	m_futurePositionVector = positionVector;
+	return *this;
 }
 
 double
@@ -169,6 +186,7 @@ FuturePositionInfo::getLocation_X() {
 	return m_location_X_Coord ;
 
 }
+
 
 double
 FuturePositionInfo::getLocation_Y() {
@@ -180,9 +198,6 @@ FuturePositionInfo::getLocation_Z() {
 	return m_location_Z_Coord_Velocity ;
 
 }
-
-FuturePositionInfo&
-FuturePositionInfo::setFutureLocation()
 
 }
 
