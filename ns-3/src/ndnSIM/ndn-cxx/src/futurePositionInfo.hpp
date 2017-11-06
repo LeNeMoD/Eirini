@@ -5,18 +5,24 @@
  *      Author: domenico
  */
 
-#ifndef NS_3_FUTUREPOSITION_HPP_
-#define NS_3_FUTUREPOSITION_HPP_
+#ifndef NS_3_FUTUREPOSITIONINFO_HPP_
+#define NS_3_FUTUREPOSITIONINFO_HPP_
 
 #include "encoding/block.hpp"
 #include "../../../../../ns-3/src/core/model/vector.h"
 #include "util/time.hpp"
+#include "common.hpp"
+#include "encoding/block.hpp"
+#include "encoding/encoding-buffer.hpp"
+#include "util/time.hpp"
+#include "name-component.hpp"
+#include <list>
 
 
 
 namespace ndn {
 
-class FuturePositionInfo : public enable_shared_from_this<Name>
+class FuturePositionInfo : public enable_shared_from_this<FuturePositionInfo>
 {
 
 public:
@@ -53,6 +59,16 @@ public:
 
   public:
 
+  const std::list<Block>&
+  getAppFuturePositionInfo() const ;
+
+  FuturePositionInfo&
+  setAppFuturePositionInfo(const std::list<Block>& info);
+
+  bool
+  removeAppMetaInfo(uint32_t tlvType);
+
+
   void
   setFutureLocation(ns3::Vector position);
 
@@ -80,14 +96,16 @@ public:
   	  double m_time;
   	  bool m_bool_position_is_empty;
 
+
 private:
-  	  mutable Block m_futurePositionInfoBlock;
+  	  std::list<Block> m_appFuturePositionInfo;
+  	  mutable Block m_mWire_futurePositionInfo;
 };
 
 //inline bool
 //FuturePositionInfo::hasWire() const
 //{
-//  return m_futurePositionInfoBlock.hasWire();
+//  return m_mWire_futurePositionInfo.hasWire();
 //}
 
 } //end Namespace ndn

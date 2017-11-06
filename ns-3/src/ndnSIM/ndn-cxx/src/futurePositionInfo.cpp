@@ -36,10 +36,49 @@ FuturePositionInfo::FuturePositionInfo(ns3::Vector positionVector, double timeAt
 
 }
 
+const std::list<Block>&
+FuturePositionInfo::getAppFuturePositionInfo() const
+{
+  return m_appFuturePositionInfo;
+}
+
+FuturePositionInfo&
+FuturePositionInfo::setAppFuturePositionInfo(const std::list<Block>& info)
+{
+  for (std::list<Block>::const_iterator i = info.begin(); i != info.end(); ++i) {
+    if (!(128 <= i->type() && i->type() <= 252))
+      BOOST_THROW_EXCEPTION(Error("AppFuturePositionInfo block has type outside the application range "
+                                  "[128, 252]"));
+  }
+
+  m_mWire_futurePositionInfo.reset();
+  m_appFuturePositionInfo = info;
+  return *this;
+}
+
+bool
+FuturePositionInfo::removeAppMetaInfo(uint32_t tlvType)
+{
+  for (std::list<Block>::iterator iter = m_appFuturePositionInfo.begin();
+       iter != m_appFuturePositionInfo.end(); ++iter) {
+    if (iter->type() == tlvType) {
+    	m_mWire_futurePositionInfo.reset();
+    	m_appFuturePositionInfo.erase(iter);
+      return true;
+    }
+  }
+  return false;
+}
+
 template<encoding::Tag TAG>
 size_t
 FuturePositionInfo::wireEncode(EncodingImpl<TAG>& encoder) const {
 	size_t totalLength = 0;
+
+	for (std::list<Block>::const_reverse_iterator appMetaInfoItem = m_appFuturePositionInfo.rbegin();
+	       appMetaInfoItem != m_appFuturePositionInfo.rend(); ++appMetaInfoItem) {
+	    totalLength += encoder.prependBlock(*appMetaInfoItem);
+	  }
 
 	// if position are not emptiy encode them
 	if (!m_bool_position_is_empty) {
@@ -68,8 +107,8 @@ FuturePositionInfo::wireEncode(EncodingImpl<TAG>& encoder) const {
 const Block&
 FuturePositionInfo::wireEncode() const {
 	{
-		if (m_futurePositionInfo.hasWire())
-			return m_futurePositionInfo;
+		if (m_mWire_futurePositionInfo.hasWire())
+			return m_mWire_futurePositionInfo;
 
 		EncodingEstimator estimator;
 		size_t estimatedSize = wireEncode(estimator);
@@ -77,19 +116,22 @@ FuturePositionInfo::wireEncode() const {
 		EncodingBuffer buffer(estimatedSize, 0);
 		wireEncode(buffer);
 
-		m_futurePositionInfo = buffer.block();
-		return m_futurePositionInfo;
+		m_mWire_futurePositionInfo = buffer.block();
+		return m_mWire_futurePositionInfo;
 	}
 
 }
 
 void FuturePositionInfo::wireDecode(const Block& wire) {
 
-	Block::element_const_iterator val = m_wire.elements_begin();
+	m_mWire_futurePositionInfo = wire;
+	m_mWire_futurePositionInfo.parse();
+
+	Block::element_const_iterator val = m_mWire_futurePositionInfo.elements_begin();
 
 	//Dome
 	//FuturePosistion
-	if (val != m_wire.elements_end() && val->type() == tlv::FuturePosition) {
+	if (val != m_mWire_futurePositionInfo.elements_end() && val->type() == tlv::FuturePosition) {
 		ns3::Vector futurePosition = *val;
 		m_location_X_Coord = futurePosition.x;
 		m_location_Y_Coord = futurePosition.y;
@@ -98,11 +140,16 @@ void FuturePositionInfo::wireDecode(const Block& wire) {
 	}
 
 	//TimeAtFuturePosition
-	if (val != m_wire.elements_end()
+	if (val != m_mWire_futurePositionInfo.elements_end()
 			&& val->type() == tlv::TimeAtFuturePosition) {
 		m_time = readNonNegativeInteger(*val);
 		++val;
 	}
+
+	 // AppFuturePositionInfo (if any)
+	  for (; val != m_mWire_futurePositionInfo.elements().end(); ++val) {
+	    m_appFuturePositionInfo.push_back(*val);
+	  }
 }
 
 double FuturePositionInfo::getTime() {
@@ -133,6 +180,9 @@ FuturePositionInfo::getLocation_Z() {
 	return m_location_Z_Coord_Velocity ;
 
 }
+
+FuturePositionInfo&
+FuturePositionInfo::setFutureLocation()
 
 }
 
