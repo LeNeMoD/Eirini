@@ -109,12 +109,12 @@ Producer::OnInterest(shared_ptr<const Interest> interest)
   // dataName.append(m_postfix);
   // dataName.appendVersion();
 
-  //Dome .. doesnt should the consumer reveal his position and not the producer ? ... the producer is stationary and the consumer would now where he is ... or this way he can send the request to a specific positoin ... ?
-
-
   auto data = make_shared<Data>();
   data->setName(dataName);
   data->setFreshnessPeriod(::ndn::time::milliseconds(m_freshness.GetMilliSeconds()));
+
+  //Dome
+//  data->setFuturePositionInfo()
 
   data->setContent(make_shared< ::ndn::Buffer>(m_virtualPayloadSize));
 

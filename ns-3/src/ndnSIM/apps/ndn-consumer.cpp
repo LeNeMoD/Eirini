@@ -168,7 +168,6 @@ void
 Consumer::SendPacket()
 {
 	// Dome
-	// consumer should send out his feature position, a time stamp to check RTT or time to data income
   if (!m_active)
     return;
 
