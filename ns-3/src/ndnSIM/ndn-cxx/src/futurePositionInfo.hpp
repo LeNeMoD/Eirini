@@ -60,7 +60,7 @@ public:
 
   public:
 
-  const std::list<Block>&
+  /*const std::list<Block>&
   getAppFuturePositionInfo() const ;
 
   FuturePositionInfo&
@@ -74,12 +74,15 @@ public:
 
   const Block*
   findAppFuturePositionInfo(uint32_t tlvType) const;
+  */
 
   FuturePositionInfo&
   setFuturePositionVector(ns3::Vector position);
 
   ns3::Vector
   getFuturePositionVector();
+  bool
+  Getemptyposition() const;
 
   FuturePositionInfo&
   setFutureLocationX(double futurelocation_X);
@@ -136,7 +139,11 @@ FuturePositionInfo::getLocation_X() const
 {
 	return m_location_X_Coord;
 }
-
+inline bool
+FuturePositionInfo::Getemptyposition() const
+{
+	return m_bool_position_is_empty;
+}
 inline double
 FuturePositionInfo::getLocation_Y() const
 {

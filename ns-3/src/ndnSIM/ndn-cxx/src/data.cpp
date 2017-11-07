@@ -62,7 +62,7 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
   //            Signature
 
   // (reverse encoding)
-
+  totalLength += getFuturePositionInfo().wireEncode(encoder);
   if (!unsignedPortion && !m_signature)
     {
       BOOST_THROW_EXCEPTION(Error("Requested wire format, but data packet has not been signed yet"));
@@ -80,8 +80,10 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
   // Content
   totalLength += encoder.prependBlock(getContent());
 
+  //if(hasFuturelocationinfo()){
   //FuturePositionInfo
-  totalLength += getFuturePositionInfo().wireEncode(encoder);
+
+ // }
 
   // MetaInfo
   totalLength += getMetaInfo().wireEncode(encoder);
@@ -156,9 +158,6 @@ Data::wireDecode(const Block& wire)
   // MetaInfo
   m_metaInfo.wireDecode(m_wire.get(tlv::MetaInfo));
 
-  //Dome
-  // FuturePositionInfo
-  m_futurePositonInfo.wireDecode(m_wire.get(tlv::FuturePositionInfo));
 
   // Content
   m_content = m_wire.get(tlv::Content);
@@ -174,6 +173,13 @@ Data::wireDecode(const Block& wire)
   Block::element_const_iterator val = m_wire.find(tlv::SignatureValue);
   if (val != m_wire.elements_end())
     m_signature.setValue(*val);
+
+  //Dome
+    // FuturePositionInfo
+    val = m_wire.find(tlv::FuturePositionInfo);
+    if (val != m_wire.elements_end()){
+    m_futurePositonInfo.wireDecode(m_wire.get(tlv::FuturePositionInfo));
+    }
 }
 
 Data&
@@ -291,7 +297,11 @@ Data::setContent(const Block& content)
 
   return *this;
 }
-
+bool
+Data::hasFuturelocationinfo() const
+{
+  return !m_futurePositonInfo.Getemptyposition();
+}
 Data&
 Data::setSignature(const Signature& signature)
 {

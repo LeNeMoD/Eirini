@@ -128,6 +128,8 @@ public:
    */
   const Block&
   wireEncode(EncodingBuffer& encoder, const Block& signatureValue) const;
+  bool
+   hasFuturelocationinfo() const;
 
   /**
    * @brief Decode from the wire format

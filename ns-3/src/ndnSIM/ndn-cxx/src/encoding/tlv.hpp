@@ -90,12 +90,12 @@ enum {
   SelectedDelegation = 32,
 
   //Dome
-   FuturePositionInfo = 33,
+
    FuturePositionX = 34,
    FuturePositionY= 35,
    FuturePositionZ = 36,
    TimeAtFuturePosition = 37,
-
+   FuturePositionInfo = 38,
   AppPrivateBlock1 = 128,
   AppPrivateBlock2 = 32767
 };

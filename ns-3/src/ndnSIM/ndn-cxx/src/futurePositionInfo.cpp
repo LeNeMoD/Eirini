@@ -27,7 +27,16 @@ FuturePositionInfo::FuturePositionInfo() {
 	m_bool_position_is_empty = true;
 
 }
+/*bool
+FuturePositionInfo::empty() const
+{
+  return m_location_X_Coord <0 &&
+		  m_location_Y_Coord = 0 &&
+		  m_location_Z_Coord_Velocity = 0 &&
+		  m_timeAtFuturePosition = 0;
+		 m_bool_position_is_empty = true;;
 
+}*/
 FuturePositionInfo::FuturePositionInfo(const Block& block)
 {
 	wireDecode(block);
@@ -47,10 +56,10 @@ size_t
 FuturePositionInfo::wireEncode(EncodingImpl<TAG>& encoder) const {
 	size_t totalLength = 0;
 
-	for (std::list<Block>::const_reverse_iterator appFuturePositionInfoItem = m_appFuturePositionInfo.rbegin();
+	/*for (std::list<Block>::const_reverse_iterator appFuturePositionInfoItem = m_appFuturePositionInfo.rbegin();
 			appFuturePositionInfoItem != m_appFuturePositionInfo.rend(); ++appFuturePositionInfoItem) {
 	    totalLength += encoder.prependBlock(*appFuturePositionInfoItem);
-	  }
+	  }*/
 
 	// time
 	if (!m_bool_position_is_empty) {
@@ -112,40 +121,38 @@ FuturePositionInfo::wireDecode(const Block& wire) {
 	m_mWire_futurePositionInfo = wire;
 	m_mWire_futurePositionInfo.parse();
 
-	Block::element_const_iterator val = m_mWire_futurePositionInfo.elements_begin();
+	//Block::element_const_iterator val = m_mWire_futurePositionInfo.elements_begin();
 
 	//Dome !!! missnign else statements if decoding fales
 	//FuturePosistion
-	if (val != m_mWire_futurePositionInfo.elements_end()
-			&& val->type() == tlv::FuturePositionX) {
+	Block::element_const_iterator val= m_mWire_futurePositionInfo.find(tlv::FuturePositionX);
+	if (val != m_mWire_futurePositionInfo.elements_end()) {
 		m_location_X_Coord = readNonNegativeInteger(*val);
 		++val;
 	}
-
-	if (val != m_mWire_futurePositionInfo.elements_end()
-			&& val->type() == tlv::FuturePositionY) {
+	val= m_mWire_futurePositionInfo.find(tlv::FuturePositionY);
+	if (val != m_mWire_futurePositionInfo.elements_end()) {
 		m_location_Y_Coord = readNonNegativeInteger(*val);
 
 		++val;
 	}
-
-	if (val != m_mWire_futurePositionInfo.elements_end()
-			&& val->type() == tlv::FuturePositionZ) {
+	val= m_mWire_futurePositionInfo.find(tlv::FuturePositionZ);
+	if (val != m_mWire_futurePositionInfo.elements_end()) {
 		m_location_Z_Coord_Velocity = readNonNegativeInteger(*val);
 		++val;
 	}
-
+	val= m_mWire_futurePositionInfo.find(tlv::TimeAtFuturePosition);
 	//TimeAtFuturePosition
-	if (val != m_mWire_futurePositionInfo.elements_end()
-			&& val->type() == tlv::TimeAtFuturePosition) {
+	if (val != m_mWire_futurePositionInfo.elements_end())
+		{
 		m_timeAtFuturePosition = readNonNegativeInteger(*val);
 		++val;
 	}
 
 	 // AppFuturePositionInfo (if any)
-	  for (; val != m_mWire_futurePositionInfo.elements().end(); ++val) {
-	    m_appFuturePositionInfo.push_back(*val);
-	  }
+	 // for (; val != m_mWire_futurePositionInfo.elements().end(); ++val) {
+	//    m_appFuturePositionInfo.push_back(*val);
+	//  }
 }
 
 std::ostream&
@@ -165,10 +172,7 @@ operator<<(std::ostream& os, const FuturePositionInfo& info)
 
 
   // App-defined MetaInfo items
-  for (std::list<Block>::const_iterator iter = info.getAppFuturePositionInfo().begin();
-       iter != info.getAppFuturePositionInfo().end(); ++iter) {
-    os << ", AppFuturePositionInfoTlvType: " << iter->type();
-  }
+
 
   return os;
 }
@@ -179,7 +183,7 @@ FuturePositionInfo::operator ==(const FuturePositionInfo& other) const{
 }
 
 
-const std::list<Block>&
+/*const std::list<Block>&
 FuturePositionInfo::getAppFuturePositionInfo() const
 {
   return m_appFuturePositionInfo;
@@ -235,7 +239,7 @@ FuturePositionInfo::findAppFuturePositionInfo(uint32_t tlvType) const
     }
   }
   return 0;
-}
+}*/
 //
 //double
 //FuturePositionInfo::getTimeAtFutureLocation() const{
