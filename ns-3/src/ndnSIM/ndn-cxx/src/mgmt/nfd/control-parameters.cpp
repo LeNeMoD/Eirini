@@ -246,8 +246,6 @@ void ControlParameters::wireDecode(const Block& block) {
 		m_futurePositionX = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
-	//Fehler war hier copy paste nicht für position z angebpasst oben
-
 	val = m_wire.find(tlv::nfd::FuturePositionY);
 	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Y] = val
 			!= m_wire.elements_end();
@@ -255,12 +253,12 @@ void ControlParameters::wireDecode(const Block& block) {
 		m_futurePositionY = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
-//	val = m_wire.find(tlv::nfd::FuturePositionZ);
-//	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z] = val
-//			!= m_wire.elements_end();
-//	if (this->hasFuturePositionZ()) {
-//		m_futurePositionZ = static_cast<uint64_t>(readNonNegativeInteger(*val));
-//	}
+	val = m_wire.find(tlv::nfd::FuturePositionZ);
+	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z] = val
+			!= m_wire.elements_end();
+	if (this->hasFuturePositionZ()) {
+		m_futurePositionZ = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	}
 
 	val = m_wire.find(tlv::nfd::TimeAtFuturePosition);
 	m_hasFields[CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION] = val != m_wire.elements_end();
@@ -423,9 +421,9 @@ operator<<(std::ostream& os, const ControlParameters& parameters) {
 		os << "FuturePositionY: " << parameters.getFuturePositionY() << ", ";
 	}
 
-//	if (parameters.hasFuturePositionZ()) {
-//		os << "FuturePositionZ: " << parameters.getFuturePositionZ() << ", ";
-//	}
+	if (parameters.hasFuturePositionZ()) {
+		os << "FuturePositionZ: " << parameters.getFuturePositionZ() << ", ";
+	}
 
 	if (parameters.hasTimeAtFuturePosition()) {
 		os << "timeAtFuturePosition: " << parameters.getTimeAtFuturePosition() << ", ";
