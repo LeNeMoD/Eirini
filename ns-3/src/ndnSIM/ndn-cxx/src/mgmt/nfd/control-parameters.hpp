@@ -46,6 +46,7 @@ enum ControlParameterField {
 	CONTROL_PARAMETER_POSITION_Z,
 	CONTROL_PARAMETER_FUTURE_POSITION_X,
 	CONTROL_PARAMETER_FUTURE_POSITION_Y,
+//	CONTROL_PARAMETER_FUTURE_POSITION_Z,
 	CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION,
 	CONTROL_PARAMETER_FLAGS,
 	CONTROL_PARAMETER_MASK,
@@ -57,9 +58,15 @@ enum ControlParameterField {
 
 const std::string CONTROL_PARAMETER_FIELD[CONTROL_PARAMETER_UBOUND] = { "Name",
 		"FaceId", "Uri", "LocalControlFeature", "Origin", "Cost", "Mac",
-		"PositionX", "PositionY", "PositionZ", "FuturePositionX",
+		"PositionX", "PositionY", "PositionasdfasdfZ", "FuturePositionX",
 		"FuturePositionY", "TimeAtFuturePosition", "Flags", "Mask", "Strategy",
 		"ExpirationPeriod", "FacePersistency" };
+
+//{ "Name",
+//		"FaceId", "Uri", "LocalControlFeature", "Origin", "Cost", "Mac",
+//		"PositionX", "PositionY", "PositionZ", "FuturePositionX",
+//		"FuturePositionY", "FuturePositionZ ", "TimeAtFuturePosition", "Flags", "Mask", "Strategy",
+//		"ExpirationPeriod", "FacePersistency" };
 
 /**
  * \ingroup management
@@ -336,7 +343,7 @@ public:
 	}
 
 	double getPositionZ() const {
-		BOOST_ASSERT(this->hasPositionX());
+		BOOST_ASSERT(this->hasPositionZ());
 		return m_positionZ;
 	}
 
@@ -403,6 +410,30 @@ public:
 		return *this;
 	}
 
+//	bool hasFuturePositionZ() const {
+//		return m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z];
+//	}
+//
+//	double getFuturePositionZ() const {
+//		BOOST_ASSERT(this->hasFuturePositionZ());
+//		return m_futurePositionY;
+//	}
+//
+//	ControlParameters&
+//	setFuturePositionZ(double futurePositionZ) {
+//		m_wire.reset();
+//		m_futurePositionZ = futurePositionZ;
+//		m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z] = true;
+//		return *this;
+//	}
+//
+//	ControlParameters&
+//	unsetFuturePositionZ() {
+//		m_wire.reset();
+//		m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z] = false;
+//		return *this;
+//	}
+//
 	bool hasTimeAtFuturePosition() const {
 		return m_hasFields[CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION];
 	}
@@ -600,6 +631,7 @@ private:
 	double m_positionZ;
 	double m_futurePositionX;
 	double m_futurePositionY;
+//	double m_futurePositionZ;
 	double m_timeAtFuturePosition;
 	LocalControlFeature m_localControlFeature;
 	uint64_t m_origin;
