@@ -82,17 +82,17 @@ size_t ControlParameters::wireEncode(EncodingImpl<TAG>& encoder) const {
 	//Dome solved Problem
 	if (this->hasPositionX()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::PositionX, m_positionX);
+				tlv::nfd::ActualPositionX, m_positionX);
 	}
 
 	if (this->hasPositionY()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::PositionY, m_positionY);
+				tlv::nfd::ActualPositionY, m_positionY);
 	}
 
 	if (this->hasPositionZ()) {
 			totalLength += prependNonNegativeIntegerBlock(encoder,
-					tlv::nfd::PositionZ, m_positionZ);
+					tlv::nfd::ActualPositionZ, m_positionZ);
 		}
 
 	if (this->hasFuturePositionX()) {
@@ -221,19 +221,19 @@ void ControlParameters::wireDecode(const Block& block) {
 				val->value_size());
 	}
 
-	val = m_wire.find(tlv::nfd::PositionX);
+	val = m_wire.find(tlv::nfd::ActualPositionX);
 	m_hasFields[CONTROL_PARAMETER_POSITION_X] = val != m_wire.elements_end();
 	if (this->hasPositionX()) {
 		m_positionX = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
-	val = m_wire.find(tlv::nfd::PositionY);
+	val = m_wire.find(tlv::nfd::ActualPositionY);
 	m_hasFields[CONTROL_PARAMETER_POSITION_Y] = val != m_wire.elements_end();
 	if (this->hasPositionY()) {
 		m_positionY = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
-	val = m_wire.find(tlv::nfd::PositionZ);
+	val = m_wire.find(tlv::nfd::ActualPositionZ);
 	m_hasFields[CONTROL_PARAMETER_POSITION_Z] = val != m_wire.elements_end();
 	if (this->hasPositionZ()) {
 		m_positionX = static_cast<uint64_t>(readNonNegativeInteger(*val));

@@ -94,12 +94,16 @@ int main(int argc, char* argv[]) {
 //  NodeContainer nodes;
 //  nodes.Create(2);
 
+
 	Ns2MobilityHelper ns2MobHelper = Ns2MobilityHelper(
-			"ns-movements-Slow-Fast-3n-10s.txt");
+				"ns-movements-test2.txt");
+
+//	Ns2MobilityHelper ns2MobHelper = Ns2MobilityHelper(
+//			"ns-movements-Slow-Fast-3n-10s.txt");
 	//	mobility.SetPositionAllocator(); //(ns2MobHelper.Ns2MobilityHelper("ns-movements-test2.txt"));
 	//// Create Moble nodes.
 	NodeContainer MobileNodes;
-	MobileNodes.Create(3);
+	MobileNodes.Create(2);
 
 	// configure movements for each node, while reading trace file
 	ns2MobHelper.Install();
@@ -134,10 +138,10 @@ int main(int argc, char* argv[]) {
 	consumerHelper.SetAttribute("Frequency", DoubleValue(10.0));
 	consumerHelper.Install(MobileNodes.Get(0));
 
- 	ndn::AppHelper consumerHelper2("ns3::ndn::ConsumerCbr");
-	consumerHelper2.SetPrefix("/test/prefix");
-	consumerHelper2.SetAttribute("Frequency", DoubleValue(10.0));
-	consumerHelper2.Install(MobileNodes.Get(2));
+// 	ndn::AppHelper consumerHelper2("ns3::ndn::ConsumerCbr");
+//	consumerHelper2.SetPrefix("/test/prefix");
+//	consumerHelper2.SetAttribute("Frequency", DoubleValue(10.0));
+//	consumerHelper2.Install(MobileNodes.Get(2));
 
 	ndn::AppHelper producerHelper("ns3::ndn::Producer");
 	producerHelper.SetPrefix("/");

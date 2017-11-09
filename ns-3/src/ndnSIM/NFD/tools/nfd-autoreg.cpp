@@ -109,13 +109,23 @@ public:
 			const std::vector<ndn::Name>& prefixes) {
 		for (std::vector<ndn::Name>::const_iterator prefix = prefixes.begin();
 				prefix != prefixes.end(); ++prefix) {
+
+			//Dome
+//			m_controller.start<RibRegisterCommand>(
+//					ControlParameters().setName(*prefix).setFaceId(faceId).setOrigin(
+//							ROUTE_ORIGIN_AUTOREG).setCost(m_cost).setPositionX(
+//							m_positionX).setPositionY(m_positionY).setPositionY(
+//							m_positionZ).setFuturePositionX(m_futurePositionX).setFuturePositionY(
+//							m_futurePositionX).setTimeAtFuturePosition(
+//							m_timeAtFuturePosition).setExpirationPeriod(
+//							time::milliseconds::max()),
+//					bind(&AutoregServer::onRegisterCommandSuccess, this, faceId,
+//							*prefix),
+//					bind(&AutoregServer::onRegisterCommandFailure, this, faceId,
+//							*prefix, _1));
 			m_controller.start<RibRegisterCommand>(
 					ControlParameters().setName(*prefix).setFaceId(faceId).setOrigin(
-							ROUTE_ORIGIN_AUTOREG).setCost(m_cost).setPositionX(
-							m_positionX).setPositionY(m_positionY).setPositionY(
-							m_positionZ).setFuturePositionX(m_futurePositionX).setFuturePositionY(
-							m_futurePositionX).setTimeAtFuturePosition(
-							m_timeAtFuturePosition).setExpirationPeriod(
+							ROUTE_ORIGIN_AUTOREG).setCost(m_cost).setExpirationPeriod(
 							time::milliseconds::max()),
 					bind(&AutoregServer::onRegisterCommandSuccess, this, faceId,
 							*prefix),
@@ -295,12 +305,13 @@ private:
 	std::vector<ndn::Name> m_autoregPrefixes;
 	std::vector<ndn::Name> m_allFacesPrefixes;
 	uint64_t m_cost;
-	double m_positionX;
-	double m_positionY;
-	double m_positionZ;
-	double m_futurePositionX;
-	double m_futurePositionY;
-	double m_timeAtFuturePosition;
+	//Dome
+//	double m_positionX;
+//	double m_positionY;
+//	double m_positionZ;
+//	double m_futurePositionX;
+//	double m_futurePositionY;
+//	double m_timeAtFuturePosition;
 	std::vector<Network> m_whiteList;
 	std::vector<Network> m_blackList;
 };

@@ -110,13 +110,14 @@ LegacyNfdc::fibAddNextHop()
       parameters
         .setName(m_name)
         .setCost(m_cost)
-		.setPositionX(m_positionX)
-		.setPositionY(m_positionY)
-		.setPositionY(m_positionZ)
-		.setFuturePositionX(m_futurePositionX)
-		.setFuturePositionY(m_futurePositionX)
-		.setTimeAtFuturePosition(m_timeAtFuturePosition)
         .setFaceId(faceId);
+////Dome
+//		.setPositionX(m_positionX)
+//		.setPositionY(m_positionY)
+//		.setPositionY(m_positionZ)
+//		.setFuturePositionX(m_futurePositionX)
+//		.setFuturePositionY(m_futurePositionX)
+//		.setTimeAtFuturePosition(m_timeAtFuturePosition)
 
       m_controller.start<ndn::nfd::FibAddNextHopCommand>(parameters,
         bind(&LegacyNfdc::onSuccess, this, _1, "Nexthop insertion succeeded"),
@@ -157,12 +158,13 @@ LegacyNfdc::ribRegisterPrefix()
       parameters
         .setName(m_name)
         .setCost(m_cost)
-		.setPositionX(m_positionX)
-		.setPositionY(m_positionY)
-		.setPositionY(m_positionZ)
-		.setFuturePositionX(m_futurePositionX)
-		.setFuturePositionY(m_futurePositionX)
-		.setTimeAtFuturePosition(m_timeAtFuturePosition)
+		////Dome
+//		.setPositionX(m_positionX)
+//		.setPositionY(m_positionY)
+//		.setPositionY(m_positionZ)
+//		.setFuturePositionX(m_futurePositionX)
+//		.setFuturePositionY(m_futurePositionX)
+//		.setTimeAtFuturePosition(m_timeAtFuturePosition)
         .setFlags(m_flags)
         .setOrigin(m_origin)
         .setFaceId(faceId);

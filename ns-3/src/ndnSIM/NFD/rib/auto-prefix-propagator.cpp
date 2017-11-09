@@ -66,9 +66,14 @@ void AutoPrefixPropagator::loadConfig(const ConfigSection& configSection) {
 	m_baseRetryWait = PREFIX_PROPAGATION_DEFAULT_BASE_RETRY_WAIT;
 	m_maxRetryWait = PREFIX_PROPAGATION_DEFAULT_MAX_RETRY_WAIT;
 
-	m_controlParameters.setCost(PREFIX_PROPAGATION_DEFAULT_COST).setPositionX(0).setOrigin(
+	m_controlParameters.setCost(PREFIX_PROPAGATION_DEFAULT_COST).setOrigin(
 			ndn::nfd::ROUTE_ORIGIN_CLIENT) // set origin to client.
 	.setFaceId(0); // the remote hub will take the input face as the faceId.
+
+	//Dome geändert ....
+//	m_controlParameters.setCost(PREFIX_PROPAGATION_DEFAULT_COST).setPositionX(0).setOrigin(
+//				ndn::nfd::ROUTE_ORIGIN_CLIENT) // set origin to client.
+//		.setFaceId(0); // the remote hub will take the input face as the faceId.
 
 	m_commandOptions.setPrefix(LINK_LOCAL_NFD_PREFIX).setTimeout(
 			PREFIX_PROPAGATION_DEFAULT_TIMEOUT);
@@ -79,29 +84,30 @@ void AutoPrefixPropagator::loadConfig(const ConfigSection& configSection) {
 		if (i.first == "cost") {
 			m_controlParameters.setCost(i.second.get_value<uint64_t>());
 
-		} else if (i.first == "positionX") {
-			m_controlParameters.setPositionX(i.second.get_value<double>());
 		}
-
-		else if (i.first == "positionY") {
-				m_controlParameters.setPositionY(i.second.get_value<double>());
-		}
-
-		else if (i.first == "positionZ") {
-			m_controlParameters.setPositionZ(i.second.get_value<double>());
-		}
-
-		else if (i.first == "futurePositionX") {
-			m_controlParameters.setFuturePositionX(i.second.get_value<double>());
-		}
-
-		else if (i.first == "futurePositionY") {
-			m_controlParameters.setFuturePositionY(i.second.get_value<double>());
-		}
-
-		else if (i.first == "timeAtFuturePosition") {
-			m_controlParameters.setTimeAtFuturePosition(i.second.get_value<double>());
-		}
+//			else if (i.first == "positionX") {
+//			m_controlParameters.setPositionX(i.second.get_value<double>());
+//		}
+//
+//		else if (i.first == "positionY") {
+//				m_controlParameters.setPositionY(i.second.get_value<double>());
+//		}
+//
+//		else if (i.first == "positionZ") {
+//			m_controlParameters.setPositionZ(i.second.get_value<double>());
+//		}
+//
+//		else if (i.first == "futurePositionX") {
+//			m_controlParameters.setFuturePositionX(i.second.get_value<double>());
+//		}
+//
+//		else if (i.first == "futurePositionY") {
+//			m_controlParameters.setFuturePositionY(i.second.get_value<double>());
+//		}
+//
+//		else if (i.first == "timeAtFuturePosition") {
+//			m_controlParameters.setTimeAtFuturePosition(i.second.get_value<double>());
+//		}
 
 		else if (i.first == "timeout") {
 			m_commandOptions.setTimeout(
