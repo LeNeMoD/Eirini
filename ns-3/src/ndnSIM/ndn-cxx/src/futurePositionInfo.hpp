@@ -60,7 +60,8 @@ public:
 
   public:
 
-  /*const std::list<Block>&
+  /*
+  const std::list<Block>&
   getAppFuturePositionInfo() const ;
 
   FuturePositionInfo&

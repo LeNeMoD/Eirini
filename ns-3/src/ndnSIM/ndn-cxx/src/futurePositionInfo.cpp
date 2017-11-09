@@ -183,7 +183,8 @@ FuturePositionInfo::operator ==(const FuturePositionInfo& other) const{
 }
 
 
-/*const std::list<Block>&
+/*
+const std::list<Block>&
 FuturePositionInfo::getAppFuturePositionInfo() const
 {
   return m_appFuturePositionInfo;
@@ -207,7 +208,7 @@ FuturePositionInfo&
 FuturePositionInfo::addAppFuturePositionInfo(const Block& block)
 {
   if (!(128 <= block.type() && block.type() <= 252))
-    BOOST_THROW_EXCEPTION(Error("AppMetaInfo block has type outside the application range "
+    BOOST_THROW_EXCEPTION(Error("AppFuturePositionInfo block has type outside the application range "
                                 "[128, 252]"));
 
   m_mWire_futurePositionInfo.reset();
@@ -239,12 +240,13 @@ FuturePositionInfo::findAppFuturePositionInfo(uint32_t tlvType) const
     }
   }
   return 0;
-}*/
-//
-//double
-//FuturePositionInfo::getTimeAtFutureLocation() const{
-//	return m_timeAtFuturePosition;
-//}
+}
+//eigendlich bis hier outcommented
+double
+FuturePositionInfo::getTimeAtFutureLocation() const{
+	return m_timeAtFuturePosition;
+}
+*/
 
 FuturePositionInfo&
 FuturePositionInfo::setTimeAtFutureLocation(double timeAtFutureLocation){
