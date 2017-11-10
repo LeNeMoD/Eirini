@@ -236,7 +236,7 @@ void ControlParameters::wireDecode(const Block& block) {
 	val = m_wire.find(tlv::nfd::ActualPositionZ);
 	m_hasFields[CONTROL_PARAMETER_POSITION_Z] = val != m_wire.elements_end();
 	if (this->hasPositionZ()) {
-		m_positionX = static_cast<uint64_t>(readNonNegativeInteger(*val));
+		m_positionZ = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
 	val = m_wire.find(tlv::nfd::FuturePositionX);
@@ -411,6 +411,10 @@ operator<<(std::ostream& os, const ControlParameters& parameters) {
 
 	if (parameters.hasPositionY()) {
 		os << "PositionY: " << parameters.getPositionY() << ", ";
+	}
+
+	if (parameters.hasPositionZ()) {
+		os << "PositionZ: " << parameters.getPositionZ() << ", ";
 	}
 
 	if (parameters.hasFuturePositionX()) {

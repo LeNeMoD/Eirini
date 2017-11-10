@@ -43,6 +43,8 @@
 #include "model/ndn-net-device-transport.hpp"
 
 #include "../../../../mobility/model/constant-velocity-mobility-model.h"
+#include "ns3/ns2-mobility-helper.h"
+
 
 #include "ns3/channel.h"
 #include "ns3/net-device.h"
@@ -445,7 +447,7 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
     return;
   }
   ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
-//std::cout << " on INcoming Data node " << node->GetId() << " name " << data.getName() << std::endl;
+  std::cout << " on INcoming Data node " << node->GetId() << " name " << data.getName() << std::endl;
   shared_ptr<Data> dataCopyWithoutTag = make_shared<Data>(data);
   dataCopyWithoutTag->removeTag<lp::HopCountTag>();
 
@@ -490,15 +492,19 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
     	}
 
     	//update position to Fib
-    	ns3::Ptr<ns3::ConstantVelocityMobilityModel> model = node->GetObject<ns3::ConstantVelocityMobilityModel>();
+//    	ns3::Ptr<ns3::Ns2MobilityHelper> ns2MobHelper = node->GetObject<ns3::Ns2MobilityHelper>();
     	//FIB POPULATION WHEN A DATA MSG IS COMING BACK
 //    	ns3::ndn::FibHelper::AddRoute(node, "/beacon", inFace.getId(), 111, a);
 
+    	ns3::Ns2MobilityHelper ns2MobHelper = ns3::Ns2MobilityHelper("ns-movements-test2-n3.txt");
 
-        std::cout<< "check position pass in forwarder  :" << model->getMHelper().GetCurrentPosition().x << " node id: " << node->GetId() <<std::endl;
-    	std::cout<< "check position-Y pass in forwarder  :" << model->getMHelper().GetCurrentPosition().y <<std::endl;
+    	double posX = ns2MobHelper.GetPositionFromTCLFileForNodeAtTime("Forwarder",node->GetId(),5).x ;
+    	double posY = ns2MobHelper.GetPositionFromTCLFileForNodeAtTime("Forwarder",node->GetId(),5).y ;
 
-    	ns3::ndn::FibHelper::AddRoute(node, "/", inFace.getId(), 111, a,model->getMHelper().GetCurrentPosition().x,model->getMHelper().GetCurrentPosition().y,model->getMHelper().GetCurrentPosition().z,123,123,123);
+        std::cout<< "check position-X +5s pass in forwarder  :" << posX << " node id: " << node->GetId() <<std::endl;
+    	std::cout<< "check position-Y +5s pass in forwarder  :" << posY << " node id: " << node->GetId() <<std::endl;
+
+    	ns3::ndn::FibHelper::AddRoute(node, "/", inFace.getId(), 111, a,posX,posY,11111,22222,33333,44444);
 
 
   }
@@ -533,6 +539,8 @@ Forwarder::onIncomingData(Face& inFace, const Data& data)
   }
 
 }
+
+//inline Forwarder::getFuturePositionFromFile()
 
 void
 Forwarder::onDataUnsolicited(Face& inFace, const Data& data)

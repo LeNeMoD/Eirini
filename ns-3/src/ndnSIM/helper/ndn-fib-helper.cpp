@@ -102,8 +102,6 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	parameters.setName(prefix);
 	parameters.setFaceId(face->getId());
 	parameters.setCost(metric);
-	parameters.setPositionX(model->getMHelper().GetCurrentPosition().x);
-	parameters.setPositionY(model->getMHelper().GetCurrentPosition().y);
 
 	AddNextHop(parameters, node);
 }
@@ -129,8 +127,6 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	parameters.setFaceId(face->getId());
 	parameters.setCost(metric);
 	parameters.setMac(macAddress);
-	parameters.setPositionX(model->getMHelper().GetCurrentPosition().x);
-	parameters.setPositionY(model->getMHelper().GetCurrentPosition().y);
 
 	AddNextHop(parameters, node);
 }
@@ -149,8 +145,8 @@ void FibHelper::AddRoute(Ptr<Node> node, const Name& prefix,
 	// Get the forwarder instance
 	shared_ptr<nfd::Forwarder> m_forwarder = L3protocol->getForwarder();
 
-	//std::cout<<"ndn-Fib-Helper- addRoute new one mine :for Node "<<node->GetId()<<" positionX: "<< positionX <<std::endl;
-	//std::cout<<"ndn-Fib-Helper- addRoute new one mine :for Node "<<node->GetId()<<" positionY: "<< positionY <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute (my method) :for Node "<<node->GetId()<<" positionX: "<< positionX <<std::endl;
+	std::cout<<"ndn-Fib-Helper- addRoute (my method) :for Node "<<node->GetId()<<" positionY: "<< positionY <<std::endl;
 
 	ControlParameters parameters;
 	parameters.setName(prefix);

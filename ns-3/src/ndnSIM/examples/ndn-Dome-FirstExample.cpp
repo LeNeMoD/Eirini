@@ -96,14 +96,14 @@ int main(int argc, char* argv[]) {
 
 
 	Ns2MobilityHelper ns2MobHelper = Ns2MobilityHelper(
-				"ns-movements-test2.txt");
+				"ns-movements-test2-n3.txt");
 
 //	Ns2MobilityHelper ns2MobHelper = Ns2MobilityHelper(
 //			"ns-movements-Slow-Fast-3n-10s.txt");
 	//	mobility.SetPositionAllocator(); //(ns2MobHelper.Ns2MobilityHelper("ns-movements-test2.txt"));
 	//// Create Moble nodes.
 	NodeContainer MobileNodes;
-	MobileNodes.Create(2);
+	MobileNodes.Create(3);
 
 	// configure movements for each node, while reading trace file
 	ns2MobHelper.Install();

@@ -93,8 +93,8 @@ public:
   void Install (void) const;
 
   //Dome---------------
-  Vector GetPositionFromTCLFileForNodeAtTime (int Nodeid, double at);
-  Vector GetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at);
+  Vector GetPositionFromTCLFileForNodeAtTime (std::string caller,int Nodeid, double at);
+//  Vector GetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at);
 
   // ---------------
 

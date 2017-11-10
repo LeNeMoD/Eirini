@@ -217,7 +217,7 @@ Ns2MobilityHelper::GetMobilityModel (std::string idString, const ObjectStore &st
 
 //Dome
 Vector
-Ns2MobilityHelper::GetPositionFromTCLFileForNodeAtTime(int Nodeid, double at){
+Ns2MobilityHelper::GetPositionFromTCLFileForNodeAtTime(std::string  caller, int Nodeid, double at){
 //	std::cout<< "GetPositionFromTCLFileForNodeAtTime is called :" << std::endl;
 	  std::ifstream file (m_filename.c_str (), std::ios::in);
 	  int       NodeId = Nodeid;
@@ -226,8 +226,9 @@ Ns2MobilityHelper::GetPositionFromTCLFileForNodeAtTime(int Nodeid, double at){
 	  Vector futurePosition;
 	  bool entryFound = false;
 
-	  if (file.is_open ())
-	      {std::cout<<"file is open"<<std::endl;
+	  if (file.is_open ()){
+
+//	      std::cout<<"file is open"<<std::endl;
 	        while (!file.eof ()  && !entryFound )
 	          {
 //	        	std::cout<< "first while loop is called :" << std::endl;
@@ -259,7 +260,7 @@ Ns2MobilityHelper::GetPositionFromTCLFileForNodeAtTime(int Nodeid, double at){
 	            	futurePosition.z = pr.dvals[7];
 //	            	std::cout<< "futurePosition from nsHelper"<< futurePosition <<std::endl;
 	            	std::cout<<"----------------------Requestet Future Position--------------------------------------"<<std::endl;
-	            	std::cout<< "from ns2Helper:: requestet NodeID: "<< NodeId << " = " << pr.ivals[3] <<" at req time: " << atTimeDouble << " = " << pr.dvals[2] << " has Future Position X Y Z" << pr.tokens[5] << pr.tokens[6] << std::endl;
+	            	std::cout<< "Requestet from " << caller<< ": requestet NodeID: "<< NodeId << " = " << pr.ivals[3] <<" at req time: " << atTimeDouble << " = " << pr.dvals[2] << " has Future Position X Y Z" << pr.tokens[5] << pr.tokens[6] << std::endl;
 	            	std::cout<<""<<std::endl;
 	            	entryFound = true;
 	            }
@@ -866,15 +867,15 @@ SetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at, std::stri
 }
 
 //Dome
-Vector
-Ns2MobilityHelper::GetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at){
-	ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
-	Vector position;
-	  position.x = model->GetPosition ().x;
-	  position.y = model->GetPosition ().y;
-	  position.z = model->GetPosition ().z;
-	return position;
-}
+//Vector
+//Ns2MobilityHelper::GetSchedPosition (Ptr<ConstantVelocityMobilityModel> model, double at){
+//	ns3::Ptr<ns3::Node> node = ns3::NodeList::GetNode(ns3::Simulator::GetContext());
+//	Vector position;
+//	  position.x = model->GetPosition ().x;
+//	  position.y = model->GetPosition ().y;
+//	  position.z = model->GetPosition ().z;
+//	return position;
+//}
 
 void
 Ns2MobilityHelper::Install (void) const
