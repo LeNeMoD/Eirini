@@ -56,11 +56,13 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
   // Data ::= DATA-TLV TLV-LENGTH
   //            Name
   //            MetaInfo
+  //			FuturePosition
+  //			TimeAtFuturePosition
   //            Content
   //            Signature
 
   // (reverse encoding)
-
+  totalLength += getFuturePositionInfo().wireEncode(encoder);
   if (!unsignedPortion && !m_signature)
     {
       BOOST_THROW_EXCEPTION(Error("Requested wire format, but data packet has not been signed yet"));
@@ -77,6 +79,11 @@ Data::wireEncode(EncodingImpl<TAG>& encoder, bool unsignedPortion/* = false*/) c
 
   // Content
   totalLength += encoder.prependBlock(getContent());
+
+  //if(hasFuturelocationinfo()){
+  //FuturePositionInfo
+
+ // }
 
   // MetaInfo
   totalLength += getMetaInfo().wireEncode(encoder);
@@ -141,6 +148,7 @@ Data::wireDecode(const Block& wire)
   // Data ::= DATA-TLV TLV-LENGTH
   //            Name
   //            MetaInfo
+  //			FuturePositionInfo
   //            Content
   //            Signature
 
@@ -149,6 +157,7 @@ Data::wireDecode(const Block& wire)
 
   // MetaInfo
   m_metaInfo.wireDecode(m_wire.get(tlv::MetaInfo));
+
 
   // Content
   m_content = m_wire.get(tlv::Content);
@@ -164,6 +173,13 @@ Data::wireDecode(const Block& wire)
   Block::element_const_iterator val = m_wire.find(tlv::SignatureValue);
   if (val != m_wire.elements_end())
     m_signature.setValue(*val);
+
+  //Dome
+    // FuturePositionInfo
+    val = m_wire.find(tlv::FuturePositionInfo);
+    if (val != m_wire.elements_end()){
+    m_futurePositonInfo.wireDecode(m_wire.get(tlv::FuturePositionInfo));
+    }
 }
 
 Data&
@@ -198,6 +214,17 @@ Data::setMetaInfo(const MetaInfo& metaInfo)
 
   return *this;
 }
+
+//Dome
+Data&
+Data::setFuturePositionInfo(const FuturePositionInfo& futurePositionInfoObject)
+{
+  onChanged();
+  m_futurePositonInfo = futurePositionInfoObject;
+
+  return *this;
+}
+
 
 Data&
 Data::setContentType(uint32_t type)
@@ -270,7 +297,11 @@ Data::setContent(const Block& content)
 
   return *this;
 }
-
+bool
+Data::hasFuturelocationinfo() const
+{
+  return !m_futurePositonInfo.Getemptyposition();
+}
 Data&
 Data::setSignature(const Signature& signature)
 {
@@ -306,6 +337,7 @@ Data::operator==(const Data& other) const
 {
   return getName() == other.getName() &&
     getMetaInfo() == other.getMetaInfo() &&
+    getFuturePositionInfo() == other.getFuturePositionInfo() &&
     getContent() == other.getContent() &&
     getSignature() == other.getSignature();
 }
@@ -321,6 +353,7 @@ operator<<(std::ostream& os, const Data& data)
 {
   os << "Name: " << data.getName() << "\n";
   os << "MetaInfo: " << data.getMetaInfo() << "\n";
+  os << "FuturePositionInfo: " << data.getFuturePositionInfo() << "\n";
   os << "Content: (size: " << data.getContent().value_size() << ")\n";
   os << "Signature: (type: " << data.getSignature().getType() <<
     ", value_length: "<< data.getSignature().getValue().value_size() << ")";

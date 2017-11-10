@@ -94,10 +94,11 @@ ConstantVelocityHelper::Update (void) const
   Time secondsToFuture=Seconds (1);
   double deltaS = (deltaTime).GetSeconds ();
   m_position.x += m_velocity.x * deltaS;
-//  std::cout<<" MOBILITY MODEL TEST " << m_position.x << " VELOCITY " << m_velocity.x <<" TEST2 " <<(m_position.x + ( m_velocity.x * ((secondsToFuture+deltaTime).GetSeconds()))) << std::endl;
-
   m_position.y += m_velocity.y * deltaS;
   m_position.z += m_velocity.z * deltaS;
+  //Dome
+  //  std::cout<<" MOBILITY MODEL TEST " << m_position.x << " VELOCITY " << m_velocity.x <<" TEST2 " <<(m_position.x + ( m_velocity.x * ((secondsToFuture+deltaTime).GetSeconds()))) << std::endl;
+
 }
 
 void

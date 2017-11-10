@@ -60,6 +60,7 @@ private:
   virtual Vector DoGetPosition (void) const;
   virtual void DoSetPosition (const Vector &position);
   virtual Vector DoGetVelocity (void) const;
+  //Dome
   ConstantVelocityHelper m_helper;  //!< helper object for this model
 public:
 //	virtual Vector GetScheduledPositionFromNS2Helper (Ptr<ConstantVelocityMobilityModel> model, double atTime);

@@ -60,7 +60,7 @@ public:
 	static void
 	AddRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face,
 			int32_t metric, std::string macAddress, double positionX,
-			double positionY, double deltaTime);
+			double positionY , double positionZ, double futurePositionX, double futurePositionY, double timeAtFuturePosition);
 
 	/**
 	 * \brief Add forwarding entry to FIB
@@ -79,7 +79,7 @@ public:
 	static void
 	AddRoute(const std::string& nodeName, const Name& prefix, uint32_t faceId,
 			int32_t metric, std::string macAddress, double positionX,
-			double positionY, double deltaTime);
+			double positionY , double positionZ, double futurePositionX, double futurePositionY, double timeAtFuturePosition);
 
 	/**
 	 * \brief Add forwarding entry to FIB
@@ -98,7 +98,8 @@ public:
 	static void
 	AddRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
 			int32_t metric, std::string macAddress, double positionX,
-			double positionY, double deltaTime);
+			double positionY, double positionZ, double futurePositionX,
+			double futurePositionY, double timeAtFuturePosition);
 
 	/**
 	 * @brief Add forwarding entry to FIB (work only with point-to-point links)
@@ -117,7 +118,8 @@ public:
 	static void
 	AddRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode,
 			int32_t metric, std::string macAddress, double positionX,
-			double positionY, double deltaTime);
+			double positionY, double positionZ, double futurePositionX,
+			double futurePositionY, double timeAtFuturePosition);
 
 	/**
 	 * @brief Add forwarding entry to FIB (work only with point-to-point links)
@@ -139,7 +141,8 @@ public:
 	AddRoute(const std::string& nodeName, const Name& prefix,
 			const std::string& otherNodeName, int32_t metric,
 			std::string macAddress, double positionX, double positionY,
-			double deltaTime);
+			double positionZ, double futurePositionX, double futurePositionY,
+			double timeAtFuturePosition);
 
 	/**
 	 * \brief remove forwarding entry in FIB
@@ -156,7 +159,8 @@ public:
 	static void
 	RemoveRoute(Ptr<Node> node, const Name& prefix, shared_ptr<Face> face,
 			std::string macAddress, double positionX, double positionY,
-			double deltaTime);
+			double positionZ, double futurePositionX, double futurePositionY,
+			double timeAtFuturePosition);
 
 	/**
 	 * \brief remove forwarding entry in FIB
@@ -173,7 +177,8 @@ public:
 	static void
 	RemoveRoute(Ptr<Node> node, const Name& prefix, uint32_t faceId,
 			std::string macAddress, double positionX, double positionY,
-			double deltaTime);
+			double positionZ, double futurePositionX, double futurePositionY,
+			double timeAtFuturePosition);
 
 	/**
 	 * \brief remove forwarding entry in FIB
@@ -191,7 +196,8 @@ public:
 	static void
 	RemoveRoute(const std::string& nodeName, const Name& prefix,
 			uint32_t faceId, std::string macAddress, double positionX,
-			double positionY, double deltaTime);
+			double positionY, double positionZ, double futurePositionX,
+			double futurePositionY, double timeAtFuturePosition);
 
 	/**
 	 * @brief remove forwarding entry in FIB (work only with point-to-point links)
@@ -208,7 +214,8 @@ public:
 	static void
 	RemoveRoute(Ptr<Node> node, const Name& prefix, Ptr<Node> otherNode,
 			std::string macAddress, double positionX, double positionY,
-			double deltaTime);
+			double positionZ, double futurePositionX, double futurePositionY,
+			double timeAtFuturePosition);
 
 	/**
 	 * @brief remove forwarding entry in FIB (work only with point-to-point links)
@@ -226,7 +233,9 @@ public:
 	static void
 	RemoveRoute(const std::string& nodeName, const Name& prefix,
 			const std::string& otherNodeName, std::string macAddress,
-			double positionX, double positionY, double deltaTime);
+			double positionX, double positionY, double positionZ,
+			double futurePositionX, double futurePositionY,
+			double timeAtFuturePosition);
 
 private:
 	static void

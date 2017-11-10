@@ -159,9 +159,13 @@ public:
   std::vector<std::string> m_commandLineArguments; // positional arguments
   uint64_t m_flags;
   uint64_t m_cost;
-  double m_position;
-  double m_baseTime;
-  double m_deltaTime;
+  ////Dome
+//  double m_positionX;
+//  double m_positionY;
+//  double m_positionZ;
+//  double m_futurePositionX;
+//  double m_futurePositionY;
+//  double m_timeAtFuturePosition;
   uint64_t m_faceId;
   uint64_t m_origin;
   time::milliseconds m_expires;

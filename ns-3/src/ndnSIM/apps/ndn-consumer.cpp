@@ -167,6 +167,7 @@ Consumer::StopApplication() // Called at time specified by Stop
 void
 Consumer::SendPacket()
 {
+	// Dome
   if (!m_active)
     return;
 
@@ -234,6 +235,8 @@ Consumer::SendPacket()
 void
 Consumer::OnData(shared_ptr<const Data> data)
 {
+	// Dome
+	// consumer should now once where the station which is sending data to it.
   if (!m_active)
     return;
 
@@ -253,7 +256,7 @@ Consumer::OnData(shared_ptr<const Data> data)
     hopCount = *hopCountTag;
   }
 //LOGS
-  NS_LOG_DEBUG("Hop count: " << hopCount);
+  /*NS_LOG_DEBUG("Hop count: " << hopCount);
   std::cout << "*****************************************************************" << std::endl;
   std::cout << "......consumer receiving data for: " << seq << " with hopcount: " << hopCount << " and name " << data->getName() << std::endl;
   std::cout << "*****************************************************************" << std::endl;
@@ -300,6 +303,8 @@ Consumer::OnData(shared_ptr<const Data> data)
   counter++;
   std::cout << "counter of received Data Packages is: " << counter << std::endl;
   //END LOGS
+   * */
+
   SeqTimeoutsContainer::iterator entry = m_seqLastDelay.find(seq);
   if (entry != m_seqLastDelay.end()) {
     m_lastRetransmittedInterestDataDelay(this, seq, Simulator::Now() - entry->time, hopCount);

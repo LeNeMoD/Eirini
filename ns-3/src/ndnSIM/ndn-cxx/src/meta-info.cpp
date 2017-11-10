@@ -203,6 +203,7 @@ MetaInfo::wireDecode(const Block& wire)
 
   Block::element_const_iterator val = m_wire.elements_begin();
 
+
   // ContentType
   if (val != m_wire.elements_end() && val->type() == tlv::ContentType) {
     m_type = readNonNegativeInteger(*val);

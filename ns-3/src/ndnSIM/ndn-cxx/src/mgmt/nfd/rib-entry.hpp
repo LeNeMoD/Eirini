@@ -98,7 +98,6 @@ public:
 		return *this;
 	}
 
-
 	double getPositionX() const {
 		return m_positionX;
 	}
@@ -121,6 +120,17 @@ public:
 		return *this;
 	}
 
+	double getPositionZ() const {
+		return m_positionZ;
+	}
+
+	Route&
+	setPositionZ(double positionZ) {
+		m_positionZ = positionZ;
+		m_wire.reset();
+		return *this;
+	}
+
 	double getfuturePositionX() const {
 		return m_futurePositionX;
 	}
@@ -132,7 +142,7 @@ public:
 		return *this;
 	}
 
-	double getFuturePositionY() const {
+	double getfuturePositionY() const {
 		return m_futurePositionY;
 	}
 
@@ -142,13 +152,13 @@ public:
 		m_wire.reset();
 		return *this;
 	}
-	double getDeltaTime() const {
-		return m_deltaTime;
+	double getTimeAtFuturePosition() const {
+		return m_timeAtFuturePosition;
 	}
 
 	Route&
-	setDeltaTime(double deltaTime) {
-		m_deltaTime = deltaTime;
+	setTimeAtFuturePosition(double timeAtFuturePosition) {
+		m_timeAtFuturePosition = timeAtFuturePosition;
 		m_wire.reset();
 		return *this;
 	}
@@ -205,9 +215,10 @@ private:
 	uint64_t m_cost;
 	double m_positionX;
 	double m_positionY;
+	double m_positionZ;
 	double m_futurePositionX;
 	double m_futurePositionY;
-	double m_deltaTime;
+	double m_timeAtFuturePosition;
 	uint64_t m_flags;
 	time::milliseconds m_expirationPeriod;
 	bool m_hasInfiniteExpirationPeriod;

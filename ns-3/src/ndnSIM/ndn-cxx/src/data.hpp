@@ -29,6 +29,8 @@
 #include "meta-info.hpp"
 #include "key-locator.hpp"
 #include "tag-host.hpp"
+#include "../../../core/model/vector.h"
+#include "futurePositionInfo.hpp"
 
 namespace ndn {
 
@@ -126,6 +128,8 @@ public:
    */
   const Block&
   wireEncode(EncodingBuffer& encoder, const Block& signatureValue) const;
+  bool
+   hasFuturelocationinfo() const;
 
   /**
    * @brief Decode from the wire format
@@ -180,7 +184,22 @@ public:
   Data&
   setMetaInfo(const MetaInfo& metaInfo);
 
-  //
+//  //Dome
+//  const ns3::Vector&
+//  getFutureLocation() const;
+
+  const FuturePositionInfo&
+  getFuturePositionInfo() const;
+
+  Data&
+  setFuturePositionInfo(const FuturePositionInfo& futurePositionInfo);
+
+  const double
+  getTimeAtFuturePosition() const;
+
+  Data&
+  setTimeAtFuturePosition(const double timeAtFuturePosition);
+
 
   ///////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////
@@ -298,6 +317,9 @@ protected:
 private:
   Name m_name;
   MetaInfo m_metaInfo;
+  FuturePositionInfo m_futurePositonInfo;
+  ns3::Vector m_futureLocation;
+  double m_timeAtFuturePosition;
   mutable Block m_content;
   Signature m_signature;
 
@@ -324,6 +346,12 @@ inline const MetaInfo&
 Data::getMetaInfo() const
 {
   return m_metaInfo;
+}
+
+inline const FuturePositionInfo&
+Data::getFuturePositionInfo() const
+{
+  return m_futurePositonInfo;
 }
 
 inline uint32_t

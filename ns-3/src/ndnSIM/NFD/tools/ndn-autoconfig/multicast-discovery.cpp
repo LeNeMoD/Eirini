@@ -99,7 +99,7 @@ MulticastDiscovery::registerHubDiscoveryPrefix(const ConstBufferPtr& buffer)
       .setCost(1)
 	  .setPositionX(1)
 	  .setPositionY(1)
-	  .setDeltaTime(1)
+	  .setTimeAtFuturePosition(1)
       .setExpirationPeriod(time::seconds(30));
 
     nRequestedRegs = multicastFaces.size();
