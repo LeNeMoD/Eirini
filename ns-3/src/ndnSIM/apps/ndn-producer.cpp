@@ -83,10 +83,6 @@ Producer::StartApplication()
   NS_LOG_FUNCTION_NOARGS();
   App::StartApplication();
 //insert MAC as eirini2 so no broadcast will occur
-//  Ptr<Node> node = GetNode();
-//  Ptr<MobilityModel> model = node->GetObject<MobilityModel>();
-//  Vector pos = model->GetPosition();
-////  Vector baseTime = model->
   std::cout<<"addRoute producer Eirini is called"<<std::endl;
   FibHelper::AddRoute(GetNode(), m_prefix, m_face, 0, "");
 }
@@ -116,6 +112,9 @@ Producer::OnInterest(shared_ptr<const Interest> interest)
   auto data = make_shared<Data>();
   data->setName(dataName);
   data->setFreshnessPeriod(::ndn::time::milliseconds(m_freshness.GetMilliSeconds()));
+
+  //Dome
+//  data->setFuturePositionInfo()
 
   data->setContent(make_shared< ::ndn::Buffer>(m_virtualPayloadSize));
 

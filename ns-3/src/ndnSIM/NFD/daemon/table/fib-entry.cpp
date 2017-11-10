@@ -57,7 +57,9 @@ Entry::hasNextHop(const Face& face) const
 }
 
 void
-Entry::addNextHop(Face& face, uint64_t cost, std::string mac, double position, double baseTime, double deltaTime)
+Entry::addNextHop(Face& face, uint64_t cost, std::string mac, double positionX, double positionY, double positionZ,
+		double futurePositionX, double futurePositionY,
+		double timeAtFuturePosition)
 {
   auto it = this->findNextHop(mac);
   if (it == m_nextHops.end()) {
@@ -66,9 +68,12 @@ Entry::addNextHop(Face& face, uint64_t cost, std::string mac, double position, d
   }
   it->setMac(mac);
   it->setCost(cost);
-  it->setPositionX(position);
-  it->setPositionY(baseTime);
-  it->setDeltaTime(deltaTime);
+  it->setPositionX(positionX);
+  it->setPositionY(positionY);
+  it->setPositionZ(positionZ);
+  it->setFuturePositionX(futurePositionX);
+  it->setFuturePositionY(futurePositionY);
+  it->setTimeAtFuturePosition(timeAtFuturePosition);
   this->sortNextHops();
 }
 

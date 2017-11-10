@@ -79,29 +79,40 @@ size_t ControlParameters::wireEncode(EncodingImpl<TAG>& encoder) const {
 				m_cost);
 	}
 
+	//Dome solved Problem
 	if (this->hasPositionX()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::PositionX, m_positionX);
+				tlv::nfd::ActualPositionX, m_positionX);
 	}
 
 	if (this->hasPositionY()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::PositionY, m_positionY);
+				tlv::nfd::ActualPositionY, m_positionY);
 	}
 
-	if (this->hasFuturePositionX()) {
+	if (this->hasPositionZ()) {
 			totalLength += prependNonNegativeIntegerBlock(encoder,
-					tlv::nfd::FuturePositionX, m_futurePositionX);
+					tlv::nfd::ActualPositionZ, m_positionZ);
 		}
+
+	if (this->hasFuturePositionX()) {
+		totalLength += prependNonNegativeIntegerBlock(encoder,
+				tlv::nfd::FuturePositionX, m_futurePositionX);
+	}
 
 	if (this->hasFuturePositionY()) {
+		totalLength += prependNonNegativeIntegerBlock(encoder,
+				tlv::nfd::FuturePositionY, m_futurePositionY);
+	}
+
+	if (this->hasFuturePositionZ()) {
 			totalLength += prependNonNegativeIntegerBlock(encoder,
-					tlv::nfd::FuturePositionY, m_futurePositionY);
+					tlv::nfd::FuturePositionZ, m_futurePositionZ);
 		}
 
-	if (this->hasDeltaTime()) {
+	if (this->hasTimeAtFuturePosition()) {
 		totalLength += prependNonNegativeIntegerBlock(encoder,
-				tlv::nfd::DeltaTime, m_deltaTime);
+				tlv::nfd::TimeAtFuturePosition, m_timeAtFuturePosition);
 	}
 
 	if (this->hasOrigin()) {
@@ -210,34 +221,50 @@ void ControlParameters::wireDecode(const Block& block) {
 				val->value_size());
 	}
 
-	val = m_wire.find(tlv::nfd::PositionX);
+	val = m_wire.find(tlv::nfd::ActualPositionX);
 	m_hasFields[CONTROL_PARAMETER_POSITION_X] = val != m_wire.elements_end();
 	if (this->hasPositionX()) {
 		m_positionX = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
-	val = m_wire.find(tlv::nfd::PositionY);
+	val = m_wire.find(tlv::nfd::ActualPositionY);
 	m_hasFields[CONTROL_PARAMETER_POSITION_Y] = val != m_wire.elements_end();
 	if (this->hasPositionY()) {
 		m_positionY = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
+	val = m_wire.find(tlv::nfd::ActualPositionZ);
+	m_hasFields[CONTROL_PARAMETER_POSITION_Z] = val != m_wire.elements_end();
+	if (this->hasPositionZ()) {
+		m_positionZ = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	}
+
 	val = m_wire.find(tlv::nfd::FuturePositionX);
-	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_X] = val != m_wire.elements_end();
+	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_X] = val
+			!= m_wire.elements_end();
 	if (this->hasFuturePositionX()) {
-	m_futurePositionX = static_cast<uint64_t>(readNonNegativeInteger(*val));
+		m_futurePositionX = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
 	val = m_wire.find(tlv::nfd::FuturePositionY);
-	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Y] = val != m_wire.elements_end();
+	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Y] = val
+			!= m_wire.elements_end();
 	if (this->hasFuturePositionY()) {
-	m_futurePositionY = static_cast<uint64_t>(readNonNegativeInteger(*val));
+		m_futurePositionY = static_cast<uint64_t>(readNonNegativeInteger(*val));
 	}
 
-	val = m_wire.find(tlv::nfd::DeltaTime);
-	m_hasFields[CONTROL_PARAMETER_DELTATIME] = val != m_wire.elements_end();
-	if (this->hasDeltaTime()) {
-		m_deltaTime = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	val = m_wire.find(tlv::nfd::FuturePositionZ);
+	m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z] = val
+			!= m_wire.elements_end();
+	if (this->hasFuturePositionZ()) {
+		m_futurePositionZ = static_cast<uint64_t>(readNonNegativeInteger(*val));
+	}
+
+	val = m_wire.find(tlv::nfd::TimeAtFuturePosition);
+	m_hasFields[CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION] = val != m_wire.elements_end();
+	if (this->hasTimeAtFuturePosition()) {
+		m_timeAtFuturePosition = static_cast<uint64_t>(readNonNegativeInteger(
+				*val));
 	}
 
 	val = m_wire.find(tlv::nfd::Flags);
@@ -386,6 +413,10 @@ operator<<(std::ostream& os, const ControlParameters& parameters) {
 		os << "PositionY: " << parameters.getPositionY() << ", ";
 	}
 
+	if (parameters.hasPositionZ()) {
+		os << "PositionZ: " << parameters.getPositionZ() << ", ";
+	}
+
 	if (parameters.hasFuturePositionX()) {
 		os << "FuturePositionX: " << parameters.getFuturePositionX() << ", ";
 	}
@@ -394,8 +425,12 @@ operator<<(std::ostream& os, const ControlParameters& parameters) {
 		os << "FuturePositionY: " << parameters.getFuturePositionY() << ", ";
 	}
 
-	if (parameters.hasDeltaTime()) {
-		os << "DeltaTime: " << parameters.getDeltaTime() << ", ";
+	if (parameters.hasFuturePositionZ()) {
+		os << "FuturePositionZ: " << parameters.getFuturePositionZ() << ", ";
+	}
+
+	if (parameters.hasTimeAtFuturePosition()) {
+		os << "timeAtFuturePosition: " << parameters.getTimeAtFuturePosition() << ", ";
 	}
 
 	if (parameters.hasFlags()) {

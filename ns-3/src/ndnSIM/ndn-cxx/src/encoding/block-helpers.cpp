@@ -63,6 +63,13 @@ readNonNegativeInteger(const Block& block)
   Buffer::const_iterator begin = block.value_begin();
   return tlv::readNonNegativeInteger(block.value_size(), begin, block.value_end());
 }
+//Dome
+//uint64_t
+//readVector3D(const Block& block)
+//{
+//  Buffer::const_iterator begin = block.value_begin();
+//  return tlv::readNonNegativeInteger(block.value_size(), begin, block.value_end());
+//}
 
 ////////
 

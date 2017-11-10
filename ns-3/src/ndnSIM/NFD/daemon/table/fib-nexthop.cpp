@@ -34,9 +34,10 @@ NextHop::NextHop(Face& face) :
 		m_mac("not set yet"),
 		m_positionX(0),
 		m_positionY(0),
+		m_positionZ(0),
 		m_futurePositionX(0),
 		m_futurePositionY(0),
-		m_deltaTime(0)
+		m_timeAtFuturePosition(0)
 {
 }
 

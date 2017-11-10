@@ -40,6 +40,8 @@
 #include "table/network-region-table.hpp"
 
 #include "ns3/ndnSIM/model/cs/ndn-content-store.hpp"
+#include "ns3/ns2-mobility-helper.h"
+
 
 namespace nfd {
 
@@ -298,6 +300,16 @@ PROTECTED_WITH_TESTS_ELSE_PRIVATE:
   {
     trigger(m_strategyChoice.findEffectiveStrategy(pitEntry));
   }
+//  //Dome
+//public:
+//  void
+//  passNS2MobilityHelperToForwarder(ns3::Ns2MobilityHelper helper){
+//	  m_ns2Helper = helper;
+//  }
+//  ns3::Ns2MobilityHelper
+//  getNs2HelperInForwarder(){
+//	  return m_ns2Helper;
+//  }
 
 private:
   ForwarderCounters m_counters;
@@ -314,6 +326,8 @@ private:
   DeadNonceList      m_deadNonceList;
   NetworkRegionTable m_networkRegionTable;
   shared_ptr<Face>   m_csFace;
+
+//  ns3::Ns2MobilityHelper m_ns2Helper;
 
   ns3::Ptr<ns3::ndn::ContentStore> m_csFromNdnSim;
 

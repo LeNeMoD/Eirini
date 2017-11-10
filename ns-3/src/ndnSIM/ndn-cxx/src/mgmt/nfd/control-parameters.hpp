@@ -43,9 +43,11 @@ enum ControlParameterField {
 	CONTROL_PARAMETER_MAC,
 	CONTROL_PARAMETER_POSITION_X,
 	CONTROL_PARAMETER_POSITION_Y,
+	CONTROL_PARAMETER_POSITION_Z,
 	CONTROL_PARAMETER_FUTURE_POSITION_X,
 	CONTROL_PARAMETER_FUTURE_POSITION_Y,
-	CONTROL_PARAMETER_DELTATIME,
+	CONTROL_PARAMETER_FUTURE_POSITION_Z,
+	CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION,
 	CONTROL_PARAMETER_FLAGS,
 	CONTROL_PARAMETER_MASK,
 	CONTROL_PARAMETER_STRATEGY,
@@ -56,8 +58,11 @@ enum ControlParameterField {
 
 const std::string CONTROL_PARAMETER_FIELD[CONTROL_PARAMETER_UBOUND] = { "Name",
 		"FaceId", "Uri", "LocalControlFeature", "Origin", "Cost", "Mac",
-		"PositionX", "PositionY" , "FuturePositionX", "FuturePositionY", "DeltaTime", "Flags", "Mask", "Strategy",
+		"PositionX", "PositionY", "PositionZ", "FuturePositionX",
+		"FuturePositionY", "FuturePositionZ ", "TimeAtFuturePosition", "Flags", "Mask", "Strategy",
 		"ExpirationPeriod", "FacePersistency" };
+
+
 
 /**
  * \ingroup management
@@ -329,6 +334,30 @@ public:
 		return *this;
 	}
 
+	bool hasPositionZ() const {
+		return m_hasFields[CONTROL_PARAMETER_POSITION_Z];
+	}
+
+	double getPositionZ() const {
+		BOOST_ASSERT(this->hasPositionZ());
+		return m_positionZ;
+	}
+
+	ControlParameters&
+	setPositionZ(double positionZ) {
+		m_wire.reset();
+		m_positionZ = positionZ;
+		m_hasFields[CONTROL_PARAMETER_POSITION_Z] = true;
+		return *this;
+	}
+
+	ControlParameters&
+	unsetPositionZ() {
+		m_wire.reset();
+		m_hasFields[CONTROL_PARAMETER_POSITION_Z] = false;
+		return *this;
+	}
+
 	bool hasFuturePositionX() const {
 		return m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_X];
 	}
@@ -377,27 +406,51 @@ public:
 		return *this;
 	}
 
-	bool hasDeltaTime() const {
-		return m_hasFields[CONTROL_PARAMETER_DELTATIME];
+	bool hasFuturePositionZ() const {
+		return m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z];
 	}
 
-	double getDeltaTime() const {
-		BOOST_ASSERT(this->hasDeltaTime());
-		return m_deltaTime;
+	double getFuturePositionZ() const {
+		BOOST_ASSERT(this->hasFuturePositionZ());
+		return m_futurePositionY;
 	}
 
 	ControlParameters&
-	setDeltaTime(double deltaTime) {
+	setFuturePositionZ(double futurePositionZ) {
 		m_wire.reset();
-		m_deltaTime = deltaTime;
-		m_hasFields[CONTROL_PARAMETER_DELTATIME] = true;
+		m_futurePositionZ = futurePositionZ;
+		m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z] = true;
 		return *this;
 	}
 
 	ControlParameters&
-	unsetDeltaTime() {
+	unsetFuturePositionZ() {
 		m_wire.reset();
-		m_hasFields[CONTROL_PARAMETER_DELTATIME] = false;
+		m_hasFields[CONTROL_PARAMETER_FUTURE_POSITION_Z] = false;
+		return *this;
+	}
+
+	bool hasTimeAtFuturePosition() const {
+		return m_hasFields[CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION];
+	}
+
+	double getTimeAtFuturePosition() const {
+		BOOST_ASSERT(this->hasTimeAtFuturePosition());
+		return m_timeAtFuturePosition;
+	}
+
+	ControlParameters&
+	setTimeAtFuturePosition(double timeAtFuturePosition) {
+		m_wire.reset();
+		m_timeAtFuturePosition = timeAtFuturePosition;
+		m_hasFields[CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION] = true;
+		return *this;
+	}
+
+	ControlParameters&
+	unsetTimeAtFuturePosition() {
+		m_wire.reset();
+		m_hasFields[CONTROL_PARAMETER_TIME_AT_FUTUREPOSITION] = false;
 		return *this;
 	}
 
@@ -571,9 +624,11 @@ private:
 	std::string m_mac;
 	double m_positionX;
 	double m_positionY;
+	double m_positionZ;
 	double m_futurePositionX;
 	double m_futurePositionY;
-	double m_deltaTime;
+	double m_futurePositionZ;
+	double m_timeAtFuturePosition;
 	LocalControlFeature m_localControlFeature;
 	uint64_t m_origin;
 	uint64_t m_cost;
